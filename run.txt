@@ -1,0 +1,4 @@
+docker start gitChecker
+docker exec -it gitChecker /bin/bash
+
+cd /mnt/analyze-rpms/confirmCVE/src/backEnd

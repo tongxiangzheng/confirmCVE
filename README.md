@@ -5,3 +5,18 @@
 
 前端功能：
 处理依赖关系，根据依赖关系对cve漏洞进行扩散
+
+docker生成：
+
+docker run --name gitChecker -v /home/txz/analyze-rpms:/mnt/analyze-rpms -it ubuntu /bin/bash
+
+apt update
+apt install python3 python3-pip rpm git -y
+
+pip3 install GitPython
+pip3 install python-rpm-spec
+pip3 install wget
+pip3 install python-libarchive
+pip3 install loguru
+pip3 install pycurl
+pip3 install certifi

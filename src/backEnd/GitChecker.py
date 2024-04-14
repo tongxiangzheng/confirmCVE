@@ -14,10 +14,11 @@ class GitChecker:
 	def __init__(self,packageInfo:PackageInfo):
 		self.packageInfo=packageInfo
 		parser=OSInformation()
-		self.osInfo=parser.getOsInfo(packageInfo.dist)
+		self.osInfo=parser.getOsInfo(packageInfo)
 		self.autoReleaseDict=dict()
-		downloadPath = os.path.join('../repos',osInfo.name,packageInfo.name)
-		repoLink=osInfo["gitLink"]+packageInfo['name']+'.git'
+		DIR = os.path.split(os.path.abspath(__file__))[0]
+		downloadPath = os.path.join(DIR,'..','..','repos',self.osInfo.name,packageInfo.name)
+		repoLink=self.osInfo.gitLink+packageInfo.name+'.git'
 		log.info("git link is "+repoLink)
 		if os.path.exists(downloadPath):
 			self.repo = git.Repo(downloadPath)
@@ -27,14 +28,13 @@ class GitChecker:
 		else:
 			self.repo = git.Repo.clone_from(repoLink,to_path=downloadPath)
 	def getSrcFiles(self):
-		if 'packageLink' not in self.osInfo:
-			return []
 		filename=self.packageInfo['srcPackage']
 		srcFiles=[]
 		for link in self.osInfo['packageLink']:
 			link=link.replace("{%name_first_alpha}",self.packageInfo['name'][0])
 			URL=link+filename
-			downloadPath=os.path.join('..','packages',self.osInfo['name'])
+			DIR = os.path.split(os.path.abspath(__file__))[0]
+			downloadPath=os.path.join(DIR,'..','..','packages',self.osInfo['name'])
 			filePath=os.path.join(downloadPath,filename)
 			if not os.path.exists(downloadPath):
 				os.makedirs(downloadPath)
@@ -46,7 +46,9 @@ class GitChecker:
 					log.info("can't download src package from "+URL+" ,which is not an error")
 					log.info("download error info: "+str(e.args))
 					continue
-			extractFilePath=os.path.join('..','packages_extract',self.osInfo['name'],filename)
+			
+			DIR = os.path.split(os.path.abspath(__file__))[0]
+			extractFilePath=os.path.join(DIR,'..','..','packages_extract',self.osInfo['name'],filename)
 			if os.path.isdir(extractFilePath):
 				shutil.rmtree(extractFilePath)
 			os.makedirs(extractFilePath)
@@ -204,22 +206,20 @@ class GitChecker:
 			log.trace("release:"+release)
 			log.trace("message:"+commit.message)
 			
-			if self.packageInfo['name']==name and self.packageInfo['version']==version and self.packageInfo['release']==release:
+			if self.packageInfo.name==name and self.packageInfo.version==version and self.packageInfo.release==release:
 				return True
 		return False
 	
 	def specCheck(self):
 		#使用软件包的version和release信息，与commit中的.spec文件进行匹配
 		log.info("start check by spec file")
-		log.info(" name is "+self.packageInfo['name'])
-		log.info(" version is "+self.packageInfo['version'])
-		log.info(" release is "+self.packageInfo['release'])
+		log.info(" name is "+self.packageInfo.name)
+		log.info(" version is "+self.packageInfo.version)
+		log.info(" release is "+self.packageInfo.release)
 		visted_commits=set()
 		matched_commits=[]
-		specFilePath=""
-		if "specfile" in self.osInfo:
-			specFilePath=self.osInfo["specfile"]
-		specFileName=specFilePath+self.packageInfo['name']+'.spec'
+		specFilePath=self.osInfo.specfile
+		specFileName=specFilePath+self.packageInfo.name+'.spec'
 		for branch in self.repo.remote().refs:
 			#print("--------------")
 			#print(branch.name)
@@ -242,16 +242,17 @@ class GitChecker:
 		return None
 	
 	def getCommitId(self):
-		srcResult=self.srcCheck()
+		#srcResult=self.srcCheck()
 		specResult=self.specCheck()
-		if srcResult is None:
-			if specResult is None:
-				raise Exception("Cannot match any commit")
-			return specResult
-		if srcResult!=specResult:
-			log.warning("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
-			raise Exception("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
-		return srcResult
+		return specResult
+		#if srcResult is None:
+		#	if specResult is None:
+		#		raise Exception("Cannot match any commit")
+		#	return specResult
+		#if srcResult!=specResult:
+		#	log.warning("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
+		#	raise Exception("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
+		#return srcResult
 	def checkMessage(self,commitId,cveChecker):
 		commit=self.repo.commit(commitId)
 		while len(commit.parents)>0:
@@ -260,6 +261,8 @@ class GitChecker:
 	def check(self,cves):
 		cveChecker=CVEChecker(cves)
 		commitId=self.getCommitId()
+		if commitId is None:
+			raise Exception("Cannot match any commit")
 		log.info("match commit id: "+commitId)
 		self.checkMessage(commitId,cveChecker)
 		return cveChecker
