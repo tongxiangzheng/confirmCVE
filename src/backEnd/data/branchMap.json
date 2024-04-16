@@ -1,0 +1,16 @@
+{
+	"centos":{
+        "el7":"c7",
+        "el8":"c8",
+		"el8-stream":"c8s",
+		"el9-stream":"c9s"
+	},
+	"openEuler":{
+		"oe2309":"openEuler-23.09"
+	},
+	"fedora":{
+        "fc35":"f35",
+        "fc39":"f39"
+		
+	}
+}

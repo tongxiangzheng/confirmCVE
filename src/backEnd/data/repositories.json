@@ -1,7 +1,7 @@
 {
-	"adobe": "",
-	"alma": "",
-	"amazon-linux": "",
+	"adobe":"",
+	"alma":"",
+	"amazon-linux":"",
 	"anoli":"",
 	"anydesk":"",
 	"azure-linux":"",
@@ -9,24 +9,33 @@
 	"bluejeans":"",
 	"brave":"",
 	"calcforge":"",
-	"centos":{"gitLink":"https://git.centos.org/rpms/",
-	 "specfile":"SPECS/",
-	 "srcPackageLink":["https://mirrors.aliyun.com/centos-vault/8-stream/BaseOS/Source/SPackages/",
-	 	"https://mirrors.aliyun.com/centos-vault/8-stream/AppStream/Source/SPackages/",
-		"https://mirrors.aliyun.com/centos/8/BaseOS/Source/SPackages/"
+	"centos":{
+		"gitLink":{
+			"https://gitlab.com/redhat/centos-stream/rpms/":[".*-stream"],
+			"https://git.centos.org/rpms/":[".*"]
+		},
+		"specfile":"SPECS/",
+		"srcPackageLink":[
+			"https://mirrors.aliyun.com/centos-vault/8-stream/BaseOS/Source/SPackages/",
+			"https://mirrors.aliyun.com/centos-vault/8-stream/AppStream/Source/SPackages/",
+			"https://mirrors.aliyun.com/centos/8/BaseOS/Source/SPackages/"
 		]
 	},
 	"circle":"",
 	"copr":"",
 	"openEuler":{
-		"gitLink":"git@gitee.com:src-openeuler/",
+		"gitLink":{
+			"git@gitee.com:src-openeuler/":[".*"]
+		},
 		"specfile":"",
 		"srcPackageLink":["https://mirrors.aliyun.com/openeuler/openEuler-20.03-LTS/source/Packages/",
 			"https://mirrors.aliyun.com/openeuler/openEuler-22.03-LTS/source/Packages/"
 		]
 	},
 	"fedora":{
-		"gitLink":"https://src.fedoraproject.org/rpms/",
+		"gitLink":{
+			"https://src.fedoraproject.org/rpms/":[".*"]
+		},
 		"specfile":"",
 		"srcPackageLink":["https://mirrors.aliyun.com/fedora/releases/35/Everything/source/tree/Packages/{%name_first_alpha}/",
 			"https://mirrors.aliyun.com/fedora/releases/39/Everything/source/tree/Packages/{%name_first_alpha}/"

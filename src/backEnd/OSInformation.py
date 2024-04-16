@@ -1,23 +1,38 @@
 import os
 import json
+import re
 from loguru import logger as log
 from PackageInfo import PackageInfo
 class OSInfo:
-	def __init__(self,gitLink:str,specfile:str,srcPackageLink:list[str],name:str):
+	def __init__(self,gitLink:str,specfile:str,srcPackageLink:list[str],name:str,branch:str):
 		self.gitLink=gitLink
 		self.specfile=specfile
 		self.srcPackageLink=srcPackageLink
 		self.name=name
+		self.branch=branch
 class OSInformation:
 	def __init__(self):
-		indexPath=os.path.join("..","data")
+		DIR = os.path.split(os.path.abspath(__file__))[0]
+		indexPath=os.path.join(DIR,"data")
 		with open(os.path.join(indexPath,"repositories.json"),"r") as f:
 			data=json.load(f)
 			self.repositories=data
+		with open(os.path.join(indexPath,"branchMap.json"),"r") as f:
+			data=json.load(f)
+			self.branchmap=data
 	def getOsInfo(self,packageInfo:PackageInfo)->dict:
 		info=self.repositories[packageInfo.osType]
 		if 'srcPackageLink' not in info:
 			info['srcPackageLink']=[]
 		if 'specfile' not in info:
 			info['specfile']=""
-		return OSInfo(info['gitLink'],info['specfile'],info['srcPackageLink'],packageInfo.osType)
+		gitLink=None
+		for link, linkMatch in info['gitLink'].items():
+			for m in linkMatch:
+				if re.search(m,packageInfo.dist) is not None:
+					gitLink=link
+					break
+			if gitLink is not None:
+				break
+		branch=self.branchmap[packageInfo.osType][packageInfo.dist]
+		return OSInfo(gitLink,info['specfile'],info['srcPackageLink'],packageInfo.osType,branch)

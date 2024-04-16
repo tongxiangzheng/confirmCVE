@@ -28,13 +28,15 @@ class GitChecker:
 		else:
 			self.repo = git.Repo.clone_from(repoLink,to_path=downloadPath)
 	def getSrcFiles(self):
-		filename=self.packageInfo['srcPackage']
+		filename=self.packageInfo.name+"-"+self.packageInfo.version+"-"+self.packageInfo.release+"."+self.packageInfo.dist+".src.rpm"
 		srcFiles=[]
-		for link in self.osInfo['packageLink']:
-			link=link.replace("{%name_first_alpha}",self.packageInfo['name'][0])
+		print(self.osInfo.srcPackageLink)
+		for link in self.osInfo.srcPackageLink:
+			link=link.replace("{%name_first_alpha}",self.packageInfo.name[0])
+			##将宏替换为名称首字母
 			URL=link+filename
 			DIR = os.path.split(os.path.abspath(__file__))[0]
-			downloadPath=os.path.join(DIR,'..','..','packages',self.osInfo['name'])
+			downloadPath=os.path.join(DIR,'..','..','packages',self.osInfo.name)
 			filePath=os.path.join(downloadPath,filename)
 			if not os.path.exists(downloadPath):
 				os.makedirs(downloadPath)
@@ -48,7 +50,7 @@ class GitChecker:
 					continue
 			
 			DIR = os.path.split(os.path.abspath(__file__))[0]
-			extractFilePath=os.path.join(DIR,'..','..','packages_extract',self.osInfo['name'],filename)
+			extractFilePath=os.path.join(DIR,'..','..','packages_extract',self.osInfo.name,filename)
 			if os.path.isdir(extractFilePath):
 				shutil.rmtree(extractFilePath)
 			os.makedirs(extractFilePath)
@@ -115,7 +117,9 @@ class GitChecker:
 		log.info("start check by src files")
 		visted_commits=set()
 		matched_commits=[]
-		for branch in self.repo.remote().refs:
+		branchName=self.osInfo.branch
+		if branchName in self.repo.remote().refs:
+			branch=self.repo.remote().refs[branchName]
 			log.debug("branch: "+branch.name)
 			nowCommit=self.repo.commit(branch.name)
 			while True:
@@ -127,7 +131,7 @@ class GitChecker:
 				blobFiles=set()
 				self.dfsTree(nowCommit.tree,blobFiles)
 				metadataFiles={'sha1':set(),'sha256':set(),'sha512':set()}
-				self.parseMetadata('.'+self.packageInfo['name']+'.metadata',nowCommit,metadataFiles)
+				self.parseMetadata('.'+self.packageInfo.name+'.metadata',nowCommit,metadataFiles)
 				self.parseMetadata("sources",nowCommit,metadataFiles)
 				commitIsMatch=True
 				disMatchNumber=0	#for debug
@@ -220,16 +224,17 @@ class GitChecker:
 		matched_commits=[]
 		specFilePath=self.osInfo.specfile
 		specFileName=specFilePath+self.packageInfo.name+'.spec'
-		for branch in self.repo.remote().refs:
-			#print("--------------")
-			#print(branch.name)
+		branchName=self.osInfo.branch
+		if branchName in self.repo.remote().refs:
+			branch=self.repo.remote().refs[branchName]
+			log.debug("branch: "+branch.name)
 			nowCommit=self.repo.commit(branch.name)
 			while True:
 				hexsha=nowCommit.hexsha
 				if hexsha in visted_commits:
 					break
 				visted_commits.add(hexsha)
-				log.debug("check commit "+hexsha)
+				log.debug("commit: "+hexsha+" , "+nowCommit.message)
 				if self.checkCommit(nowCommit,specFileName):
 					matched_commits.append((nowCommit.committed_date,nowCommit.hexsha))
 					log.info("match the commit: "+nowCommit.hexsha)
@@ -242,17 +247,16 @@ class GitChecker:
 		return None
 	
 	def getCommitId(self):
-		#srcResult=self.srcCheck()
+		srcResult=self.srcCheck()
 		specResult=self.specCheck()
-		return specResult
-		#if srcResult is None:
-		#	if specResult is None:
-		#		raise Exception("Cannot match any commit")
-		#	return specResult
-		#if srcResult!=specResult:
-		#	log.warning("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
-		#	raise Exception("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
-		#return srcResult
+		if srcResult is None:
+			if specResult is None:
+				raise Exception("Cannot match any commit")
+			return specResult
+		if srcResult!=specResult:
+			log.warning("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
+			raise Exception("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
+		return srcResult
 	def checkMessage(self,commitId,cveChecker):
 		commit=self.repo.commit(commitId)
 		while len(commit.parents)>0:
