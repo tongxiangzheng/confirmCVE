@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def dfs(now,len):
+def dfs(now,len=0):
 	for i in range(len):
 		print(' ',end='')
 	print("type=",now.nodeType,"name=",now.nodeName,",value=",now.nodeValue)
