@@ -1,8 +1,13 @@
 import xml.dom.minidom
 import os
+import sys
 from collections import defaultdict
 from loguru import logger as log
 from dom_tool import sub2dict,dfs
+DIR=os.path.split(os.path.abspath(__file__))[0]
+sys.path.insert(0,os.path.join(DIR,'..','backEnd'))
+from PackageInfo import PackageInfo
+from queryPackageCVE import queryPackageCVE
 class PackagePointer:
 	def __init__(self,name:str,flags:str,version:str,release:str|None):
 		self.name=name
@@ -14,29 +19,42 @@ def defaultNoneList():
 class EntryMap:
 	def __init__(self):
 		self.provideEntryPackages=defaultdict(defaultNoneList)
+		self.updateEntrys=dict()
 	def registerEntry(self,entry:PackagePointer,package):
 		self.provideEntryPackages[entry.name].append((package,entry))
+	def copy(self):
+		newMap=EntryMap()
+		newMap.provideEntryPackages=self.provideEntryPackages
+		return newMap
 	def queryRequires(self,entry:PackagePointer):
 		res=self.provideEntryPackages[entry.name]
 		if len(res)!=1:
 			if len(res)==0:
 				log.warning("no package provide the require file: "+entry.name)
 			else:
-				log.warning("require file: "+entry.name+" is provide by more than one package")
+				#log.warning("require file: "+entry.name+" is provide by more than one package")
+				""
 			return None
 		#TODO:check res[0][1] is match
 		return res[0][0]
 class SpecificPackage:
-	def __init__(self,name:str,version:str,release:str,dist:str,provides:list[PackagePointer],requires:list[PackagePointer]):
-		self.name=name
-		self.version=version
-		self.release=release
-		self.dist=dist
+	def __init__(self,packageInfo:PackageInfo,provides:list[PackagePointer],requires:list[PackagePointer]):
+		self.packageInfo=packageInfo
 		self.providesInfo=provides
 		self.requiresInfo=requires
+		self.providesPointers=[]
 		self.requirePointers=[]
-	def addEdge(self,package):
+		self.readOnly=False
+	def addProvidesPointer(self,package,checkReadOnly=True):
+		#无需手动调用，addRequirePointer自动处理
+		if checkReadOnly==False or self.readOnly==False:
+			self.providesPointers.append(package)
+			return self
+		else:
+			pass
+	def addRequirePointer(self,package):
 		self.requirePointers.append(package)
+		package.addProvidesPointer(self)
 	def registerProvides(self,entryMap:EntryMap)->None:
 		for provide in self.providesInfo:
 			entryMap.registerEntry(provide,self)
@@ -44,7 +62,7 @@ class SpecificPackage:
 		for require in self.requiresInfo:
 			res=entryMap.queryRequires(require)
 			if res is not None:
-				self.addEdge(res)
+				self.addRequirePointer(res)
 		
 
 def parseEntry(node:xml.dom.minidom.Element)->list[PackagePointer]:
@@ -80,7 +98,8 @@ def parsePackage(node:xml.dom.minidom.Element)->SpecificPackage:
 	res=node.getElementsByTagName('rpm:requires')
 	if len(res)!=0:
 		requires=parseEntry(res[0])
-	return SpecificPackage(name,version,release,dist,provides,requires)
+	packageInfo=PackageInfo("openEuler",dist,name,version,release)
+	return SpecificPackage(packageInfo,provides,requires)
 	
 	
 def parseFile(fromPath):
@@ -94,8 +113,8 @@ def parseFile(fromPath):
 			continue
 		package=parsePackage(subnode)
 		package.registerProvides(entryMap)
-		packageMap[package.name]=package
-	for name,package in packageMap.items():
+		packageMap[package.packageInfo.name]=package
+	for package in packageMap.values():
 		package.findRequires(entryMap)
 		
 DIR=os.path.split(os.path.abspath(__file__))[0]

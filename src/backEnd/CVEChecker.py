@@ -31,9 +31,9 @@ class CVEChecker:
 		log.debug("check commit"+commit.hexsha)
 		self.parse(commit.message,commit,"commit_message")
 		self.dfsTree(commit.tree,commit)
-	def getMatchedCVE(self):
+	def getMatchedCVE(self)->list[str]:
 		return self.matched_cves
-	def getDismathedCVE(self):
+	def getDismathedCVE(self)->list[str]:
 		cves=[]
 		for cveString in self.dismatched_cves:
 			cves.append(cveString)
@@ -41,13 +41,13 @@ class CVEChecker:
 	def addWarning(self,warnInfo):
 		if len(self.warnings)<10:
 			self.warnings.append(warnInfo)
-	def getReport(self):
+	def getReport(self)->dict:
 		report=dict()
 		report['safeCVE']=self.getMatchedCVE()
 		report['unsafeCVE']=self.getDismathedCVE()
 		report['success']=True
 		report['warning']=self.warnings
-		report['safeNumber']=len(self.getMatchedCVE())
-		report['unsafeNumber']=len(self.getDismathedCVE())
+		#report['safeNumber']=len(self.getMatchedCVE())
+		#report['unsafeNumber']=len(self.getDismathedCVE())
 		return report
 		
