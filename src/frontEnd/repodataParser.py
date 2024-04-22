@@ -37,14 +37,19 @@ class EntryMap:
 			return None
 		#TODO:check res[0][1] is match
 		return res[0][0]
+def defaultCVEList():
+	return 0
 class SpecificPackage:
-	def __init__(self,packageInfo:PackageInfo,provides:list[PackagePointer],requires:list[PackagePointer]):
+	def __init__(self,packageInfo:PackageInfo,fullName:str,provides:list[PackagePointer],requires:list[PackagePointer]):
 		self.packageInfo=packageInfo
+		self.fullName=fullName
+		self.packageCVE=self.packageCVE=defaultdict(defaultCVEList)
 		self.providesInfo=provides
 		self.requiresInfo=requires
 		self.providesPointers=[]
 		self.requirePointers=[]
 		self.readOnly=False
+		self.checking=False
 	def addProvidesPointer(self,package,checkReadOnly=True):
 		#无需手动调用，addRequirePointer自动处理
 		if checkReadOnly==False or self.readOnly==False:
@@ -63,6 +68,24 @@ class SpecificPackage:
 			res=entryMap.queryRequires(require)
 			if res is not None:
 				self.addRequirePointer(res)
+	def getPackageCVE(self)->None:
+		cves=queryPackageCVE(self.packageInfo)
+		log.info("parse "+self.packageInfo.name+" , has cve:"+str(cves))
+		for cve in cves:
+			self.packageCVE[cve]+=1
+	def getAllCVE(self)->None:
+		if self.checking is True:
+			log.warning("DAG may not promised")
+		if self.readOnly is True:
+			return
+		self.checking=True
+		self.readOnly=True
+		self.getPackageCVE()
+		for require in self.requirePointers:
+			require.getAllCVE()
+			for cve,num in require.packageCVE.items():
+				self.packageCVE[cve]+=num
+		self.checking=False
 		
 
 def parseEntry(node:xml.dom.minidom.Element)->list[PackagePointer]:
@@ -80,16 +103,18 @@ def parseEntry(node:xml.dom.minidom.Element)->list[PackagePointer]:
 			version=subnode.getAttribute('ver')
 		release=None
 		if subnode.hasAttribute('rel'):
-			version=subnode.getAttribute('rel').split('.')[0]
+			release=subnode.getAttribute('rel').split('.')[0]
 		res.append(PackagePointer(name,flags,version,release))
 	return res
 def parsePackage(node:xml.dom.minidom.Element)->SpecificPackage:
-	name=node.getElementsByTagName('name')[0].firstChild.nodeValue
+	fullName=node.getElementsByTagName('name')[0].firstChild.nodeValue
+	sourcerpm=node.getElementsByTagName('rpm:sourcerpm')[0].firstChild.nodeValue
+	name=sourcerpm.split('-')[0]
 	versionNode=node.getElementsByTagName('version')[0]
 	version=versionNode.getAttribute('ver')
 	releaseRaw=versionNode.getAttribute('rel')
 	release=releaseRaw.split('.')[0]
-	dist=releaseRaw.split('.')[1]
+	dist=releaseRaw.split('.')[-1]
 	provides=[]
 	res=node.getElementsByTagName('rpm:provides')
 	if len(res)!=0:
@@ -99,7 +124,7 @@ def parsePackage(node:xml.dom.minidom.Element)->SpecificPackage:
 	if len(res)!=0:
 		requires=parseEntry(res[0])
 	packageInfo=PackageInfo("openEuler",dist,name,version,release)
-	return SpecificPackage(packageInfo,provides,requires)
+	return SpecificPackage(packageInfo,fullName,provides,requires)
 	
 	
 def parseFile(fromPath):
@@ -113,10 +138,19 @@ def parseFile(fromPath):
 			continue
 		package=parsePackage(subnode)
 		package.registerProvides(entryMap)
-		packageMap[package.packageInfo.name]=package
+		packageMap[package.fullName]=package
 	for package in packageMap.values():
 		package.findRequires(entryMap)
-		
+	
+	#test
+	packageMap['openssh-clients'].getAllCVE()
+	print(packageMap['openssh-clients'].packageCVE)
+
 DIR=os.path.split(os.path.abspath(__file__))[0]
-#parseFile(os.path.join(DIR,"little.xml"))
+log.remove(handler_id=None)
+logFile=DIR+"log.log"
+if os.path.exists(logFile):
+	os.remove(logFile)
+#log.add(sink=logFile,level='INFO')
+log.add(sink=logFile,level='TRACE')
 parseFile(os.path.join(DIR,"339ea1b58f3246e5a9af782ce0c8f9141d0670b7954b46432ab150b715fc00ad-primary.xml"))

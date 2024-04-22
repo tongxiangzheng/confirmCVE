@@ -20,7 +20,7 @@ class OSInformation:
 		with open(os.path.join(indexPath,"branchMap.json"),"r") as f:
 			data=json.load(f)
 			self.branchmap=data
-	def getOsInfo(self,packageInfo:PackageInfo)->dict:
+	def getOsInfo(self,packageInfo:PackageInfo)->OSInfo:
 		info=self.repositories[packageInfo.osType]
 		if 'srcPackageLink' not in info:
 			info['srcPackageLink']=[]

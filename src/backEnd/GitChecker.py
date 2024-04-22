@@ -30,7 +30,7 @@ class GitChecker:
 	def getSrcFiles(self):
 		filename=self.packageInfo.name+"-"+self.packageInfo.version+"-"+self.packageInfo.release+"."+self.packageInfo.dist+".src.rpm"
 		srcFiles=[]
-		print(self.osInfo.srcPackageLink)
+		#print(self.osInfo.srcPackageLink)
 		for link in self.osInfo.srcPackageLink:
 			link=link.replace("{%name_first_alpha}",self.packageInfo.name[0])
 			##将宏替换为名称首字母

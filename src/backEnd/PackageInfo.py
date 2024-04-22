@@ -3,5 +3,13 @@ class PackageInfo:
 		self.osType=osType
 		self.dist=dist
 		self.name=name
-		self.version=version
+		id=version.find('p')
+		if id==-1:
+			self.update=None
+			self.version=version
+		else:
+			self.update=version[id:]
+			self.version=version[0:id]
+			#print(version,self.version,self.update)
 		self.release=release
+		
