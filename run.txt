@@ -2,4 +2,6 @@ docker start gitChecker
 docker exec -it gitChecker /bin/bash
 
 cd /mnt/analyze-rpms/confirmCVE/src/frontEnd
+python3 repodataParser.py
+
 cd /mnt/analyze-rpms/confirmCVE/src/backEnd

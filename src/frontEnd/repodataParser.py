@@ -30,7 +30,8 @@ class EntryMap:
 		res=self.provideEntryPackages[entry.name]
 		if len(res)!=1:
 			if len(res)==0:
-				log.warning("no package provide the require file: "+entry.name)
+				""
+				#log.warning("no package provide the require file: "+entry.name)
 			else:
 				#log.warning("require file: "+entry.name+" is provide by more than one package")
 				""
@@ -64,21 +65,28 @@ class SpecificPackage:
 		for provide in self.providesInfo:
 			entryMap.registerEntry(provide,self)
 	def findRequires(self,entryMap:EntryMap)->None:
+		requirePackageSet=set()
 		for require in self.requiresInfo:
 			res=entryMap.queryRequires(require)
-			if res is not None:
+			if res is not None and res not in requirePackageSet:
 				self.addRequirePointer(res)
+				requirePackageSet.add(res)
 	def getPackageCVE(self)->None:
 		cves=queryPackageCVE(self.packageInfo)
 		log.info("parse "+self.packageInfo.name+" , has cve:"+str(cves))
 		for cve in cves:
 			self.packageCVE[cve]+=1
-	def getAllCVE(self)->None:
+	def getAllCVE(self,stack=[])->None:
+		log.info("parse:"+self.fullName)
+		log.debug(" stack"+str(stack))
+		for require in self.requirePointers:
+			log.trace(" require: "+require.fullName)
 		if self.checking is True:
-			log.warning("DAG may not promised")
+			log.warning("DAG may not promised, multiple visit: "+self.fullName)
 		if self.readOnly is True:
 			return
 		self.checking=True
+		stack.append(self.fullName)
 		self.readOnly=True
 		self.getPackageCVE()
 		for require in self.requirePointers:
@@ -86,6 +94,7 @@ class SpecificPackage:
 			for cve,num in require.packageCVE.items():
 				self.packageCVE[cve]+=num
 		self.checking=False
+		stack.pop()
 		
 
 def parseEntry(node:xml.dom.minidom.Element)->list[PackagePointer]:
@@ -109,9 +118,9 @@ def parseEntry(node:xml.dom.minidom.Element)->list[PackagePointer]:
 def parsePackage(node:xml.dom.minidom.Element)->SpecificPackage:
 	fullName=node.getElementsByTagName('name')[0].firstChild.nodeValue
 	sourcerpm=node.getElementsByTagName('rpm:sourcerpm')[0].firstChild.nodeValue
-	name=sourcerpm.split('-')[0]
 	versionNode=node.getElementsByTagName('version')[0]
 	version=versionNode.getAttribute('ver')
+	name=sourcerpm.split('-'+version)[0]
 	releaseRaw=versionNode.getAttribute('rel')
 	release=releaseRaw.split('.')[0]
 	dist=releaseRaw.split('.')[-1]
@@ -143,8 +152,9 @@ def parseFile(fromPath):
 		package.findRequires(entryMap)
 	
 	#test
-	packageMap['openssh-clients'].getAllCVE()
-	print(packageMap['openssh-clients'].packageCVE)
+	testname='python3-inotify'
+	packageMap[testname].getAllCVE()
+	print(packageMap[testname].packageCVE)
 
 DIR=os.path.split(os.path.abspath(__file__))[0]
 log.remove(handler_id=None)

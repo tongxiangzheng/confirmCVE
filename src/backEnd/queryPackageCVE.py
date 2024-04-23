@@ -6,6 +6,8 @@ from queryCVEInfo import queryCVEInfo
 def queryPackageCVE(packageInfo:PackageInfo)->list[str]:
 	try:
 		cves=queryCVEInfo(packageInfo)
+		if len(cves)==0:
+			return []
 		checker=GitChecker(packageInfo)
 		ans=checker.check(cves)
 	except Exception as e:
