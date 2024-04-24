@@ -24,11 +24,31 @@ def sendCurl(URL:str,params:dict[str,str],additional:list=[])->dict:
 def getCVE(cpeName:str)->set[str]:
 	params = {'cpeName': cpeName}
 	result=sendCurl('https://services.nvd.nist.gov/rest/json/cves/2.0',params,["noRejected"])
+	#with open("query.log","w") as f:
+	#	json.dump(result,f,indent=2)
 	vulnerabilities=result['vulnerabilities']
 	cves=set()
+	allowedSeverity={'LOW':False,'MEDIUM':False,'HIGH':True,'CRITICAL':True}
+	#允许的安全等级，标记为False表示忽略，为True表示不忽略
 	for vul in vulnerabilities:
 		cve=vul['cve']
-		cves.add(cve['id'])
+		id=cve['id']
+		metrics=cve['metrics']
+		if 'cvssMetricV2' in metrics:
+			cvssInfo=metrics['cvssMetricV2']
+			if len(cvssInfo)>0:
+				severity=cvssInfo[0]['baseSeverity']
+				if allowedSeverity[severity] is False:
+					continue
+		elif 'cvssMetricV31' in metrics:
+			cvssInfo=metrics['cvssMetricV31']
+			if len(cvssInfo)>0:
+				severity=cvssInfo[0]['cvssData']['baseSeverity']
+				if allowedSeverity[severity] is False:
+					continue
+		else:
+			log.warning("cannot get cvss info for cve:"+id)     
+		cves.add(id)
 	return cves
 def getCPE(packageInfo:PackageInfo)->dict|None:
 	matchString="cpe:2.3:a:*:"+packageInfo.name+':'+packageInfo.version
