@@ -40,17 +40,29 @@ class EntryMap:
 		return res[0][0]
 def defaultCVEList():
 	return 0
+class Counter:
+	def __init__(self):
+		self.cnt=0
+	def getId(self)->int:
+		self.cnt+=1
+		return self.cnt
+class TargetCVE:
+	def __init__(self):
+		self.packageCVE=self.packageCVE=defaultdict(defaultCVEList)
+	def addCVE(self,cve,num):
+		self.packageCVE[cve]+=num
 class SpecificPackage:
 	def __init__(self,packageInfo:PackageInfo,fullName:str,provides:list[PackagePointer],requires:list[PackagePointer]):
 		self.packageInfo=packageInfo
 		self.fullName=fullName
-		self.packageCVE=self.packageCVE=defaultdict(defaultCVEList)
+		self.targetCVE=None
 		self.providesInfo=provides
 		self.requiresInfo=requires
 		self.providesPointers=[]
 		self.requirePointers=[]
 		self.readOnly=False
 		self.checking=False
+		self.dfn=0
 	def addProvidesPointer(self,package,checkReadOnly=True):
 		#无需手动调用，addRequirePointer自动处理
 		if checkReadOnly==False or self.readOnly==False:
@@ -58,6 +70,7 @@ class SpecificPackage:
 			return self
 		else:
 			pass
+			#TODO
 	def addRequirePointer(self,package):
 		self.requirePointers.append(package)
 		package.addProvidesPointer(self)
@@ -75,26 +88,58 @@ class SpecificPackage:
 		cves=queryPackageCVE(self.packageInfo)
 		log.info("parse "+self.packageInfo.name+" , has cve:"+str(cves))
 		for cve in cves:
-			self.packageCVE[cve]+=1
+			self.targetCVE.addCVE(cve,1)
 	def getAllCVE(self,stack=[])->None:
 		log.info("parse:"+self.fullName)
 		log.debug(" stack"+str(stack))
 		for require in self.requirePointers:
 			log.trace(" require: "+require.fullName)
-		if self.checking is True:
-			log.warning("DAG may not promised, multiple visit: "+self.fullName)
+		#if self.checking is True:
+		#	log.warning("DAG may not promised, multiple visit: "+self.fullName)
 		if self.readOnly is True:
 			return
-		self.checking=True
+		#self.checking=True
 		stack.append(self.fullName)
 		self.readOnly=True
 		self.getPackageCVE()
 		for require in self.requirePointers:
 			require.getAllCVE()
-			for cve,num in require.packageCVE.items():
-				self.packageCVE[cve]+=num
-		self.checking=False
+			if require.targetCVE==self.targetCVE:
+				continue
+			for cve,num in require.targetCVE.packageCVE.items():
+				self.targetCVE.addCVE(cve,num)
+		#self.checking=False
 		stack.pop()
+	def tarjan(self,counter:Counter,visStack:list):
+		self.dfn=counter.getId()
+		self.low=self.dfn
+		self.checking=True
+		visStack.append(self)
+		for v in self.requirePointers:
+			if v.dfn==0:
+				v.tarjan(counter,visStack)
+				self.low=min(self.low,v.low)
+			elif v.checking is True:
+				self.low=min(self.low,v.low)
+		if self.dfn==self.low:
+			self.targetCVE=TargetCVE()
+			#for debug
+			if visStack[-1]!=self:
+				log.warning("find a loop")
+				for cnt in range(1,len(visStack)+1):
+					log.info(" "+visStack[-cnt].fullName)
+					if visStack[-cnt]==self:
+						break
+
+			while True:
+				assert len(visStack)>0
+				t=visStack[-1]
+				visStack.pop()
+				t.checking=False
+				if t==self:
+					break
+				t.targetCVE=self.targetCVE
+		
 		
 
 def parseEntry(node:xml.dom.minidom.Element)->list[PackagePointer]:
@@ -135,7 +180,7 @@ def parsePackage(node:xml.dom.minidom.Element)->SpecificPackage:
 	packageInfo=PackageInfo("openEuler",dist,name,version,release)
 	return SpecificPackage(packageInfo,fullName,provides,requires)
 	
-	
+
 def parseFile(fromPath):
 	doc=xml.dom.minidom.parse(fromPath)
 	root=doc.documentElement
@@ -148,19 +193,35 @@ def parseFile(fromPath):
 		package=parsePackage(subnode)
 		package.registerProvides(entryMap)
 		packageMap[package.fullName]=package
+	
+	#通过提供的文件和需要文件，解析包之间的依赖关系
 	for package in packageMap.values():
 		package.findRequires(entryMap)
 	
+	#tarjan
+	c=Counter()
+	for package in packageMap.values():
+		if package.dfn==0:
+			tarjanStack=[]
+			package.tarjan(c,tarjanStack)
+			log.info(package.fullName+" dfn :"+str(package.dfn))
+			if len(tarjanStack)!=0:
+				log.warning("tarjanStack is not empty at end when parse: "+package.fullName)
+				for s in tarjanStack:
+					log.info(" "+s.fullName+" dfn: "+str(s.dfn)+" low: "+str(s.low))
+	for package in packageMap.values():
+		if package.checking==True:
+			log.warning("package: "+package.fullName+" is not pop from stack")
 	#test
 	testname='python3-inotify'
 	packageMap[testname].getAllCVE()
-	print(packageMap[testname].packageCVE)
+	print(packageMap[testname].targetCVE.packageCVE)
 
 DIR=os.path.split(os.path.abspath(__file__))[0]
 log.remove(handler_id=None)
 logFile=DIR+"log.log"
 if os.path.exists(logFile):
 	os.remove(logFile)
-#log.add(sink=logFile,level='INFO')
-log.add(sink=logFile,level='TRACE')
+log.add(sink=logFile,level='INFO')
+#log.add(sink=logFile,level='TRACE')
 parseFile(os.path.join(DIR,"339ea1b58f3246e5a9af782ce0c8f9141d0670b7954b46432ab150b715fc00ad-primary.xml"))
