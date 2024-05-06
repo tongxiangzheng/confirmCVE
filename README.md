@@ -11,7 +11,7 @@ docker生成：
 docker run --name gitChecker -v /home/txz/analyze-rpms:/mnt/analyze-rpms -it ubuntu /bin/bash
 
 apt update
-apt install python3 python3-pip rpm git -y
+apt install python3 python3-pip rpm yum git -y
 
 pip3 install GitPython
 pip3 install python-rpm-spec

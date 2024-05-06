@@ -28,6 +28,9 @@ class EntryMap:
 		return newMap
 	def queryRequires(self,entry:PackagePointer):
 		res=self.provideEntryPackages[entry.name]
+		#print(" "+entry.name)
+		#for r in res:
+			#print("  "+r[0].fullName)
 		if len(res)!=1:
 			if len(res)==0:
 				""
@@ -79,6 +82,8 @@ class SpecificPackage:
 			entryMap.registerEntry(provide,self)
 	def findRequires(self,entryMap:EntryMap)->None:
 		requirePackageSet=set()
+		
+		print(self.fullName)
 		for require in self.requiresInfo:
 			res=entryMap.queryRequires(require)
 			if res is not None and res not in requirePackageSet:
@@ -177,7 +182,7 @@ def parsePackage(node:xml.dom.minidom.Element)->SpecificPackage:
 	res=node.getElementsByTagName('rpm:requires')
 	if len(res)!=0:
 		requires=parseEntry(res[0])
-	packageInfo=PackageInfo("openEuler",dist,name,version,release)
+	packageInfo=PackageInfo("centOS",dist,name,version,release)
 	return SpecificPackage(packageInfo,fullName,provides,requires)
 	
 
@@ -197,7 +202,7 @@ def parseFile(fromPath):
 	#通过提供的文件和需要文件，解析包之间的依赖关系
 	for package in packageMap.values():
 		package.findRequires(entryMap)
-	
+	return
 	#tarjan
 	c=Counter()
 	for package in packageMap.values():
@@ -213,15 +218,14 @@ def parseFile(fromPath):
 		if package.checking==True:
 			log.warning("package: "+package.fullName+" is not pop from stack")
 	#test
-	testname='python3-inotify'
+	testname='ca-certificates'
 	packageMap[testname].getAllCVE()
 	print(packageMap[testname].targetCVE.packageCVE)
 
-DIR=os.path.split(os.path.abspath(__file__))[0]
 log.remove(handler_id=None)
-logFile=DIR+"log.log"
+logFile="log.log"
 if os.path.exists(logFile):
 	os.remove(logFile)
-log.add(sink=logFile,level='INFO')
+#log.add(sink=logFile,level='INFO')
 #log.add(sink=logFile,level='TRACE')
-parseFile(os.path.join(DIR,"339ea1b58f3246e5a9af782ce0c8f9141d0670b7954b46432ab150b715fc00ad-primary.xml"))
+parseFile(os.path.join(DIR,"ca039bbfe8297c592cdc0e7251689f5d597771d39b2ddede01106ad0a7f0ba60-primary.xml"))
