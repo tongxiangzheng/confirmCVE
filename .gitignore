@@ -1,6 +1,8 @@
 repos/
 packages/
 packages_extract/
+src/nvdParser/nvd-json-data-feeds
+src/nvdParser/package_cve
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
