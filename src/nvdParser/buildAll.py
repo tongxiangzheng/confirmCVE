@@ -21,24 +21,42 @@ class CVEInfo:
             for cpeMatch in node['cpeMatch']:
                 #if cpeMatch['vulnerable'] is False:
                 criteria=cpeMatch['criteria']
-                cpename=criteria.split(':')[4]
+                info=criteria.split(':')
+                part=info[2]
+                #part的值：a（应用程序）、h（硬件平台）、o（操作系统），仅处理应用程序操作系统
+                if part != 'a' and part != 'o':
+                    continue
+                cpename=info[4]
                 self.collect.append(cpename)
 DIR = os.path.split(os.path.abspath(__file__))[0]
 class Soft:
-    def __init__(self,name):
+    def normalizeName(self,name:str):
+        return name.replace('/','_slash_')
+    def __init__(self,name:str):
+        name=self.normalizeName(name)
         self.name=name
         pathBase=os.path.join(DIR,'package_cve',name[0])
         if not os.path.exists(pathBase):
             os.makedirs(pathBase)
         self.path=os.path.join(pathBase,name)
         self.items=[]
-        if os.path.isfile(self.path):
-            with open(self.path,"r") as f:
-                self.items=f.readlines()
+        #if os.path.isfile(self.path):
+        #    with open(self.path,"r") as f:
+        #        self.items=f.readlines()
+        self.changed=False
+    def add(self,item):
+        self.items.append(item)
+        self.changed=True
+    def remove(self,item):
+        self.items.remove(item)
+        self.changed=True
     def dump(self):
+        if self.changed is False:
+            return
         with open(self.path,"w") as f:
             for i in self.items:
                 f.write(i+"\n")
+        self.changed=False
 class SoftManager:
     def __init__(self):
         self.softCache=dict()
@@ -49,15 +67,14 @@ class SoftManager:
         if softName not in self.softCache:
             self.softCache[softName]=Soft(softName)
         soft=self.softCache[softName]
-        soft.items.append(item)
+        soft.add(item)
     def removeItem(self,softName,item):
         if softName not in self.softCache:
             self.softCache[softName]=Soft(softName)
         soft=self.softCache[softName]
-        soft.items.remove(item)
+        soft.remove(item)
     def registerCVE(self,cveInfo:CVEInfo):
         for softName in cveInfo.collect:
-            print(softName)
             self.addItem(softName,cveInfo.path)
     def unRegisterCVE(self,cveInfo:CVEInfo):
         for softName in cveInfo.collect:
@@ -71,13 +88,12 @@ def build():
             continue
         if year.startswith('.') or year.startswith('_'):
             continue
-        if year!='CVE-1999':
-            continue        #小规模测试
+        #if year!='CVE-1999':
+        #    continue    #小规模测试
         for cves in os.listdir(yearPath):
             cvesPath=os.path.join(yearPath,cves)
             for cve in os.listdir(cvesPath):
                 cvePath=os.path.join(cvesPath,cve)
-                print(cvePath)
                 softManager.registerCVE(CVEInfo(cvePath))
     softManager.dump()
 
