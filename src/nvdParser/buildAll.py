@@ -9,11 +9,14 @@ class CVEInfo:
         self.cveName=data['id']
         self.path=path
         self.collect=[]
+        self.effective=True
         vulnStatus=data['vulnStatus']
         if vulnStatus in ignoredVulnStatus:
+            self.effective=False
             return None
         if 'configurations' not in data:
             #log.warning("file "+path+" have no configurations info")
+            self.effective=False
             return None
         configurations=data['configurations']
         for configure in configurations:
@@ -94,7 +97,10 @@ def build():
             cvesPath=os.path.join(yearPath,cves)
             for cve in os.listdir(cvesPath):
                 cvePath=os.path.join(cvesPath,cve)
-                softManager.registerCVE(CVEInfo(cvePath))
+                cveInfo=CVEInfo(cvePath)
+                if cveInfo.effective is False:
+                    continue
+                softManager.registerCVE(cveInfo)
     softManager.dump()
 
 #CVEInfo('/home/txz/code/nvd-json-data-feeds/CVE-2020/CVE-2020-94xx/CVE-2020-9488.json')
