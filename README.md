@@ -8,7 +8,7 @@
 
 docker生成：
 
-docker run --name gitChecker -v /home/txz/analyze-rpms:/mnt/analyze-rpms -it ubuntu /bin/bash
+docker run --name gitChecker -p 8000:80 -v /home/txz/analyze-rpms:/mnt/analyze-rpms -it ubuntu /bin/bash
 
 apt update
 apt install python3 python3-pip rpm yum git -y
