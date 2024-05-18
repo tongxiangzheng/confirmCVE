@@ -35,10 +35,15 @@ DIR = os.path.split(os.path.abspath(__file__))[0]
 class Soft:
     def normalizeName(self,name:str):
         return name.replace('/','_slash_')
+    def normalizeName0(self,name0):
+        if name0!='.':
+            return name0
+        else:
+            return 'dot'
     def __init__(self,name:str):
         name=self.normalizeName(name)
         self.name=name
-        pathBase=os.path.join(DIR,'package_cve',name[0])
+        pathBase=os.path.join(DIR,'package_cve',self.normalizeName0(name[0]))
         if not os.path.exists(pathBase):
             os.makedirs(pathBase)
         self.path=os.path.join(pathBase,name)
