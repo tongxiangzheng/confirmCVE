@@ -2,6 +2,8 @@
 	"centos":{
         "el7":"c7",
         "el8":"c8",
+        "el8_2":"c8",
+        "el8_3":"c8",
 		"el8-stream":"c8s",
 		"el9-stream":"c9s"
 	},
