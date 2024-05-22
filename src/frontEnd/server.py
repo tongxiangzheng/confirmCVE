@@ -25,12 +25,10 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list[str]:
 def solve(packageInfoList):
     packageList=[]
     for packageInfo in packageInfoList:
-        print(packageInfo)
         packageList.append(PackageInfo.loadPackageInfo(packageInfo))
     package_cveList=queryNVD.query(packageList)
     res=dict()
     for package,cves in package_cveList.items():
-        print(package.name)
         confirmed_cves=queryPackageCVE(package,cves)
         res[package.name]=confirmed_cves
     return res
