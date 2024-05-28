@@ -19,7 +19,6 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list[str]:
 		ans=checker.check(cves)
 	except Exception as e:
 		log.warning("failed to query packageCVE")
-		traceback.print_exc()
 		return []
 	return ans.getDismathedCVE()
 def solve(packageInfoList):
@@ -56,6 +55,7 @@ def server():
         c,addr = s.accept()
         data=receiveObject(c)
         res=solve(data)
+        print(res)
         sendObject(c,res)
         c.close()
 

@@ -266,6 +266,7 @@ class GitChecker:
 		cveChecker=CVEChecker(cves)
 		commitId=self.getCommitId()
 		if commitId is None:
+			log.warning("Cannot match any commit for "+self.packageInfo.name)
 			raise Exception("Cannot match any commit")
 		log.info("match commit id: "+commitId)
 		self.checkMessage(commitId,cveChecker)
