@@ -1,5 +1,6 @@
 import os
 import json
+import git
 from loguru import logger as log
 ignoredVulnStatus={'Rejected','Awaiting Analysis','Received','Undergoing Analysis'}
 class CVEInfo:
@@ -89,6 +90,15 @@ class SoftManager:
             self.removeItem(softName,cveInfo.path)
 def build():
     basePath=os.path.join(DIR,'nvd-json-data-feeds')
+    repoLink="git@github.com:fkie-cad/nvd-json-data-feeds.git"
+    log.info("git link is "+repoLink)
+    if os.path.exists(basePath):
+        repo = git.Repo(basePath)
+        #repo.remotes.origin.pull()
+        #check if git repo have to update
+        #disable only for debug
+    else:
+        repo = git.Repo.clone_from(repoLink,to_path=basePath)
     softManager=SoftManager()
     for year in os.listdir(basePath):
         yearPath=os.path.join(basePath,year)
