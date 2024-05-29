@@ -7,6 +7,8 @@ from loguru import logger as log
 DIR=os.path.split(os.path.abspath(__file__))[0]
 sys.path.insert(0,os.path.join(DIR,'..','backEnd'))
 from PackageInfo import PackageInfo
+import SoftManager
+
 class CVEInfo:
     def __init__(self,path):
         with open(path,"r") as f:
@@ -43,23 +45,29 @@ class CVEInfo:
                     for regex in regexs:
                         expression=regex[0]
                         info=expression.split(":")
-                        if info[4]!=package.name:
+                        name=package.name.lower()
+                        if info[4]!=name:
                             continue
-                        cpestr="cpe:2.3:a:"+info[3]+":"+package.name+':'+package.version+":*:*:*:*:*:*:*"
+                        cpestr="cpe:2.3:a:"+info[3]+":"+name+':'+package.version+":*:*:*:*:*:*:*"
                         #print("cpestr: "+cpestr)
                         if regex[1].match(cpestr) is not None:
                             return True
             elif node['operator']=='AND':
                 result=True
                 for package in self.collect:
-                    cpestr="cpe:2.3:a:*:"+package.name+':'+package.version+":*:*:*:*:*:*:*"
-                    #print("cpestr: "+cpestr)
                     for regex in regexs:
+                        expression=regex[0]
+                        info=expression.split(":")
+                        name=package.name.lower()
+                        if info[4]!=name:
+                            continue
+                        cpestr="cpe:2.3:a:"+info[3]+":"+name+':'+package.version+":*:*:*:*:*:*:*"
+                        #print("cpestr: "+cpestr)
                         if regex[1].match(cpestr) is not None:
                             result=False
                 if result is True:
                     return True
-            return False
+        return False
 def registerPackage(relatedCVE,cvePath,package):
     if cvePath not in relatedCVE:
         relatedCVE[cvePath]=CVEInfo(cvePath)
@@ -71,17 +79,28 @@ def query(packageList:list[PackageInfo]):
     res=dict()
     for package in packageList:
         res[package]=[]
-        path=os.path.join(DIR,'package_cve',package.name[0],package.name)
+        name=package.name.lower()
+        basePath,path=SoftManager.getPath(SoftManager.normalizeName(name))
         if not os.path.isfile(path):
             log.warning("cannot find package: "+package.name)
             continue
         with open(path,"r") as f:
             data=f.readlines()
-            for cvePath in data:
+            for cvePath in data[1:]:
                 cvePath=cvePath.strip()
+                log.trace(package.name+" have cve at "+cvePath)
                 registerPackage(relatedCVE,cvePath,package)
     for cve in relatedCVE.values():
         if cve.check():
+            log.trace(cve.path+" is active")
             for package in cve.collect:
                 res[package].append(cve.cveName)
+        else:
+            log.trace(cve.path+" is not active")
+    
     return res
+
+#p=PackageInfo("centos","el8","NetworkManager","1.0.1","6")
+#list=[]
+#list.append(p)
+#print(query(list))

@@ -76,7 +76,7 @@ class GitChecker:
 						srcFiles.append({'pathname':entry.pathname,'git_sha1':git_sha1.hexdigest(),'sha1':sha1.hexdigest(),'sha256':sha256.hexdigest(),'sha512':sha512.hexdigest()})
 						log.debug("file in src:"+entry.pathname+" git_sha1:"+git_sha1.hexdigest()+" sha1:"+sha1.hexdigest()+" sha256:"+sha256.hexdigest()+" sha512:"+sha512.hexdigest())
 			#shutil.rmtree(extractFilePath)
-			break
+			
 		return srcFiles
 	def dfsTree(self,tree,ans):
 		for blobFile in tree.blobs:
@@ -154,7 +154,7 @@ class GitChecker:
 				if len(nowCommit.parents)==0:
 					break
 				nowCommit=nowCommit.parents[0]
-				#break
+				break
 		matched_commits.sort()
 		if len(matched_commits)>0:
 			return matched_commits[0][1]

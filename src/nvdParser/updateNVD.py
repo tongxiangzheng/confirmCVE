@@ -1,10 +1,11 @@
 import os
 import git
 from loguru import logger as log
-import CVEInfo
+import confirmCVE.src.nvdParser.SoftManager as SoftManager
 import buildAll
 import io
 DIR = os.path.split(os.path.abspath(__file__))[0]
+import confirmCVE.src.nvdParser.SoftManager as SoftManager
 def dfs(newCommit,oldCommit,softManager):
     #abandon
     for blobFile in newCommit.blobs:
@@ -27,7 +28,7 @@ def update():
     else:
         buildAll.build()
         return
-    softManager=CVEInfo.SoftManager()
+    softManager=SoftManager.SoftManager()
     print(softManager.head)
     print(repo.head.commit.hexsha)
     headCommit=repo.head.commit
@@ -38,10 +39,10 @@ def update():
     for a in diffTree:
         print(a.a_path)
         with io.BytesIO(nowCommit.tree[a.a_path].data_stream.read()) as f:
-            cveInfo=CVEInfo.CVEInfo("",f)
+            cveInfo=SoftManager.CVEInfo("",f)
             softManager.unRegisterCVE(cveInfo)
         with io.BytesIO(headCommit.tree[a.a_path].data_stream.read()) as f:
-            cveInfo=CVEInfo.CVEInfo("",f)
+            cveInfo=SoftManager.CVEInfo("",f)
             softManager.unRegisterCVE(cveInfo)
         
 
@@ -73,7 +74,7 @@ def update():
             cvesPath=os.path.join(yearPath,cves)
             for cve in os.listdir(cvesPath):
                 cvePath=os.path.join(cvesPath,cve)
-                cveInfo=CVEInfo.CVEInfo(cvePath)
+                cveInfo=SoftManager.CVEInfo(cvePath)
                 if cveInfo.effective is False:
                     continue
                 softManager.registerCVE(cveInfo)

@@ -35,22 +35,26 @@ class CVEInfo:
                 cpename=info[4]
                 self.collect.append((cpename,criteria))
 DIR = os.path.split(os.path.abspath(__file__))[0]
+def normalizeName(name:str):
+    return name.replace('/','_slash_')
+def normalizeName0(name0):
+    if name0!='.':
+        return name0
+    else:
+        return 'dot'
+def getPath(name):
+    pathBase=os.path.join(DIR,'package_cve',normalizeName0(name[0]))
+    path=os.path.join(pathBase,name)
+    return pathBase,path
 class Soft:
-    def normalizeName(self,name:str):
-        return name.replace('/','_slash_')
-    def normalizeName0(self,name0):
-        if name0!='.':
-            return name0
-        else:
-            return 'dot'
     def __init__(self,name:str,cpe:str):
-        name=self.normalizeName(name)
+        name=normalizeName(name)
         self.name=name
         self.cpe=cpe
-        pathBase=os.path.join(DIR,'package_cve',self.normalizeName0(name[0]))
+        pathBase,path=getPath(name)
         if not os.path.exists(pathBase):
             os.makedirs(pathBase)
-        self.path=os.path.join(pathBase,name)
+        self.path=path
         self.items=[]
         #if os.path.isfile(self.path):
         #    with open(self.path,"r") as f:
@@ -94,9 +98,11 @@ class SoftManager:
             return self.softCache[softName]
     def addItem(self,softInfo,item):
         soft=self.getsoft(softInfo[0],softInfo[1])
+        log.trace(soft.name+"add Item: "+item)
         soft.add(item)
     def removeItem(self,softInfo,item):
         soft=self.getsoft(softInfo[0],softInfo[1])
+        log.trace(soft.name+"remove Item: "+item)
         soft.remove(item)
     def registerCVE(self,cveInfo:CVEInfo):
         if cveInfo.effective is False:
