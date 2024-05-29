@@ -3,9 +3,12 @@ import json
 from loguru import logger as log
 ignoredVulnStatus={'Rejected','Awaiting Analysis','Received','Undergoing Analysis'}
 class CVEInfo:
-    def __init__(self,path):
-        with open(path,"r") as f:
+    def __init__(self,path,f=None):
+        if f is not None:
             data=json.load(f)
+        else:
+            with open(path,"r") as f:
+                data=json.load(f)
         self.cveName=data['id']
         self.path=path
         self.collect=[]
@@ -96,9 +99,13 @@ class SoftManager:
         soft=self.getsoft(softInfo[0],softInfo[1])
         soft.remove(item)
     def registerCVE(self,cveInfo:CVEInfo):
+        if cveInfo.effective is False:
+            return
         for softInfo in cveInfo.collect:
             self.addItem(softInfo,cveInfo.path)
     def unRegisterCVE(self,cveInfo:CVEInfo):
+        if cveInfo.effective is False:
+            return
         for softInfo in cveInfo.collect:
             self.removeItem(softInfo,cveInfo.path)
     def queryCPE(self,softName):

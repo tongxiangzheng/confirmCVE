@@ -154,7 +154,7 @@ class GitChecker:
 				if len(nowCommit.parents)==0:
 					break
 				nowCommit=nowCommit.parents[0]
-				break
+				#break
 		matched_commits.sort()
 		if len(matched_commits)>0:
 			return matched_commits[0][1]

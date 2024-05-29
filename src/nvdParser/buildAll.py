@@ -28,11 +28,9 @@ def build():
             for cve in os.listdir(cvesPath):
                 cvePath=os.path.join(cvesPath,cve)
                 cveInfo=CVEInfo.CVEInfo(cvePath)
-                if cveInfo.effective is False:
-                    continue
                 softManager.registerCVE(cveInfo)
     softManager.head=repo.head.commit.tree.hexsha
     softManager.dump()
 
 #CVEInfo('/home/txz/code/nvd-json-data-feeds/CVE-2020/CVE-2020-94xx/CVE-2020-9488.json')
-build()
+#build()
