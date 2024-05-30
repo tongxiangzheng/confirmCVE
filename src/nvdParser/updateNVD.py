@@ -1,11 +1,10 @@
 import os
 import git
 from loguru import logger as log
-import confirmCVE.src.nvdParser.SoftManager as SoftManager
+import SoftManager
 import buildAll
 import io
 DIR = os.path.split(os.path.abspath(__file__))[0]
-import confirmCVE.src.nvdParser.SoftManager as SoftManager
 def dfs(newCommit,oldCommit,softManager):
     #abandon
     for blobFile in newCommit.blobs:
@@ -38,48 +37,23 @@ def update():
     diffTree=nowCommit.diff(headCommit)
     for a in diffTree:
         print(a.a_path)
-        with io.BytesIO(nowCommit.tree[a.a_path].data_stream.read()) as f:
-            cveInfo=SoftManager.CVEInfo("",f)
-            softManager.unRegisterCVE(cveInfo)
-        with io.BytesIO(headCommit.tree[a.a_path].data_stream.read()) as f:
-            cveInfo=SoftManager.CVEInfo("",f)
-            softManager.unRegisterCVE(cveInfo)
-        
+        if a.a_path.startswith('CVE-'):
+            try:
+                with io.BytesIO(nowCommit.tree[a.a_path].data_stream.read()) as f:
+                    cveInfo=SoftManager.CVEInfo(os.path.join(basePath,a.a_path),f)
+                    softManager.unRegisterCVE(cveInfo)
+            except KeyError:
+                log.debug("cannot unregister file: "+a.a_path+" . It's OK because it may be a new file")
+            try:
+                with io.BytesIO(headCommit.tree[a.a_path].data_stream.read()) as f:
+                    cveInfo=SoftManager.CVEInfo(os.path.join(basePath,a.a_path),f)
+                    softManager.registerCVE(cveInfo)
+            except KeyError:
+                log.debug("cannot register file: "+a.a_path+" , the file may deleted")
+                pass
+            
 
     return
-    newCommits=[]
-    while True:
-        hexsha=nowCommit.hexsha
-        if hexsha==softManager.head:
-            break
-        print("commit: "+hexsha+" , "+nowCommit.message)
-        newCommits.append(nowCommit)
-        if len(nowCommit.parents)==0:
-            break
-        nowCommit=nowCommit.parents[0]
-    newCommits.reverse()
-    for commit in newCommits:
-        print(commit.hexsha)
-
-    return
-    for year in os.listdir(basePath):
-        yearPath=os.path.join(basePath,year)
-        if os.path.isfile(yearPath):
-            continue
-        if year.startswith('.') or year.startswith('_'):
-            continue
-        if year!='CVE-2024':
-            continue    #小规模测试
-        for cves in os.listdir(yearPath):
-            cvesPath=os.path.join(yearPath,cves)
-            for cve in os.listdir(cvesPath):
-                cvePath=os.path.join(cvesPath,cve)
-                cveInfo=SoftManager.CVEInfo(cvePath)
-                if cveInfo.effective is False:
-                    continue
-                softManager.registerCVE(cveInfo)
-    softManager.head=repo.head.commit.tree.hexsha
-    softManager.dump()
 
 #CVEInfo('/home/txz/code/nvd-json-data-feeds/CVE-2020/CVE-2020-94xx/CVE-2020-9488.json')
 update()

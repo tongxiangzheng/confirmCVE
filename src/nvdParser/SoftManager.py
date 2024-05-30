@@ -47,7 +47,7 @@ def getPath(name):
     path=os.path.join(pathBase,name)
     return pathBase,path
 class Soft:
-    def __init__(self,name:str,cpe:str):
+    def __init__(self,name:str,cpe:str,loadFile):
         name=normalizeName(name)
         self.name=name
         self.cpe=cpe
@@ -56,10 +56,12 @@ class Soft:
             os.makedirs(pathBase)
         self.path=path
         self.items=[]
-        #if os.path.isfile(self.path):
-        #    with open(self.path,"r") as f:
-        #    data=f.readlines()
-        #        self.items=data[1:]
+        if loadFile is True:
+            if os.path.isfile(self.path):
+                with open(self.path,"r") as f:
+                    data=f.readlines()
+                    for info in data[1:]:
+                        self.items.append(info.strip())
         self.changed=False
     def add(self,item):
         self.items.append(item)
@@ -76,9 +78,10 @@ class Soft:
                 f.write(i+"\n")
         self.changed=False
 class SoftManager:
-    def __init__(self):
+    def __init__(self,loadFile=True):
         self.softCache=dict()
         self.head=None
+        self.loadFile=loadFile
         if os.path.isfile(os.path.join(DIR,"data")):
             with open(os.path.join(DIR,"data"),"r") as f:
                 data=f.readlines()
@@ -91,18 +94,18 @@ class SoftManager:
             f.write(self.head)
     def getsoft(self,softName,softCPE):
         if softName not in self.softCache:
-            soft=Soft(softName,softCPE)
+            soft=Soft(softName,softCPE,self.loadFile)
             self.softCache[softName]=soft
             return soft
         else:
             return self.softCache[softName]
     def addItem(self,softInfo,item):
         soft=self.getsoft(softInfo[0],softInfo[1])
-        log.trace(soft.name+"add Item: "+item)
+        log.trace(soft.name+" add Item: "+item)
         soft.add(item)
     def removeItem(self,softInfo,item):
         soft=self.getsoft(softInfo[0],softInfo[1])
-        log.trace(soft.name+"remove Item: "+item)
+        log.trace(soft.name+" remove Item: "+item)
         soft.remove(item)
     def registerCVE(self,cveInfo:CVEInfo):
         if cveInfo.effective is False:

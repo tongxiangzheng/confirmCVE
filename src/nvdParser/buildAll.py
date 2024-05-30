@@ -14,7 +14,7 @@ def build():
         #disable only for debug
     else:
         repo = git.Repo.clone_from(repoLink,to_path=basePath)
-    softManager=SoftManager.SoftManager()
+    softManager=SoftManager.SoftManager(loadFile=False)
     for year in os.listdir(basePath):
         yearPath=os.path.join(basePath,year)
         if os.path.isfile(yearPath):
@@ -29,8 +29,8 @@ def build():
                 cvePath=os.path.join(cvesPath,cve)
                 cveInfo=SoftManager.CVEInfo(cvePath)
                 softManager.registerCVE(cveInfo)
-    softManager.head=repo.head.commit.tree.hexsha
+    softManager.head=repo.head.commit.hexsha
     softManager.dump()
 
 #CVEInfo('/home/txz/code/nvd-json-data-feeds/CVE-2020/CVE-2020-94xx/CVE-2020-9488.json')
-build()
+#build()
