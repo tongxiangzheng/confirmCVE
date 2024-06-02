@@ -2,12 +2,17 @@ import os
 import json
 from loguru import logger as log
 ignoredVulnStatus={'Rejected','Awaiting Analysis','Received','Undergoing Analysis'}
+
+DIR = os.path.split(os.path.abspath(__file__))[0]
+basePath=os.path.join(DIR,'nvd-json-data-feeds')
 class CVEInfo:
     def __init__(self,path,f=None):
+        #if f is None, will load file from path
+        #if else, will load file from f
         if f is not None:
             data=json.load(f)
         else:
-            with open(path,"r") as f:
+            with open(os.path.join(basePath,path),"r") as f:
                 data=json.load(f)
         self.cveName=data['id']
         self.path=path
@@ -34,7 +39,6 @@ class CVEInfo:
                     continue
                 cpename=info[4]
                 self.collect.append((cpename,criteria))
-DIR = os.path.split(os.path.abspath(__file__))[0]
 def normalizeName(name:str):
     return name.replace('/','_slash_')
 def normalizeName0(name0):
@@ -60,7 +64,7 @@ class Soft:
             if os.path.isfile(self.path):
                 with open(self.path,"r") as f:
                     data=f.readlines()
-                    for info in data[1:]:
+                    for info in data:
                         self.items.append(info.strip())
         self.changed=False
     def add(self,item):
@@ -73,7 +77,6 @@ class Soft:
         if self.changed is False:
             return
         with open(self.path,"w") as f:
-            f.write(self.cpe+"\n")
             for i in self.items:
                 f.write(i+"\n")
         self.changed=False

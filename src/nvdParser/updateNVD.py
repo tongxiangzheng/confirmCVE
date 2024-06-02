@@ -16,12 +16,11 @@ def dfs(newCommit,oldCommit,softManager):
         dfs(treeDir,oldCommit,softManager)
 
 def update():
-    basePath=os.path.join(DIR,'nvd-json-data-feeds')
     repoLink="git@github.com:fkie-cad/nvd-json-data-feeds.git"
     log.info("git link is "+repoLink)
-    if os.path.exists(basePath):
-        repo = git.Repo(basePath)
-        #repo.remotes.origin.pull()
+    if os.path.exists(SoftManager.basePath):
+        repo = git.Repo(SoftManager.basePath)
+        repo.remotes.origin.pull()
         #check if git repo have to update
         #disable only for debug
     else:
@@ -38,22 +37,26 @@ def update():
     for a in diffTree:
         print(a.a_path)
         if a.a_path.startswith('CVE-'):
+            unregisterUnsuccess=False
+            registerUnsuccess=False
             try:
                 with io.BytesIO(nowCommit.tree[a.a_path].data_stream.read()) as f:
-                    cveInfo=SoftManager.CVEInfo(os.path.join(basePath,a.a_path),f)
+                    cveInfo=SoftManager.CVEInfo(a.a_path,f)
                     softManager.unRegisterCVE(cveInfo)
             except KeyError:
                 log.debug("cannot unregister file: "+a.a_path+" . It's OK because it may be a new file")
+                unregisterUnsuccess=True
             try:
                 with io.BytesIO(headCommit.tree[a.a_path].data_stream.read()) as f:
-                    cveInfo=SoftManager.CVEInfo(os.path.join(basePath,a.a_path),f)
+                    cveInfo=SoftManager.CVEInfo(a.a_path,f)
                     softManager.registerCVE(cveInfo)
             except KeyError:
                 log.debug("cannot register file: "+a.a_path+" , the file may deleted")
-                pass
-            
+                registerUnsuccess=True
+            if unregisterUnsuccess is True and registerUnsuccess is True:
+                log.warning(a.a_path+" : have unknown error")
 
-    return
+    softManager.dump()
 
 #CVEInfo('/home/txz/code/nvd-json-data-feeds/CVE-2020/CVE-2020-94xx/CVE-2020-9488.json')
 update()

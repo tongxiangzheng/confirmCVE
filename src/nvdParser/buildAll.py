@@ -4,19 +4,19 @@ from loguru import logger as log
 import SoftManager
 DIR = os.path.split(os.path.abspath(__file__))[0]
 def build():
-    basePath=os.path.join(DIR,'nvd-json-data-feeds')
+    
     repoLink="git@github.com:fkie-cad/nvd-json-data-feeds.git"
     log.info("git link is "+repoLink)
-    if os.path.exists(basePath):
-        repo = git.Repo(basePath)
+    if os.path.exists(SoftManager.basePath):
+        repo = git.Repo(SoftManager.basePath)
         repo.remotes.origin.pull()
         #check if git repo have to update
         #disable only for debug
     else:
-        repo = git.Repo.clone_from(repoLink,to_path=basePath)
+        repo = git.Repo.clone_from(repoLink,to_path=SoftManager.basePath)
     softManager=SoftManager.SoftManager(loadFile=False)
-    for year in os.listdir(basePath):
-        yearPath=os.path.join(basePath,year)
+    for year in os.listdir(SoftManager.basePath):
+        yearPath=os.path.join(SoftManager.basePath,year)
         if os.path.isfile(yearPath):
             continue
         if year.startswith('.') or year.startswith('_'):
@@ -27,7 +27,7 @@ def build():
             cvesPath=os.path.join(yearPath,cves)
             for cve in os.listdir(cvesPath):
                 cvePath=os.path.join(cvesPath,cve)
-                cveInfo=SoftManager.CVEInfo(cvePath)
+                cveInfo=SoftManager.CVEInfo(os.path.join(year,cves,cve))
                 softManager.registerCVE(cveInfo)
     softManager.head=repo.head.commit.hexsha
     softManager.dump()
