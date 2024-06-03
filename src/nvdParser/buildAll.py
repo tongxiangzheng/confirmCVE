@@ -6,9 +6,9 @@ DIR = os.path.split(os.path.abspath(__file__))[0]
 def build():
     
     repoLink="git@github.com:fkie-cad/nvd-json-data-feeds.git"
-    log.info("git link is "+repoLink)
-    if os.path.exists(SoftManager.basePath):
-        repo = git.Repo(SoftManager.basePath)
+    #log.info("git link is "+repoLink)
+    if os.path.exists(basePath):
+        repo = git.Repo(basePath)
         repo.remotes.origin.pull()
         #check if git repo have to update
         #disable only for debug

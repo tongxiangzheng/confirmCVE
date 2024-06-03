@@ -17,8 +17,8 @@ def dfs(newCommit,oldCommit,softManager):
 
 def update():
     repoLink="git@github.com:fkie-cad/nvd-json-data-feeds.git"
-    log.info("git link is "+repoLink)
-    if os.path.exists(SoftManager.basePath):
+    #log.info("git link is "+repoLink)
+    if os.path.exists(SoftManager.basePath) and os.path.exists(os.path.join(DIR,'package_cve')):
         repo = git.Repo(SoftManager.basePath)
         repo.remotes.origin.pull()
         #check if git repo have to update
@@ -27,12 +27,10 @@ def update():
         buildAll.build()
         return
     softManager=SoftManager.SoftManager()
-    print(softManager.head)
-    print(repo.head.commit.hexsha)
+    log.info("latest git commit:"+repo.head.commit.hexsha)
+    log.info("now git commit:"+softManager.head)
     headCommit=repo.head.commit
     nowCommit=repo.commit(softManager.head)
-    print(headCommit.tree)
-    print(nowCommit.tree)
     diffTree=nowCommit.diff(headCommit)
     for a in diffTree:
         print(a.a_path)
