@@ -7,8 +7,8 @@ def build():
     
     repoLink="git@github.com:fkie-cad/nvd-json-data-feeds.git"
     #log.info("git link is "+repoLink)
-    if os.path.exists(basePath):
-        repo = git.Repo(basePath)
+    if os.path.exists(SoftManager.basePath):
+        repo = git.Repo(SoftManager.basePath)
         repo.remotes.origin.pull()
         #check if git repo have to update
         #disable only for debug
@@ -26,7 +26,6 @@ def build():
         for cves in os.listdir(yearPath):
             cvesPath=os.path.join(yearPath,cves)
             for cve in os.listdir(cvesPath):
-                cvePath=os.path.join(cvesPath,cve)
                 cveInfo=SoftManager.CVEInfo(os.path.join(year,cves,cve))
                 softManager.registerCVE(cveInfo)
     softManager.head=repo.head.commit.hexsha

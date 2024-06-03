@@ -137,7 +137,7 @@ def query(packageList:list[PackageInfo]):
     
     return res
 
-p=PackageInfo("centos","el8","NetworkManager","1.0.1","6")
-list=[]
-list.append(p)
-print(query(list))
+#p=PackageInfo("centos","el8","NetworkManager","1.0.1","6")
+#list=[]
+#list.append(p)
+#print(query(list))
