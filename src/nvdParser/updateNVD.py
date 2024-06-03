@@ -50,18 +50,11 @@ def update():
                     softManager.registerCVE(cveInfo)
             except KeyError:
                 log.debug("cannot register file: "+a.a_path+" , the file may deleted")
-<<<<<<< HEAD
                 registerUnsuccess=True
             if unregisterUnsuccess is True and registerUnsuccess is True:
                 log.warning(a.a_path+" : have unknown error")
 
     softManager.dump()
-=======
-                pass
-            
-    softManager.dump()
-    return
->>>>>>> 830e1e6 (merge)
 
 #CVEInfo('/home/txz/code/nvd-json-data-feeds/CVE-2020/CVE-2020-94xx/CVE-2020-9488.json')
 update()
