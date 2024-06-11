@@ -18,7 +18,7 @@ def dfs(newCommit,oldCommit,softManager):
 def update():
     repoLink="git@github.com:fkie-cad/nvd-json-data-feeds.git"
     #log.info("git link is "+repoLink)
-    if os.path.exists(SoftManager.basePath) and os.path.exists(SoftManager.targetPath):
+    if os.path.exists(SoftManager.basePath) and os.path.exists(SoftManager.targetPath) and os.path.exists(SoftManager.dataPath):
         repo = git.Repo(SoftManager.basePath)
         repo.remotes.origin.pull()
         #check if git repo have to update

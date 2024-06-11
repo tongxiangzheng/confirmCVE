@@ -6,6 +6,7 @@ ignoredVulnStatus={'Rejected','Awaiting Analysis','Received','Undergoing Analysi
 DIR = os.path.split(os.path.abspath(__file__))[0]
 basePath=os.path.join(DIR,'nvd-json-data-feeds')
 targetPath=os.path.join(DIR,'package_cve')
+dataPath=os.path.join(DIR,"data")
 class CVEInfo:
     def __init__(self,path,f=None):
         #if f is None, will load file from path
@@ -87,7 +88,7 @@ class SoftManager:
         self.softCache=dict()
         self.head=None
         self.loadFile=loadFile
-        if os.path.isfile(os.path.join(DIR,"data")):
+        if os.path.isfile(dataPath):
             with open(os.path.join(DIR,"data"),"r") as f:
                 data=f.readlines()
                 if len(data)!=0:

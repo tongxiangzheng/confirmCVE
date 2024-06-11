@@ -20,13 +20,13 @@ class PackageInfo:
 		return json.dumps(info)
 		
 
-def loadPackageInfo(info):
-	osType=info['osType']
-	dist=info['dist']
-	name=info['name']
-	version=info['version']
-	release=info['release']
-	if 'update' in info:
-		return PackageInfo(osType,dist,name,version+'p'+info['update'],release)
+def loadPackageInfo(jsonInfo):
+	osType=jsonInfo['osType']
+	dist=jsonInfo['dist']
+	name=jsonInfo['name']
+	version=jsonInfo['version']
+	release=jsonInfo['release']
+	if 'update' in jsonInfo:
+		return PackageInfo(osType,dist,name,version+'p'+jsonInfo['update'],release)
 	else:
 		return PackageInfo(osType,dist,name,version,release)

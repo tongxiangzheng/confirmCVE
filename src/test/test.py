@@ -23,27 +23,38 @@ def parsePackage(node:xml.dom.minidom.Element):
 	return name
 	
 def parseFile():
-	with open("ca039bbfe8297c592cdc0e7251689f5d597771d39b2ddede01106ad0a7f0ba60-primary.xml","r") as f:
-		doc=xml.dom.minidom.parseString(f.read())
-	root=doc.documentElement
-	nodelist=root.childNodes
 	matchNumber=0
 	notMatchNumber=0
-	for subnode in nodelist:
-		if subnode.nodeType==xml.dom.Node.TEXT_NODE:
-			continue
-		packageName=parsePackage(subnode)
-		if packageName is None:
-			continue
-		basePath,path=SoftManager.getPath(SoftManager.normalizeName(packageName))
-		if not os.path.isfile(path):
-			print("not match: "+packageName)
-			notMatchNumber+=1
-		else:
-			print("match: "+packageName)
-			matchNumber+=1
-	print("match number: "+str(matchNumber))
-	print("not match number: "+str(notMatchNumber))
+	matchSet=set()
+	nonMatchSet=set()
+	files=["ca039bbfe8297c592cdc0e7251689f5d597771d39b2ddede01106ad0a7f0ba60-primary.xml",
+		"d8472d61c5e53a3e9cbffb68e0dddbd04a07c2b7d864b07ddd211c6ad1380c6e-primary.xml"]
+	cnt=0
+	for file in files:
+		with open(file,"r") as f:
+			doc=xml.dom.minidom.parseString(f.read())
+		root=doc.documentElement
+		nodelist=root.childNodes
+		for subnode in nodelist:
+			if subnode.nodeType==xml.dom.Node.TEXT_NODE:
+				continue
+			packageName=parsePackage(subnode)
+			if packageName is None:
+				continue
+			cnt+=1
+			if packageName in matchSet or packageName in nonMatchSet:
+				continue
+			basePath,path=SoftManager.getPath(SoftManager.normalizeName(packageName))
+			if os.path.isfile(path):
+				print("match: "+packageName)
+				matchSet.add(packageName)
+			else:
+				print("not match: "+packageName)
+				nonMatchSet.add(packageName)
+				
+	print("package total number: "+str(cnt))
+	print("match number: "+str(len(matchSet)))
+	print("not match number: "+str(len(nonMatchSet)))
 	
 		
 

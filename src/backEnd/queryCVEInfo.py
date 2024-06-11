@@ -18,7 +18,6 @@ def sendCurl(URL:str,params:dict[str,str],additional:list=[])->dict:
 	c.perform()
 	c.close()
 	body = buffer.getvalue()
-	body.decode('iso-8859-1')
 	result=json.loads(body.decode('iso-8859-1'))
 	return result
 def getCVE(cpeName:str)->set[str]:
