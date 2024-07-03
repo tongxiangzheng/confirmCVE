@@ -22,7 +22,7 @@ class GitChecker:
 		log.info("git link is "+repoLink)
 		if os.path.exists(downloadPath):
 			self.repo = git.Repo(downloadPath)
-			#repo.remotes.origin.pull()
+			self.repo.remotes.origin.pull()
 			#check if git repo have to update
 			#disable only for debug
 		else:
@@ -154,7 +154,6 @@ class GitChecker:
 				if len(nowCommit.parents)==0:
 					break
 				nowCommit=nowCommit.parents[0]
-				break
 		matched_commits.sort()
 		if len(matched_commits)>0:
 			return matched_commits[0][1]

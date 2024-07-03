@@ -10,6 +10,7 @@
 	"brave":"",
 	"calcforge":"",
 	"centos":{
+		"type":"rpm",
 		"gitLink":{
 			"https://gitlab.com/redhat/centos-stream/rpms/":[".*-stream"],
 			"https://git.centos.org/rpms/":[".*"]
@@ -24,6 +25,7 @@
 	"circle":"",
 	"copr":"",
 	"openEuler":{
+		"type":"rpm",
 		"gitLink":{
 			"git@gitee.com:src-openeuler/":[".*"]
 		},
@@ -33,6 +35,7 @@
 		]
 	},
 	"fedora":{
+		"type":"rpm",
 		"gitLink":{
 			"https://src.fedoraproject.org/rpms/":[".*"]
 		},
@@ -40,5 +43,17 @@
 		"srcPackageLink":["https://mirrors.aliyun.com/fedora/releases/35/Everything/source/tree/Packages/{%name_first_alpha}/",
 			"https://mirrors.aliyun.com/fedora/releases/39/Everything/source/tree/Packages/{%name_first_alpha}/"
 		]
+	},
+	"Ubuntu":{
+		"type":"deb",
+		"gitLink":{
+			"https://git.launchpad.net/":[".*"]
+		}
+	},
+	"debian":{
+		"type":"deb",
+		"gitLink":{
+			"https://salsa.debian.org/":[".*"]
+		}
 	}
 }
