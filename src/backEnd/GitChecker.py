@@ -9,13 +9,12 @@ from loguru import logger as log
 from pyrpm.spec import Spec, replace_macros
 from CVEChecker import CVEChecker
 from PackageInfo import PackageInfo
-from OSInformation import OSInformation
+from OSInformation import OSInformation,OSInfo
 class GitChecker:
-	def __init__(self,packageInfo:PackageInfo):
+	def __init__(self,packageInfo:PackageInfo,osInfo:OSInfo):
 		self.packageInfo=packageInfo
-		parser=OSInformation()
-		self.osInfo=parser.getOsInfo(packageInfo)
 		self.autoReleaseDict=dict()
+		self.osInfo=osInfo
 		DIR = os.path.split(os.path.abspath(__file__))[0]
 		downloadPath = os.path.join(DIR,'..','..','repos',self.osInfo.name,packageInfo.name)
 		repoLink=self.osInfo.gitLink+packageInfo.name+'.git'

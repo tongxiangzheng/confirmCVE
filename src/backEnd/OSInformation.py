@@ -4,7 +4,8 @@ import re
 from loguru import logger as log
 from PackageInfo import PackageInfo
 class OSInfo:
-	def __init__(self,gitLink:str,specfile:str,srcPackageLink:list[str],name:str,branch:str):
+	def __init__(self,type:str,gitLink:str,specfile:str,srcPackageLink:list[str],name:str,branch:str):
+		self.type=type
 		self.gitLink=gitLink
 		self.specfile=specfile
 		self.srcPackageLink=srcPackageLink
@@ -35,4 +36,4 @@ class OSInformation:
 			if gitLink is not None:
 				break
 		branch=self.branchmap[packageInfo.osType][packageInfo.dist]
-		return OSInfo(gitLink,info['specfile'],info['srcPackageLink'],packageInfo.osType,branch)
+		return OSInfo(info['type'],gitLink,info['specfile'],info['srcPackageLink'],packageInfo.osType,branch)

@@ -75,7 +75,7 @@ class CVEInfo:
         for node in self.nodes:
             regexs=[]
             for expression,versionStartIncluding,versionStartExcluding,versionEndIncluding,versionEndExcluding in node['expressions']:
-                print(expression)
+                #print(expression)
                 expression=expression.replace('.','\\.')
                 regexs.append((expression,re.compile(expression),versionStartIncluding,versionStartExcluding,versionEndIncluding,versionEndExcluding))
                 #print("expression: "+expression)
