@@ -1,45 +1,13 @@
-import socket
+import cveSolver
 import json
+import socket
 import os
 import sys
-import traceback
+from loguru import logger as log
 DIR=os.path.split(os.path.abspath(__file__))[0]
 sys.path.insert(0,os.path.join(DIR,'..','backEnd'))
 sys.path.insert(0,os.path.join(DIR,'..','nvdParser'))
 import PackageInfo
-import queryNVD
-import OSInformation
-from GitChecker import GitChecker
-from GitCheckerDEB import GitCheckerDEB
-from queryCVEInfo import queryCVEInfo
-from loguru import logger as log
-def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list[str]:
-	if len(cves)==0:
-		return []
-	try:
-		parser=OSInformation.OSInformation()
-		osInfo=parser.getOsInfo(packageInfo)
-		if osInfo.type=='rpm':
-			checker=GitChecker(packageInfo,osInfo)
-		else:
-			checker=GitCheckerDEB(packageInfo,osInfo)
-		ans=checker.check(cves)
-	except Exception as e:
-		traceback.print_exc()
-		log.warning("failed to query packageCVE")
-		return cves
-	return ans.getDismathedCVE()
-def solve(packageInfoList):
-	packageList=[]
-	for packageInfo in packageInfoList:
-		packageList.append(PackageInfo.loadPackageInfo(packageInfo))
-	package_cveList=queryNVD.query(packageList)
-	res=dict()
-	for package,cves in package_cveList.items():
-		#print(cves)
-		confirmed_cves=queryPackageCVE(package,cves)
-		res[package.name]=confirmed_cves
-	return res
 def sendObject(s,info):
 	info=json.dumps(info).encode()
 	length=len(info).to_bytes(4, byteorder='big')
@@ -64,7 +32,10 @@ def server():
 	while True:
 		c,addr = s.accept()
 		data=receiveObject(c)
-		res=solve(data)
+		packageList=[]
+		for packageInfo in data:
+			packageList.append(PackageInfo.loadPackageInfo(packageInfo))
+		res=cveSolver.solve(packageList)
 		#print(res)
 		sendObject(c,res)
 		c.close()
