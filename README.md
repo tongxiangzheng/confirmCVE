@@ -7,7 +7,6 @@
 处理依赖关系，根据依赖关系对cve漏洞进行扩散
 
 docker生成：
-
 docker run --name gitChecker -p 8000:80 -v /home/txz/analyze-rpms:/mnt/analyze-rpms -it ubuntu /bin/bash
 
 apt update
@@ -23,3 +22,10 @@ pip3 install certifi
 
 
 对于centos,滚动发行的发行版结尾将添加-stream用于区分，例如8-steam的dist为el8-stream
+
+
+## 以上都不用看
+```
+cd src/frontEnd
+python server.py
+```

@@ -18,8 +18,19 @@ def loadSpdxFile(fileName):
 			if packageType=='Deb' or packageType=='Rpm':
 				purlStr=package['externalRefs'][0]['referenceLocator']
 				res.append(PackageInfo.loadPurl(purlStr))
-				
+	return res
+def parseSpdxObj(spdxObj):
+	res=[]
+	packages=spdxObj['packages']
+	for package in packages:
+		packageType=package['description']
+		if packageType=='Deb' or packageType=='Rpm':
+			purlStr=package['externalRefs'][0]['referenceLocator']
+			packageinfo=PackageInfo.loadPurl(purlStr)
+			packageinfo.gitLink=package['comment']
+			res.append(packageinfo)
 	return res
 
-pl=loadSpdxFile("my_spdx_document.spdx.json")
-print(cveSolver.solve(pl))
+
+#pl=loadSpdxFile("my_spdx_document.spdx.json")
+#print(cveSolver.solve(pl))

@@ -45,15 +45,9 @@
 		]
 	},
 	"Ubuntu":{
-		"type":"deb",
-		"gitLink":{
-			"https://git.launchpad.net/":[".*"]
-		}
+		"type":"deb"
 	},
 	"debian":{
-		"type":"deb",
-		"gitLink":{
-			"https://salsa.debian.org/":[".*"]
-		}
+		"type":"deb"
 	}
 }

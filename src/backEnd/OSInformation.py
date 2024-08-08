@@ -28,12 +28,17 @@ class OSInformation:
 		if 'specfile' not in info:
 			info['specfile']=""
 		gitLink=None
-		for link, linkMatch in info['gitLink'].items():
-			for m in linkMatch:
-				if re.search(m,packageInfo.dist) is not None:
-					gitLink=link
+		if 'gitLink' in info:
+			for link, linkMatch in info['gitLink'].items():
+				for m in linkMatch:
+					if re.search(m,packageInfo.dist) is not None:
+						gitLink=link
+						break
+				if gitLink is not None:
 					break
-			if gitLink is not None:
-				break
-		branch=self.branchmap[packageInfo.osType][packageInfo.dist]
+		branch=None
+		try:
+			branch=self.branchmap[packageInfo.osType][packageInfo.dist]
+		except Exception as e:
+			pass
 		return OSInfo(info['type'],gitLink,info['specfile'],info['srcPackageLink'],packageInfo.osType,branch)

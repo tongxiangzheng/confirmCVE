@@ -20,7 +20,7 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list[str]:
 		if osInfo.type=='rpm':
 			checker=GitChecker(packageInfo,osInfo)
 		else:
-			checker=GitCheckerDEB(packageInfo,osInfo)
+			checker=GitCheckerDEB(packageInfo)
 		ans=checker.check(cves)
 	except Exception as e:
 		traceback.print_exc()

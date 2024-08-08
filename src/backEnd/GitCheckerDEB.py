@@ -16,6 +16,9 @@ class GitCheckerDEB:
 		DIR = os.path.split(os.path.abspath(__file__))[0]
 		downloadPath = os.path.join(DIR,'..','..','repos',self.packageInfo.osType,packageInfo.name)
 		repoLink=gitLink
+		if gitLink=='':
+			self.repo=None
+			return
 		log.info("git link is "+repoLink)
 		if os.path.exists(downloadPath):
 			self.repo = git.Repo(downloadPath)
@@ -55,11 +58,14 @@ class GitCheckerDEB:
 				return True
 		return False
 	def specCheck(self):
+		if self.repo is None:
+			return None
 		#使用软件包的version和release信息，与commit中的.spec文件进行匹配
 		log.info("start check by spec file")
 		log.info(" name is "+self.packageInfo.name)
 		log.info(" version is "+self.packageInfo.version)
-		log.info(" release is "+self.packageInfo.release)
+		if self.packageInfo.release is not None:
+			log.info(" release is "+self.packageInfo.release)
 		visted_commits=set()
 		matched_commits=[]
 		#specFilePath=self.osInfo.specfile
@@ -83,7 +89,18 @@ class GitCheckerDEB:
 		return None
 	def getCommitId(self):
 		return self.specCheck()
+	
+	def checkMessage(self,commitId,cveChecker):
+		commit=self.repo.commit(commitId)
+		while len(commit.parents)>0:
+			cveChecker.checkCommit(commit)
+			commit=commit.parents[0]
 	def check(self,cves:list):
-		#cveChecker=CVEChecker(cves)
+		cveChecker=CVEChecker(cves)
 		commitId=self.getCommitId()
-		print(commitId)
+		if commitId is None:
+			log.warning("Cannot match any commit for "+self.packageInfo.name)
+			raise Exception("Cannot match any commit")
+		log.info("match commit id: "+commitId)
+		self.checkMessage(commitId,cveChecker)
+		return cveChecker
