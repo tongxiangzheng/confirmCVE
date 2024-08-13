@@ -19,7 +19,7 @@ pip3 install python-libarchive
 pip3 install loguru
 pip3 install pycurl
 pip3 install certifi
-
+pip3 install flask
 
 对于centos,滚动发行的发行版结尾将添加-stream用于区分，例如8-steam的dist为el8-stream
 
