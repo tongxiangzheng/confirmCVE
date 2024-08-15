@@ -9,17 +9,36 @@ from loguru import logger as log
 from CVEChecker import CVEChecker
 from PackageInfo import PackageInfo
 from OSInformation import OSInformation
+def firstNumber(rawstr)->str:
+	res=""
+	for c in rawstr:
+		if c.isdigit() is True:
+			res+=c
+		else:
+			break
+	return res
 class GitCheckerDEB:
 	def __init__(self,packageInfo:PackageInfo):
+		if packageInfo.release is not None:
+			packageInfo.release=firstNumber(packageInfo.release)
 		self.packageInfo=packageInfo
+		
 		gitLink=packageInfo.gitLink
 		DIR = os.path.split(os.path.abspath(__file__))[0]
 		downloadPath = os.path.join(DIR,'..','..','repos',self.packageInfo.osType,packageInfo.name)
 		repoLink=gitLink
-		if gitLink=='':
+		if repoLink=='':
 			self.repo=None
 			return
 		log.info("git link is "+repoLink)
+		tmp=repoLink.split(' ')
+		if len(tmp)>1:
+			if tmp[1]=='-b':
+				self.branch=tmp[2]
+				repoLink=tmp[0]
+		else:
+			self.branch=None
+		
 		if os.path.exists(downloadPath):
 			self.repo = git.Repo(downloadPath)
 			#self.repo.remotes.origin.pull()
@@ -42,12 +61,18 @@ class GitCheckerDEB:
 			except Exception as e:
 				changelogInfo = data.decode('utf-8', errors='ignore')
 				log.warning("error at "+commit.hexsha+" :parse changelog file:"+changelogFileName+" as UTF-8 failed")
-			firstLine=changelogInfo.split('\n',1)[0].split(' ')
+			changelogInfo_line=changelogInfo.split('\n',1)
+			for info in changelogInfo_line:
+				if len(info)>0:
+					firstLine=info.split(' ')
+					break
 			
 			name=firstLine[0]
-			version_release=firstLine[1][1:-1]
-			version=version_release.split('-')[0]
-			release=version_release.split('-')[1]
+			version_release=firstLine[1][1:-1].split('-')
+			version=version_release[0]
+			release=None
+			if len(version_release)>1:
+				release=firstNumber(version_release[1])
 			
 			log.trace("name:"+name)
 			log.trace("version:"+version)
@@ -70,7 +95,17 @@ class GitCheckerDEB:
 		matched_commits=[]
 		#specFilePath=self.osInfo.specfile
 		changelogFileName='debian/changelog'
-		nowCommit=self.repo.head.commit
+		if self.branch is not None:
+			branch=self.repo.remote().refs[self.branch]
+			log.debug("branch: "+branch.name)
+			nowCommit=self.repo.commit(branch.name)
+		elif 'debian' in self.repo.remote().refs:
+			log.info("use debian branch instead master branch")
+			branch=self.repo.remote().refs['debian']
+			log.debug("branch: "+branch.name)
+			nowCommit=self.repo.commit(branch.name)
+		else:
+			nowCommit=self.repo.head.commit
 		while True:
 			hexsha=nowCommit.hexsha
 			if hexsha in visted_commits:

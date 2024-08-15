@@ -24,7 +24,7 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list[str]:
 		ans=checker.check(cves)
 	except Exception as e:
 		traceback.print_exc()
-		log.warning("failed to query packageCVE")
+		log.warning("failed to check packageCVE")
 		return cves
 	return ans.getDismathedCVE()
 def solve(packageList):

@@ -12,7 +12,7 @@ class CVEChecker:
 		self.warnings=[]
 	def parse(self,info,commit,type):
 		info=info.lower()
-		log.debug(info)
+		log.trace(info)
 		matchCVE=[]
 		for cveString,cveRe in self.dismatched_cves.items():
 			for r in cveRe:

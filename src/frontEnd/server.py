@@ -30,6 +30,6 @@ logFile="log.log"
 if os.path.exists(logFile):
 	os.remove(logFile)
 #log.add(sink=logFile,level='INFO')
-log.add(sink=logFile,level='TRACE')
+log.add(sink=logFile,level='DEBUG')
 port = 8342
 app.run(host="0.0.0.0",port=port)

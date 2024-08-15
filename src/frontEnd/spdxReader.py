@@ -7,7 +7,7 @@ DIR=os.path.split(os.path.abspath(__file__))[0]
 sys.path.insert(0,os.path.join(DIR,'..','backEnd'))
 sys.path.insert(0,os.path.join(DIR,'..','nvdParser'))
 import PackageInfo
-
+import normalize
 def loadSpdxFile(fileName):
 	res=[]
 	with open(fileName,"r") as f:
@@ -24,10 +24,12 @@ def parseSpdxObj(spdxObj):
 	packages=spdxObj['packages']
 	for package in packages:
 		packageType=package['description']
-		if packageType=='Deb' or packageType=='Rpm':
+		if packageType.lower()=='deb' or packageType.lower()=='rpm':
 			purlStr=package['externalRefs'][0]['referenceLocator']
+			purlStr=normalize.reNormalReplace(purlStr)
 			packageinfo=PackageInfo.loadPurl(purlStr)
-			packageinfo.gitLink=package['comment']
+			if 'comment' in package:
+				packageinfo.gitLink=package['comment']
 			res.append(packageinfo)
 	return res
 

@@ -10,8 +10,17 @@ from pyrpm.spec import Spec, replace_macros
 from CVEChecker import CVEChecker
 from PackageInfo import PackageInfo
 from OSInformation import OSInformation,OSInfo
+def firstNumber(rawstr)->str:
+	res=""
+	for c in rawstr:
+		if c.isdigit() is True:
+			res+=c
+		else:
+			break
+	return res
 class GitChecker:
 	def __init__(self,packageInfo:PackageInfo,osInfo:OSInfo):
+		packageInfo.release=firstNumber(packageInfo.release)
 		self.packageInfo=packageInfo
 		self.autoReleaseDict=dict()
 		self.osInfo=osInfo
