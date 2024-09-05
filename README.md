@@ -12,11 +12,11 @@ docker run --name gitChecker -p 8000:80 -v /home/txz/analyze-rpms:/mnt/analyze-r
 apt update
 apt install python3 python3-pip rpm yum git -y
 
+pip3 install loguru
 pip3 install GitPython
-pip3 install python-rpm-spec
 pip3 install wget
 pip3 install python-libarchive
-pip3 install loguru
+pip3 install python-rpm-spec
 pip3 install pycurl
 pip3 install certifi
 pip3 install flask

@@ -31,9 +31,9 @@ class CVEChecker:
 		log.debug("check commit"+commit.hexsha)
 		self.parse(commit.message,commit,"commit_message")
 		self.dfsTree(commit.tree,commit)
-	def getMatchedCVE(self)->list[str]:
+	def getMatchedCVE(self)->list:
 		return self.matched_cves
-	def getDismathedCVE(self)->list[str]:
+	def getDismathedCVE(self)->list:
 		cves=[]
 		for cveString in self.dismatched_cves:
 			cves.append(cveString)
