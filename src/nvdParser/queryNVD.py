@@ -111,7 +111,7 @@ def registerPackage(relatedCVE,cvePath,package):
     cve=relatedCVE[cvePath]
     cve.addRelated(package)
 
-def query(packageList:list[PackageInfo]):
+def query(packageList:list): #list[PackageInfo]
     relatedCVE=dict()
     res=dict()
     for package in packageList:
