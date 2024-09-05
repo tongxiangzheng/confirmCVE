@@ -11,7 +11,7 @@ import OSInformation
 from GitChecker import GitChecker
 from GitCheckerDEB import GitCheckerDEB
 from queryCVEInfo import queryCVEInfo
-def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list[str]:
+def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 	if len(cves)==0:
 		return []
 	if osInfo.type!='rpm' and osInfo.type!='deb':
