@@ -4,7 +4,7 @@ import re
 from loguru import logger as log
 from PackageInfo import PackageInfo
 class OSInfo:
-	def __init__(self,type:str,gitLink:str,specfile:str,srcPackageLink:list[str],name:str,branch:str):
+	def __init__(self,type:str,gitLink:str,specfile:str,srcPackageLink:list,name:str,branch:str):
 		self.type=type
 		self.gitLink=gitLink
 		self.specfile=specfile
