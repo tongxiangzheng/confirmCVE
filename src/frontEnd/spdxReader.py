@@ -25,12 +25,26 @@ def parseSpdxObj(spdxObj):
 	for package in packages:
 		packageType=package['description']
 		if packageType.lower()=='deb' or packageType.lower()=='rpm':
-			purlStr=package['externalRefs'][0]['referenceLocator']
-			purlStr=normalize.reNormalReplace(purlStr)
-			packageinfo=PackageInfo.loadPurl(purlStr)
-			if 'comment' in package:
-				packageinfo.gitLink=package['comment']
-			res.append(packageinfo)
+			packageinfo=None
+			for externalRefs in package['externalRefs']:
+				if externalRefs['referenceCategory']!='PACKAGE_MANAGER':
+					continue
+				purlStr=package['externalRefs'][0]['referenceLocator']
+				purlStr=normalize.reNormalReplace(purlStr)
+				packageinfo=PackageInfo.loadPurl(purlStr)
+				if 'comment' in package:
+					packageinfo.gitLink=package['comment']
+			if packageinfo is not None:
+				res.append(packageinfo)
+			else:
+				log.warning('ERROR:spdxReader:cannot find PACKAGE_MANAGER infomation in externalRefs')
+		else:
+			name=package['name']
+			##TODO: need version
+
+
+			#packageinfo=PackageInfo("None","None",name,"",None)
+			#res.append(packageinfo)
 	return res
 
 

@@ -14,13 +14,18 @@ from queryCVEInfo import queryCVEInfo
 def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list[str]:
 	if len(cves)==0:
 		return []
+	if osInfo.type!='rpm' and osInfo.type!='deb':
+		return cves
+		#only check os system repo
 	try:
 		parser=OSInformation.OSInformation()
 		osInfo=parser.getOsInfo(packageInfo)
 		if osInfo.type=='rpm':
 			checker=GitChecker(packageInfo,osInfo)
-		else:
+		elif osInfo.type=='deb':
 			checker=GitCheckerDEB(packageInfo)
+		else:
+			log.warning('unknown ostype')
 		ans=checker.check(cves)
 	except Exception as e:
 		traceback.print_exc()

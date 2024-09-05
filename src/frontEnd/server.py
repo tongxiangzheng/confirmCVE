@@ -11,7 +11,7 @@ sys.path.insert(0,os.path.join(DIR,'..','nvdParser'))
 import PackageInfo
 import nwkTools
 import spdxReader
-
+import nvdServer
 import json
  
  
@@ -31,5 +31,8 @@ if os.path.exists(logFile):
 	os.remove(logFile)
 #log.add(sink=logFile,level='INFO')
 log.add(sink=logFile,level='DEBUG')
+
+nvdServer.nvdServer()
+
 port = 8342
 app.run(host="0.0.0.0",port=port)
