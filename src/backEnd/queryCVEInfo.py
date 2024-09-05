@@ -20,7 +20,7 @@ def sendCurl(URL:str,params:dict,additional:list)->dict:
 	body = buffer.getvalue()
 	result=json.loads(body.decode('iso-8859-1'))
 	return result
-def getCVE(cpeName:str)->set[str]:
+def getCVE(cpeName:str)->set:
 	params = {'cpeName': cpeName}
 	result=sendCurl('https://services.nvd.nist.gov/rest/json/cves/2.0',params,["noRejected"])
 	#with open("query.log","w") as f:
@@ -68,7 +68,7 @@ def getCPE(packageInfo:PackageInfo)->dict|None:
 	product=result['products'][0]['cpe']
 	return product
 
-def queryCVEInfo(packageInfo:PackageInfo)->set[str]:
+def queryCVEInfo(packageInfo:PackageInfo)->set:
 	product=getCPE(packageInfo)
 	if product is None:
 		return set()
