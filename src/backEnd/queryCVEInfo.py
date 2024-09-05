@@ -49,7 +49,7 @@ def getCVE(cpeName:str)->set:
 			log.warning("cannot get cvss info for cve:"+id)     
 		cves.add(id)
 	return cves
-def getCPE(packageInfo:PackageInfo)->dict|None:
+def getCPE(packageInfo:PackageInfo)->dict:
 	matchString="cpe:2.3:a:*:"+packageInfo.name+':'+packageInfo.version
 	if packageInfo.update is not None:
 		matchString=matchString+':'+packageInfo.update
