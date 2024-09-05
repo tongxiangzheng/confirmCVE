@@ -5,7 +5,7 @@ from io import BytesIO
 from urllib.parse import urlencode
 from PackageInfo import PackageInfo
 from loguru import logger as log
-def sendCurl(URL:str,params:dict[str,str],additional:list=[])->dict:
+def sendCurl(URL:str,params:dict,additional:list)->dict:
 	buffer = BytesIO()
 	c = pycurl.Curl()
 	URL=URL+'?'+urlencode(params)
