@@ -19,8 +19,9 @@ import normalize
 #				purlStr=package['externalRefs'][0]['referenceLocator']
 #				res.append(PackageInfo.loadPurl(purlStr))
 #	return res
-def parseSpdxObj(spdxObj):
+def parseSpdxObj(spdxObj,duplicate_removal=True):
 	res=[]
+	known_names=set()
 	packages=spdxObj['packages']
 	for package in packages:
 		packageType=package['description']
@@ -35,15 +36,29 @@ def parseSpdxObj(spdxObj):
 				if 'comment' in package:
 					packageinfo.gitLink=package['comment']
 			if packageinfo is not None:
-				res.append(packageinfo)
+				if duplicate_removal is True:
+					name=packageinfo.name
+					if name in known_names:
+						continue
+					known_names.add(name)
+					res.append(packageinfo)
+				else:
+					res.append(packageinfo)
 			else:
 				log.warning('ERROR:spdxReader:cannot find PACKAGE_MANAGER infomation in externalRefs')
 		else:
 			name=package['name']
+			
 			##TODO: need version
 
-
 			#packageinfo=PackageInfo("None","None",name,"",None)
+			if duplicate_removal is True:
+					name=packageinfo.name
+					if name in known_names:
+						continue
+					known_names.add(name)
+					##res.append(packageinfo)
+					
 			#res.append(packageinfo)
 	return res
 
