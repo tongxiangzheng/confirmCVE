@@ -115,7 +115,7 @@ def query(packageList:list): #list[PackageInfo]
     relatedCVE=dict()
     res=dict()
     for package in packageList:
-        res[package]=[]
+        res[package]=set()
         name=package.name.lower()
         basePath,path=SoftManager.getPath(SoftManager.normalizeName(name))
         if not os.path.isfile(path):
@@ -131,7 +131,7 @@ def query(packageList:list): #list[PackageInfo]
         if cve.check():
             log.trace(cve.path+" is active")
             for package in cve.collect:
-                res[package].append(cve.cveName)
+                res[package].add(cve.cveName)
         else:
             log.trace(cve.path+" is not active")
     

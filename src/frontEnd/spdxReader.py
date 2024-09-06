@@ -8,17 +8,17 @@ sys.path.insert(0,os.path.join(DIR,'..','backEnd'))
 sys.path.insert(0,os.path.join(DIR,'..','nvdParser'))
 import PackageInfo
 import normalize
-def loadSpdxFile(fileName):
-	res=[]
-	with open(fileName,"r") as f:
-		spdxObj=json.load(f)
-		packages=spdxObj['packages']
-		for package in packages:
-			packageType=package['description']
-			if packageType=='Deb' or packageType=='Rpm':
-				purlStr=package['externalRefs'][0]['referenceLocator']
-				res.append(PackageInfo.loadPurl(purlStr))
-	return res
+#def loadSpdxFile(fileName):
+#	res=[]
+#	with open(fileName,"r") as f:
+#		spdxObj=json.load(f)
+#		packages=spdxObj['packages']
+#		for package in packages:
+#			packageType=package['description']
+#			if packageType=='Deb' or packageType=='Rpm':
+#				purlStr=package['externalRefs'][0]['referenceLocator']
+#				res.append(PackageInfo.loadPurl(purlStr))
+#	return res
 def parseSpdxObj(spdxObj):
 	res=[]
 	packages=spdxObj['packages']

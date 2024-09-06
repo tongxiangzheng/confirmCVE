@@ -14,7 +14,7 @@ from queryCVEInfo import queryCVEInfo
 def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 	if len(cves)==0:
 		return []
-	if osInfo.type!='rpm' and osInfo.type!='deb':
+	if packageInfo.osType!='rpm' and packageInfo.osType!='deb':
 		return cves
 		#only check os system repo
 	try:
@@ -35,7 +35,8 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 def solve(packageList):
 	package_cveList=queryNVD.query(packageList)
 	res=dict()
-	for package,cves in package_cveList.items():
+	for package,cves_set in package_cveList.items():
+		cves=list(cves_set)
 		#print(cves)
 		confirmed_cves=queryPackageCVE(package,cves)
 		res[package.name]=confirmed_cves
