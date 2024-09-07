@@ -74,7 +74,10 @@ class Soft:
 		self.items.append(item)
 		self.changed=True
 	def remove(self,item):
-		self.items.remove(item)
+		try:
+			self.items.remove(item)
+		except Exception:	
+			pass
 		self.changed=True
 	def dump(self):
 		if self.changed is False:

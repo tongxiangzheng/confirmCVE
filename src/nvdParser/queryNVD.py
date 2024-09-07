@@ -44,6 +44,19 @@ class CVEInfo:
                     versionEndExcluding=cpeMatch['versionEndExcluding']
                 now['expressions'].append((criteria,versionStartIncluding,versionStartExcluding,versionEndIncluding,versionEndExcluding))
             self.nodes.append(now)
+
+        self.baseScore=None
+        if 'metrics' in data:
+            metrics=data['metrics']
+            if 'cvssMetricV31' in metrics:
+                cvssMetric=metrics['cvssMetricV31'][0]
+                cvssData=cvssMetric['cvssData']
+                self.baseScore=float(cvssData['baseScore'])
+            elif "cvssMetricV2" in metrics:
+                cvssMetric=metrics['cvssMetricV2'][0]
+                cvssData=cvssMetric['cvssData']
+                self.baseScore=float(cvssData['baseScore'])
+            
     def addRelated(self,package):
         self.collect.append(package)
     def compare(self,version1,version2):
@@ -71,7 +84,9 @@ class CVEInfo:
         if versionEndExcluding is not None and self.compare(version,versionEndExcluding)>=0:
             return False
         return True
-    def check(self)->bool:
+    def check(self,scoreThreshold=6.0)->bool:
+        if self.baseScore is not None and self.baseScore<scoreThreshold:
+            return False
         for node in self.nodes:
             regexs=[]
             for expression,versionStartIncluding,versionStartExcluding,versionEndIncluding,versionEndExcluding in node['expressions']:
