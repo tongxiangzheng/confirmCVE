@@ -47,17 +47,21 @@ def parseSpdxObj(spdxObj,duplicate_removal=True):
 			else:
 				log.warning('ERROR:spdxReader:cannot find PACKAGE_MANAGER infomation in externalRefs')
 		else:
+			spdxid=package['SPDXID']
+			if spdxid.startswith("SPDXRef-DocumentRoot-Directory"):
+				continue
 			name=package['name']
-			
-			##TODO: need version
+			version=package['versionInfo']
 
-			#packageinfo=PackageInfo("None","None",name,"",None)
+			packageinfo=PackageInfo("None","None",name,version,None)
 			if duplicate_removal is True:
-					name=packageinfo.name
-					if name in known_names:
-						continue
-					known_names.add(name)
-					##res.append(packageinfo)
+				name=packageinfo.name
+				if name in known_names:
+					continue
+				known_names.add(name)
+				res.append(packageinfo)
+			else:
+				res.append(packageinfo)
 					
 			#res.append(packageinfo)
 	return res

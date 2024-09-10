@@ -1,3284 +1,343 @@
 {
     "SPDXID": "SPDXRef-DOCUMENT",
     "creationInfo": {
-        "created": "2024-05-30T16:10:50Z",
+        "created": "2024-09-10T19:29:53Z",
         "creators": [
             "Organization: Rest (jiliqiang.iscas@ac.com)",
             "Tool: Syft-Plus"
         ]
     },
     "dataLicense": "CC0-1.0",
-    "name": "/home/jiliqiang/Deb/src/opencensus-java",
+    "name": "/tmp/aptC/packages/llvm-underline-18.0-59-tilde-exp2-underline-amd64",
     "spdxVersion": "SPDX-2.3",
-    "documentNamespace": "https://anchore.com/syft/dir/home/jiliqiang/Deb/src/opencensus-java-eebd9363ec4f6ea4bd559b98cf90a19377e55bdcec83351e39eda2f94af1395c",
+    "documentNamespace": "https://anchore.com/syft/dir/tmp/aptC/packages/llvm-underline-18.0-59-tilde-exp2-underline-amd64-c2f9f73d5cd83331fcd365563bac2290f19725e43bac201b447b18e968caaa81",
     "packages": [
         {
-            "SPDXID": "SPDXRef-Package-Deb---debhelper-compat--059a8b69-ffad-4433-ba5b-8b4fda3c7cdb",
+            "SPDXID": "SPDXRef-Package-Deb---libpipeline--7211ed29-d352-44d2-9b97-147363100eb9",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/debhelper-compat@12",
+                    "referenceLocator": "pkg:deb/ubuntu/libpipeline@1.5.7-2.noble?gitLink=https://salsa.debian.org/debian/libpipeline.git",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "debhelper-compat",
+            "name": "libpipeline",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "1.5.7-2"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---default-jdk--60be6bb5-4255-4d4d-9742-e41059dd3d16",
+            "SPDXID": "SPDXRef-Package-Deb---binfmt-support--dc402f92-4951-4d5d-a855-548914122016",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/default-jdk@12",
+                    "referenceLocator": "pkg:deb/ubuntu/binfmt-support@2.2.2-7.noble?gitLink=https://salsa.debian.org/debian/binfmt-support.git",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "default-jdk",
+            "name": "binfmt-support",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "2.2.2-7"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---gradle-apt-plugin--ff2db865-792c-4be2-a88d-c5d85a8ccc34",
+            "SPDXID": "SPDXRef-Package-Deb---icu--3636bfcd-fef7-4515-b03d-dcf1695d816c",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/gradle-apt-plugin@12",
+                    "referenceLocator": "pkg:deb/ubuntu/icu@74.2-1ubuntu3.noble",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "gradle-apt-plugin",
+            "name": "icu",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "74.2-1ubuntu3"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---gradle-debian-helper--f77ba03f-bf49-47b9-be08-954ab1d4e3f8",
+            "SPDXID": "SPDXRef-Package-Deb---libxml2--0cf501c0-be8d-41de-bc94-073a91c1faf1",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/gradle-debian-helper@12",
+                    "referenceLocator": "pkg:deb/ubuntu/libxml2@2.9.14-plus-dfsg-1.3ubuntu3.noble?gitLink=https://salsa.debian.org/xml-sgml-team/libxml2.git",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "gradle-debian-helper",
+            "name": "libxml2",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "2.9.14-plus-dfsg-1.3ubuntu3"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---javahelper--dbe1307a-f8f1-4a4a-a26d-d0e79d56bdfe",
+            "SPDXID": "SPDXRef-Package-Deb---pygments--851d9a97-0fb2-4436-a527-8228643edbc9",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/javahelper@12",
+                    "referenceLocator": "pkg:deb/ubuntu/pygments@2.17.2-plus-dfsg-1.noble?gitLink=https://salsa.debian.org/python-team/packages/pygments.git",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "javahelper",
+            "name": "pygments",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "2.17.2-plus-dfsg-1"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---libaopalliance-java--cc163a82-ee60-47f9-a817-2a342189cd0e",
+            "SPDXID": "SPDXRef-Package-Deb---libedit--3396f055-2a4e-451e-aeb3-dcefefee8709",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libaopalliance-java@12",
+                    "referenceLocator": "pkg:deb/ubuntu/libedit@3.1-20230828.noble?gitLink=https://salsa.debian.org/debian/libedit.git",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "libaopalliance-java",
+            "name": "libedit",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "3.1-20230828"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---libcommons-compress-java--27623f87-a1df-494e-9d3d-fd0783e035ef",
+            "SPDXID": "SPDXRef-Package-Deb---ncurses--ca2d0aff-2105-4e0a-a4e4-cda2b5ef5942",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libcommons-compress-java@12",
+                    "referenceLocator": "pkg:deb/ubuntu/ncurses@6.4-plus-20240113-1ubuntu2.noble?gitLink=https://salsa.debian.org/debian/ncurses.git",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "libcommons-compress-java",
+            "name": "ncurses",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "6.4-plus-20240113-1ubuntu2"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---libcommons-io-java--fe5507c4-1cae-4cc7-b896-d99f80a81aa9",
+            "SPDXID": "SPDXRef-Package-Deb---llvm-toolchain-18--188b8885-8a71-408e-8983-c1f8886ff264",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libcommons-io-java@12",
+                    "referenceLocator": "pkg:deb/ubuntu/llvm-toolchain-18@18.1.3-1.noble",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "libcommons-io-java",
+            "name": "llvm-toolchain-18",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "18.1.3-1"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---libcommons-lang-java--dae8113d-439e-4383-902e-c2f5ef65051b",
+            "SPDXID": "SPDXRef-Package-Deb---curl--3ddd72ed-ef3c-407c-bb58-ffe7b25aa80b",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libcommons-lang-java@12",
+                    "referenceLocator": "pkg:deb/ubuntu/curl@8.5.0-2ubuntu10.noble?gitLink=https://salsa.debian.org/debian/curl.git",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "libcommons-lang-java",
+            "name": "curl",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "8.5.0-2ubuntu10"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---libcommons-math3-java--a950d8f1-19ec-4258-96bc-8f4bdd78a874",
+            "SPDXID": "SPDXRef-Package-Deb---llvm-defaults--feff0cc1-76d1-4be3-a3ce-f81b36deeca3",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libcommons-math3-java@12",
+                    "referenceLocator": "pkg:deb/ubuntu/llvm-defaults@18.0-59-tilde-exp2.noble?gitLink=https://salsa.debian.org/pkg-llvm-team/llvm-defaults.git -b snapshot",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "libcommons-math3-java",
+            "name": "llvm-defaults",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "18.0-59-tilde-exp2"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---libcommons-parent-java--426c0441-7ac8-4f76-b7ca-f1fcc3d2ffac",
+            "SPDXID": "SPDXRef-Package-Deb---libpfm4--c523089a-cc36-4525-8ca7-652d3b54b415",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libcommons-parent-java@12",
+                    "referenceLocator": "pkg:deb/ubuntu/libpfm4@4.13.0-plus-git32-g0d4ed0e.noble?gitLink=https://salsa.debian.org/hpc-team/libpfm4.git",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "libcommons-parent-java",
+            "name": "libpfm4",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "4.13.0-plus-git32-g0d4ed0e"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---liberror-prone-java--b10b33ea-ff97-449d-80ea-88eac5d5c7a5",
+            "SPDXID": "SPDXRef-Package-Deb---libffi--036aa1f1-a714-4c78-b763-78ff6917e043",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/liberror-prone-java@12",
+                    "referenceLocator": "pkg:deb/ubuntu/libffi@3.4.6-1build1.noble",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "liberror-prone-java",
+            "name": "libffi",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "3.4.6-1build1"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---libgoogle-auto-value-java--032a302a-b93a-4e9e-a9d2-bafe821b558c",
+            "SPDXID": "SPDXRef-Package-Deb---z3--d1dd60a1-ebe1-4cc5-9380-7ca564d57317",
             "copyrightText": "Copyright 2024 Jane Doe",
             "description": "Deb",
             "downloadLocation": "https://download.com",
             "externalRefs": [
                 {
                     "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libgoogle-auto-value-java@12",
+                    "referenceLocator": "pkg:deb/ubuntu/z3@4.8.12-3.1build1.noble?gitLink=https://salsa.debian.org/pkg-llvm-team/z3.git",
                     "referenceType": "purl"
                 }
             ],
             "filesAnalyzed": false,
             "licenseConcluded": "NOASSERTION",
             "licenseDeclared": "NOASSERTION",
-            "name": "libgoogle-auto-value-java",
+            "name": "z3",
             "sourceInfo": "External Dependency",
-            "versionInfo": "12"
+            "versionInfo": "4.8.12-3.1build1"
         },
         {
-            "SPDXID": "SPDXRef-Package-Deb---libgpars-groovy-java--f9799bb3-5ef8-4fd3-8f8f-5417b5e3beae",
-            "copyrightText": "Copyright 2024 Jane Doe",
-            "description": "Deb",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libgpars-groovy-java@12",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": false,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "libgpars-groovy-java",
-            "sourceInfo": "External Dependency",
-            "versionInfo": "12"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-Deb---libgradle-plugins-java--7ae30271-e387-4938-bab9-4a28276e6773",
-            "copyrightText": "Copyright 2024 Jane Doe",
-            "description": "Deb",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libgradle-plugins-java@12",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": false,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "libgradle-plugins-java",
-            "sourceInfo": "External Dependency",
-            "versionInfo": "12"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-Deb---libgrpc-java--0d4a15fe-d34a-4ecd-bd2f-043383f9d4e4",
-            "copyrightText": "Copyright 2024 Jane Doe",
-            "description": "Deb",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libgrpc-java@12",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": false,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "libgrpc-java",
-            "sourceInfo": "External Dependency",
-            "versionInfo": "12"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-Deb---libjackson2-jaxrs-providers-java--fdbec735-c989-4e2b-bd48-6bb6c9e50813",
-            "copyrightText": "Copyright 2024 Jane Doe",
-            "description": "Deb",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libjackson2-jaxrs-providers-java@12",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": false,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "libjackson2-jaxrs-providers-java",
-            "sourceInfo": "External Dependency",
-            "versionInfo": "12"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-Deb---libjengelman-shadow-java--a951d3e8-f3f4-4573-9b16-ff5aa4b43b48",
-            "copyrightText": "Copyright 2024 Jane Doe",
-            "description": "Deb",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libjengelman-shadow-java@12",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": false,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "libjengelman-shadow-java",
-            "sourceInfo": "External Dependency",
-            "versionInfo": "12"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-Deb---liblog4j2-java--7b784dcb-d6d3-4f8e-875d-88010241cbb7",
-            "copyrightText": "Copyright 2024 Jane Doe",
-            "description": "Deb",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/liblog4j2-java@12",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": false,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "liblog4j2-java",
-            "sourceInfo": "External Dependency",
-            "versionInfo": "12"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-Deb---libprotobuf-java--07a0f146-7ade-4147-a286-5ff18db5213c",
-            "copyrightText": "Copyright 2024 Jane Doe",
-            "description": "Deb",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libprotobuf-java@12",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": false,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "libprotobuf-java",
-            "sourceInfo": "External Dependency",
-            "versionInfo": "12"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-Deb---libspring-core-java--3586ab64-56e0-4342-9861-5aacd71c9be3",
-            "copyrightText": "Copyright 2024 Jane Doe",
-            "description": "Deb",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/libspring-core-java@12",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": false,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "libspring-core-java",
-            "sourceInfo": "External Dependency",
-            "versionInfo": "12"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-Deb---maven-repo-helpe--eed7ba2b-05fc-4d3d-a6f5-512e555298cf",
-            "copyrightText": "Copyright 2024 Jane Doe",
-            "description": "Deb",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:deb/debian/maven-repo-helpe@12",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": false,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "maven-repo-helpe",
-            "sourceInfo": "External Dependency",
-            "versionInfo": "12"
-        },
-        {
-            "SPDXID": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
+            "SPDXID": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
             "description": "directory",
             "downloadLocation": "https://download.com",
             "filesAnalyzed": true,
-            "name": "/home/jiliqiang/Deb/src/opencensus-java",
+            "name": "/tmp/aptC/packages/llvm-underline-18.0-59-tilde-exp2-underline-amd64",
             "versionInfo": ""
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---grpc-core-642ae652-ffd0-4d57-96d0-7220151adeae",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-core:grpc-core:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-core:grpc_core:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_core:grpc-core:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_core:grpc_core:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc-core:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc_core:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.grpc/grpc-core@1.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "grpc-core",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "1.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---grpc-netty-876b8274-2df2-46ab-aa67-0a4acccd8a61",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-netty:grpc-netty:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-netty:grpc_netty:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_netty:grpc-netty:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_netty:grpc_netty:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc-netty:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc_netty:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.grpc/grpc-netty@1.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "grpc-netty",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "1.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---grpc-netty-shaded-938bc350-df51-4518-8855-fed2d8cd2237",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-netty-shaded:grpc-netty-shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-netty-shaded:grpc_netty_shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_netty_shaded:grpc-netty-shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_netty_shaded:grpc_netty_shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-netty:grpc-netty-shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-netty:grpc_netty_shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_netty:grpc-netty-shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_netty:grpc_netty_shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc-netty-shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc_netty_shaded:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.grpc/grpc-netty-shaded@1.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "grpc-netty-shaded",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "1.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---grpc-protobuf-d6e5b914-6a9f-4287-b8f8-dbe3ec998c48",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-protobuf:grpc-protobuf:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-protobuf:grpc_protobuf:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_protobuf:grpc-protobuf:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_protobuf:grpc_protobuf:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc-protobuf:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc_protobuf:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.grpc/grpc-protobuf@1.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "grpc-protobuf",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "1.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---grpc-stub-455bd9db-b261-4af1-af3e-0834f5025f89",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-stub:grpc-stub:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc-stub:grpc_stub:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_stub:grpc-stub:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc_stub:grpc_stub:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc-stub:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:grpc:grpc_stub:1.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.grpc/grpc-stub@1.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "grpc-stub",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "1.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---httpasyncclient-6c4c047f-d582-4b17-8081-147bb24b842a",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:apache:httpasyncclient:4.1.4:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/org.apache.httpcomponents/httpasyncclient@4.1.4",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "httpasyncclient",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "4.1.4"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---javax.servlet-api-8a4de2f8-7a19-414e-b861-d382594077f8",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:javax.servlet-api:javax.servlet-api:3.1.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:javax.servlet-api:javax.servlet_api:3.1.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:javax.servlet_api:javax.servlet-api:3.1.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:javax.servlet_api:javax.servlet_api:3.1.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:javax.servlet:javax.servlet-api:3.1.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:javax.servlet:javax.servlet_api:3.1.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/javax.servlet/javax.servlet-api@3.1.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "javax.servlet-api",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "3.1.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---jetty-client-2706ac66-0306-4aa9-8902-17fe81e6989f",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty-client:jetty-client:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty-client:jetty_client:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty_client:jetty-client:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty_client:jetty_client:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:eclipse:jetty-client:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:eclipse:jetty_client:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty-client:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty:jetty-client:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty:jetty_client:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty_client:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:eclipse:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/org.eclipse.jetty/jetty-client@9.4.17.v20190418",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "jetty-client",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "9.4.17.v20190418"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---jetty-server-ec40b213-7ba4-4d11-acbf-58aedad4ca4a",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty-server:jetty-server:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty-server:jetty_server:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty_server:jetty-server:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty_server:jetty_server:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:eclipse:jetty-server:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:eclipse:jetty_server:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty-server:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty:jetty-server:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty:jetty_server:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty_server:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:eclipse:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/org.eclipse.jetty/jetty-server@9.4.17.v20190418",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "jetty-server",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "9.4.17.v20190418"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---jetty-servlet-080d754c-0a92-489f-9ff9-3a75a00c53bb",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty-servlet:jetty-servlet:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty-servlet:jetty_servlet:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty_servlet:jetty-servlet:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty_servlet:jetty_servlet:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:eclipse:jetty-servlet:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:eclipse:jetty_servlet:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty-servlet:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty:jetty-servlet:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty:jetty_servlet:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty_servlet:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:eclipse:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:jetty:jetty:9.4.17.v20190418:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/org.eclipse.jetty/jetty-servlet@9.4.17.v20190418",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "jetty-servlet",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "9.4.17.v20190418"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---netty-tcnative-boringssl-static-870bdc94-120b-486a-bda5-5cd65a33177d",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty-tcnative-boringssl-static:netty-tcnative-boringssl-static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty-tcnative-boringssl-static:netty_tcnative_boringssl_static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty_tcnative_boringssl_static:netty-tcnative-boringssl-static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty_tcnative_boringssl_static:netty_tcnative_boringssl_static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty-tcnative-boringssl:netty-tcnative-boringssl-static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty-tcnative-boringssl:netty_tcnative_boringssl_static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty_tcnative_boringssl:netty-tcnative-boringssl-static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty_tcnative_boringssl:netty_tcnative_boringssl_static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty-tcnative:netty-tcnative-boringssl-static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty-tcnative:netty_tcnative_boringssl_static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty_tcnative:netty-tcnative-boringssl-static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty_tcnative:netty_tcnative_boringssl_static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty:netty-tcnative-boringssl-static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:netty:netty_tcnative_boringssl_static:2.0.8.Final:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.netty/netty-tcnative-boringssl-static@2.0.8.Final",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "netty-tcnative-boringssl-static",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "2.0.8.Final"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-api-88dc5534-3de7-4f8a-8139-77273eaf2035",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-api:opencensus-api:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-api:opencensus_api:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_api:opencensus-api:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_api:opencensus_api:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-api:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_api:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-api@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-api",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-contrib-grpc-metrics-f9fb8ddf-8fc9-4bc5-b8c4-03cd573962a2",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-grpc-metrics:opencensus-contrib-grpc-metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-grpc-metrics:opencensus_contrib_grpc_metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_grpc_metrics:opencensus-contrib-grpc-metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_grpc_metrics:opencensus_contrib_grpc_metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-grpc:opencensus-contrib-grpc-metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-grpc:opencensus_contrib_grpc_metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_grpc:opencensus-contrib-grpc-metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_grpc:opencensus_contrib_grpc_metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus-contrib-grpc-metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus_contrib_grpc_metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus-contrib-grpc-metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus_contrib_grpc_metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-contrib-grpc-metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_contrib_grpc_metrics:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-contrib-grpc-metrics@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-contrib-grpc-metrics",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-contrib-http-jetty-client-218afe22-686b-406a-aa97-4fefa0aa202c",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http-jetty-client:opencensus-contrib-http-jetty-client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http-jetty-client:opencensus_contrib_http_jetty_client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http_jetty_client:opencensus-contrib-http-jetty-client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http_jetty_client:opencensus_contrib_http_jetty_client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http-jetty:opencensus-contrib-http-jetty-client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http-jetty:opencensus_contrib_http_jetty_client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http_jetty:opencensus-contrib-http-jetty-client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http_jetty:opencensus_contrib_http_jetty_client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http:opencensus-contrib-http-jetty-client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http:opencensus_contrib_http_jetty_client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http:opencensus-contrib-http-jetty-client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http:opencensus_contrib_http_jetty_client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus-contrib-http-jetty-client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus_contrib_http_jetty_client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus-contrib-http-jetty-client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus_contrib_http_jetty_client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-contrib-http-jetty-client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_contrib_http_jetty_client:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-contrib-http-jetty-client@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-contrib-http-jetty-client",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-contrib-http-servlet-36ff167c-c312-4749-8fdd-2de64c0686dd",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http-servlet:opencensus-contrib-http-servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http-servlet:opencensus_contrib_http_servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http_servlet:opencensus-contrib-http-servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http_servlet:opencensus_contrib_http_servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http:opencensus-contrib-http-servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http:opencensus_contrib_http_servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http:opencensus-contrib-http-servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http:opencensus_contrib_http_servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus-contrib-http-servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus_contrib_http_servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus-contrib-http-servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus_contrib_http_servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-contrib-http-servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_contrib_http_servlet:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-contrib-http-servlet@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-contrib-http-servlet",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-contrib-http-util-e813a184-e208-4438-8d2b-f1fab4525929",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http-util:opencensus-contrib-http-util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http-util:opencensus_contrib_http_util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http_util:opencensus-contrib-http-util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http_util:opencensus_contrib_http_util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http:opencensus-contrib-http-util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-http:opencensus_contrib_http_util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http:opencensus-contrib-http-util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_http:opencensus_contrib_http_util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus-contrib-http-util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus_contrib_http_util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus-contrib-http-util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus_contrib_http_util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-contrib-http-util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_contrib_http_util:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-contrib-http-util@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-contrib-http-util",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-contrib-spring-starter-c28c7146-974f-487c-ab05-4f4eadd895d0",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-spring-starter:opencensus-contrib-spring-starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-spring-starter:opencensus_contrib_spring_starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_spring_starter:opencensus-contrib-spring-starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_spring_starter:opencensus_contrib_spring_starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-spring:opencensus-contrib-spring-starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-spring:opencensus_contrib_spring_starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_spring:opencensus-contrib-spring-starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_spring:opencensus_contrib_spring_starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus-contrib-spring-starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus_contrib_spring_starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus-contrib-spring-starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus_contrib_spring_starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-contrib-spring-starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_contrib_spring_starter:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-contrib-spring-starter@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-contrib-spring-starter",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-contrib-zpages-edecc8ae-3804-4a03-8526-d80f5839a8a0",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-zpages:opencensus-contrib-zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib-zpages:opencensus_contrib_zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_zpages:opencensus-contrib-zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib_zpages:opencensus_contrib_zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus-contrib-zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-contrib:opencensus_contrib_zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus-contrib-zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_contrib:opencensus_contrib_zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-contrib-zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_contrib_zpages:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-contrib-zpages@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-contrib-zpages",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-exporter-metrics-ocagent-35d12092-dceb-4d30-b244-4884d2827a70",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-metrics-ocagent:opencensus-exporter-metrics-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-metrics-ocagent:opencensus_exporter_metrics_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_metrics_ocagent:opencensus-exporter-metrics-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_metrics_ocagent:opencensus_exporter_metrics_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-metrics:opencensus-exporter-metrics-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-metrics:opencensus_exporter_metrics_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_metrics:opencensus-exporter-metrics-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_metrics:opencensus_exporter_metrics_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus-exporter-metrics-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus_exporter_metrics_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus-exporter-metrics-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus_exporter_metrics_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-exporter-metrics-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_exporter_metrics_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-exporter-metrics-ocagent@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-exporter-metrics-ocagent",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-exporter-stats-prometheus-944b0419-64ab-4fdd-91c9-28f5e8b105aa",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats-prometheus:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats-prometheus:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats_prometheus:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats_prometheus:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-exporter-stats-prometheus@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-exporter-stats-prometheus",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-exporter-stats-prometheus-912df698-d3b9-4437-a823-97fe1848cebf",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats-prometheus:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats-prometheus:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats_prometheus:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats_prometheus:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-exporter-stats-prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_exporter_stats_prometheus:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-exporter-stats-prometheus@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-exporter-stats-prometheus",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-exporter-stats-stackdriver-885ae399-907a-4c90-a0e7-4b8519429bc5",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats-stackdriver:opencensus-exporter-stats-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats-stackdriver:opencensus_exporter_stats_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats_stackdriver:opencensus-exporter-stats-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats_stackdriver:opencensus_exporter_stats_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats:opencensus-exporter-stats-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-stats:opencensus_exporter_stats_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats:opencensus-exporter-stats-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_stats:opencensus_exporter_stats_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus-exporter-stats-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus_exporter_stats_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus-exporter-stats-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus_exporter_stats_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-exporter-stats-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_exporter_stats_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-exporter-stats-stackdriver@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-exporter-stats-stackdriver",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-exporter-trace-jaeger-34add621-b843-44fd-bbc1-fbbabc7ae7fd",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-jaeger:opencensus-exporter-trace-jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-jaeger:opencensus_exporter_trace_jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_jaeger:opencensus-exporter-trace-jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_jaeger:opencensus_exporter_trace_jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus-exporter-trace-jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus_exporter_trace_jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus-exporter-trace-jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus_exporter_trace_jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus-exporter-trace-jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus_exporter_trace_jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus-exporter-trace-jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus_exporter_trace_jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-exporter-trace-jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_exporter_trace_jaeger:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-exporter-trace-jaeger@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-exporter-trace-jaeger",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-exporter-trace-logging-d0827b15-d0f0-44b4-88fb-0c7e7b102f8f",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-logging:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-logging:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_logging:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_logging:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-exporter-trace-logging@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-exporter-trace-logging",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-exporter-trace-logging-aad881a3-a3af-4b7d-b760-ef49957bf0b9",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-logging:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-logging:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_logging:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_logging:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-exporter-trace-logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_exporter_trace_logging:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-exporter-trace-logging@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-exporter-trace-logging",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-exporter-trace-ocagent-499f165f-4a53-46e3-aa54-5505fd92c8e7",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-ocagent:opencensus-exporter-trace-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-ocagent:opencensus_exporter_trace_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_ocagent:opencensus-exporter-trace-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_ocagent:opencensus_exporter_trace_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus-exporter-trace-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus_exporter_trace_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus-exporter-trace-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus_exporter_trace_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus-exporter-trace-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus_exporter_trace_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus-exporter-trace-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus_exporter_trace_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-exporter-trace-ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_exporter_trace_ocagent:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-exporter-trace-ocagent@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-exporter-trace-ocagent",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-exporter-trace-stackdriver-d25f7fcd-bf5b-4ece-9804-668e3c74d7de",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-stackdriver:opencensus-exporter-trace-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace-stackdriver:opencensus_exporter_trace_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_stackdriver:opencensus-exporter-trace-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace_stackdriver:opencensus_exporter_trace_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus-exporter-trace-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter-trace:opencensus_exporter_trace_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus-exporter-trace-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter_trace:opencensus_exporter_trace_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus-exporter-trace-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-exporter:opencensus_exporter_trace_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus-exporter-trace-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_exporter:opencensus_exporter_trace_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-exporter-trace-stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_exporter_trace_stackdriver:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-exporter-trace-stackdriver@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-exporter-trace-stackdriver",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---opencensus-impl-0b10348d-dd3f-4616-9af3-b6b1a08291a0",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-impl:opencensus-impl:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus-impl:opencensus_impl:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_impl:opencensus-impl:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus_impl:opencensus_impl:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus-impl:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:opencensus:opencensus_impl:0.25.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.opencensus/opencensus-impl@0.25.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "opencensus-impl",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.25.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---simpleclient-httpserver-d6d41048-eed4-4a92-a624-c5a9a3ef271a",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient-httpserver:simpleclient-httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient-httpserver:simpleclient_httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient_httpserver:simpleclient-httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient_httpserver:simpleclient_httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient:simpleclient-httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient:simpleclient_httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:prometheus:simpleclient-httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:prometheus:simpleclient_httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.prometheus/simpleclient_httpserver@0.6.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "simpleclient_httpserver",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.6.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---simpleclient-httpserver-d0dff60e-9221-4f8c-9c18-0be19997da3a",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient-httpserver:simpleclient-httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient-httpserver:simpleclient_httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient_httpserver:simpleclient-httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient_httpserver:simpleclient_httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient:simpleclient-httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:simpleclient:simpleclient_httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:prometheus:simpleclient-httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:prometheus:simpleclient_httpserver:0.6.0:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/io.prometheus/simpleclient_httpserver@0.6.0",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "simpleclient_httpserver",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "0.6.0"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---slf4j-log4j12-182af3fa-b6eb-4008-b109-ef0e196567ad",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:slf4j-log4j12:slf4j-log4j12:1.7.25:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:slf4j-log4j12:slf4j_log4j12:1.7.25:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:slf4j_log4j12:slf4j-log4j12:1.7.25:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:slf4j_log4j12:slf4j_log4j12:1.7.25:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:slf4j:slf4j-log4j12:1.7.25:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:slf4j:slf4j_log4j12:1.7.25:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/org.slf4j/slf4j-log4j12@1.7.25",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "slf4j-log4j12",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "1.7.25"
-        },
-        {
-            "SPDXID": "SPDXRef-Package-java-archive---spring-boot-starter-web-d2e5e6b0-fa18-43de-8e30-694ad46a35b5",
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "description": "java-archive",
-            "downloadLocation": "https://download.com",
-            "externalRefs": [
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring-boot-starter-web:spring-boot-starter-web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring-boot-starter-web:spring_boot_starter_web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring_boot_starter_web:spring-boot-starter-web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring_boot_starter_web:spring_boot_starter_web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring-boot-starter:spring-boot-starter-web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring-boot-starter:spring_boot_starter_web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring_boot_starter:spring-boot-starter-web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring_boot_starter:spring_boot_starter_web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:springframework:spring-boot-starter-web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:springframework:spring_boot_starter_web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring-boot:spring-boot-starter-web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring-boot:spring_boot_starter_web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring_boot:spring-boot-starter-web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring_boot:spring_boot_starter_web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring:spring-boot-starter-web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:spring:spring_boot_starter_web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:boot:spring-boot-starter-web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "SECURITY",
-                    "referenceLocator": "cpe:2.3:a:boot:spring_boot_starter_web:2.0.5.RELEASE:*:*:*:*:*:*:*",
-                    "referenceType": "cpe23Type"
-                },
-                {
-                    "referenceCategory": "PACKAGE_MANAGER",
-                    "referenceLocator": "pkg:maven/org.springframework.boot/spring-boot-starter-web@2.0.5.RELEASE",
-                    "referenceType": "purl"
-                }
-            ],
-            "filesAnalyzed": true,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "name": "spring-boot-starter-web",
-            "sourceInfo": "Inner Dependency",
-            "versionInfo": "2.0.5.RELEASE"
-        }
-    ],
-    "files": [
-        {
-            "SPDXID": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "checksums": [
-                {
-                    "algorithm": "SHA1",
-                    "checksumValue": "d6a770ba38583ed4bb4525bd96e50461655d2758"
-                },
-                {
-                    "algorithm": "MD5",
-                    "checksumValue": "624c1abb3664f4b35547e7c73864ad24"
-                }
-            ],
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "fileName": "./examples/pom.xml"
-        },
-        {
-            "SPDXID": "SPDXRef-File---examples-spring-servlet-pom.xml-6fcf6ea6-91bb-4c4a-98ea-daa2e930b86e",
-            "checksums": [
-                {
-                    "algorithm": "SHA1",
-                    "checksumValue": "d6a770ba38583ed4bb4525bd96e50461655d2758"
-                },
-                {
-                    "algorithm": "MD5",
-                    "checksumValue": "624c1abb3664f4b35547e7c73864ad24"
-                }
-            ],
-            "copyrightText": "Copyright 2022 Jane Doe",
-            "fileName": "./examples/spring/servlet/pom.xml"
         }
     ],
     "relationships": [
         {
             "spdxElementId": "SPDXRef-DOCUMENT",
-            "relatedSpdxElement": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
+            "relatedSpdxElement": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
             "relationshipType": "DESCRIBES"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---debhelper-compat--059a8b69-ffad-4433-ba5b-8b4fda3c7cdb",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---libpipeline--7211ed29-d352-44d2-9b97-147363100eb9",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---default-jdk--60be6bb5-4255-4d4d-9742-e41059dd3d16",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---binfmt-support--dc402f92-4951-4d5d-a855-548914122016",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---gradle-apt-plugin--ff2db865-792c-4be2-a88d-c5d85a8ccc34",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---icu--3636bfcd-fef7-4515-b03d-dcf1695d816c",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---gradle-debian-helper--f77ba03f-bf49-47b9-be08-954ab1d4e3f8",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---libxml2--0cf501c0-be8d-41de-bc94-073a91c1faf1",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---javahelper--dbe1307a-f8f1-4a4a-a26d-d0e79d56bdfe",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---pygments--851d9a97-0fb2-4436-a527-8228643edbc9",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libaopalliance-java--cc163a82-ee60-47f9-a817-2a342189cd0e",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---libedit--3396f055-2a4e-451e-aeb3-dcefefee8709",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libcommons-compress-java--27623f87-a1df-494e-9d3d-fd0783e035ef",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---ncurses--ca2d0aff-2105-4e0a-a4e4-cda2b5ef5942",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libcommons-io-java--fe5507c4-1cae-4cc7-b896-d99f80a81aa9",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---llvm-toolchain-18--188b8885-8a71-408e-8983-c1f8886ff264",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libcommons-lang-java--dae8113d-439e-4383-902e-c2f5ef65051b",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---curl--3ddd72ed-ef3c-407c-bb58-ffe7b25aa80b",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libcommons-math3-java--a950d8f1-19ec-4258-96bc-8f4bdd78a874",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---llvm-defaults--feff0cc1-76d1-4be3-a3ce-f81b36deeca3",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libcommons-parent-java--426c0441-7ac8-4f76-b7ca-f1fcc3d2ffac",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---libpfm4--c523089a-cc36-4525-8ca7-652d3b54b415",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---liberror-prone-java--b10b33ea-ff97-449d-80ea-88eac5d5c7a5",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---libffi--036aa1f1-a714-4c78-b763-78ff6917e043",
             "relationshipType": "BUILD_DEPENDENCY_OF"
         },
         {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libgoogle-auto-value-java--032a302a-b93a-4e9e-a9d2-bafe821b558c",
+            "spdxElementId": "SPDXRef-DocumentRoot-Directory--tmp-aptC-packages-llvm-underline-18.0-59-tilde-exp2-underline-amd64",
+            "relatedSpdxElement": "SPDXRef-Package-Deb---z3--d1dd60a1-ebe1-4cc5-9380-7ca564d57317",
             "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libgpars-groovy-java--f9799bb3-5ef8-4fd3-8f8f-5417b5e3beae",
-            "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libgradle-plugins-java--7ae30271-e387-4938-bab9-4a28276e6773",
-            "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libgrpc-java--0d4a15fe-d34a-4ecd-bd2f-043383f9d4e4",
-            "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libjackson2-jaxrs-providers-java--fdbec735-c989-4e2b-bd48-6bb6c9e50813",
-            "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libjengelman-shadow-java--a951d3e8-f3f4-4573-9b16-ff5aa4b43b48",
-            "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---liblog4j2-java--7b784dcb-d6d3-4f8e-875d-88010241cbb7",
-            "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libprotobuf-java--07a0f146-7ade-4147-a286-5ff18db5213c",
-            "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---libspring-core-java--3586ab64-56e0-4342-9861-5aacd71c9be3",
-            "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-Deb---maven-repo-helpe--eed7ba2b-05fc-4d3d-a6f5-512e555298cf",
-            "relationshipType": "BUILD_DEPENDENCY_OF"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-contrib-zpages-edecc8ae-3804-4a03-8526-d80f5839a8a0",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-contrib-spring-starter-c28c7146-974f-487c-ab05-4f4eadd895d0",
-            "relatedSpdxElement": "SPDXRef-File---examples-spring-servlet-pom.xml-6fcf6ea6-91bb-4c4a-98ea-daa2e930b86e",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-contrib-http-jetty-client-218afe22-686b-406a-aa97-4fefa0aa202c",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---jetty-server-ec40b213-7ba4-4d11-acbf-58aedad4ca4a",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-exporter-trace-logging-aad881a3-a3af-4b7d-b760-ef49957bf0b9",
-            "relatedSpdxElement": "SPDXRef-File---examples-spring-servlet-pom.xml-6fcf6ea6-91bb-4c4a-98ea-daa2e930b86e",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---jetty-servlet-080d754c-0a92-489f-9ff9-3a75a00c53bb",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---netty-tcnative-boringssl-static-870bdc94-120b-486a-bda5-5cd65a33177d",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-exporter-stats-prometheus-912df698-d3b9-4437-a823-97fe1848cebf",
-            "relatedSpdxElement": "SPDXRef-File---examples-spring-servlet-pom.xml-6fcf6ea6-91bb-4c4a-98ea-daa2e930b86e",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---grpc-netty-876b8274-2df2-46ab-aa67-0a4acccd8a61",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-exporter-trace-ocagent-499f165f-4a53-46e3-aa54-5505fd92c8e7",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---slf4j-log4j12-182af3fa-b6eb-4008-b109-ef0e196567ad",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---jetty-client-2706ac66-0306-4aa9-8902-17fe81e6989f",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-exporter-stats-prometheus-944b0419-64ab-4fdd-91c9-28f5e8b105aa",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---javax.servlet-api-8a4de2f8-7a19-414e-b861-d382594077f8",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-exporter-metrics-ocagent-35d12092-dceb-4d30-b244-4884d2827a70",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---grpc-stub-455bd9db-b261-4af1-af3e-0834f5025f89",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-api-88dc5534-3de7-4f8a-8139-77273eaf2035",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-impl-0b10348d-dd3f-4616-9af3-b6b1a08291a0",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---grpc-netty-shaded-938bc350-df51-4518-8855-fed2d8cd2237",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---spring-boot-starter-web-d2e5e6b0-fa18-43de-8e30-694ad46a35b5",
-            "relatedSpdxElement": "SPDXRef-File---examples-spring-servlet-pom.xml-6fcf6ea6-91bb-4c4a-98ea-daa2e930b86e",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-exporter-trace-stackdriver-d25f7fcd-bf5b-4ece-9804-668e3c74d7de",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-exporter-trace-jaeger-34add621-b843-44fd-bbc1-fbbabc7ae7fd",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-contrib-http-servlet-36ff167c-c312-4749-8fdd-2de64c0686dd",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-exporter-trace-logging-d0827b15-d0f0-44b4-88fb-0c7e7b102f8f",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---grpc-protobuf-d6e5b914-6a9f-4287-b8f8-dbe3ec998c48",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-contrib-http-util-e813a184-e208-4438-8d2b-f1fab4525929",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---simpleclient-httpserver-d0dff60e-9221-4f8c-9c18-0be19997da3a",
-            "relatedSpdxElement": "SPDXRef-File---examples-spring-servlet-pom.xml-6fcf6ea6-91bb-4c4a-98ea-daa2e930b86e",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-exporter-stats-stackdriver-885ae399-907a-4c90-a0e7-4b8519429bc5",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---grpc-core-642ae652-ffd0-4d57-96d0-7220151adeae",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---httpasyncclient-6c4c047f-d582-4b17-8081-147bb24b842a",
-            "relatedSpdxElement": "SPDXRef-File---examples-spring-servlet-pom.xml-6fcf6ea6-91bb-4c4a-98ea-daa2e930b86e",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---simpleclient-httpserver-d6d41048-eed4-4a92-a624-c5a9a3ef271a",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-contrib-zpages-edecc8ae-3804-4a03-8526-d80f5839a8a0",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-contrib-spring-starter-c28c7146-974f-487c-ab05-4f4eadd895d0",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-contrib-http-jetty-client-218afe22-686b-406a-aa97-4fefa0aa202c",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---jetty-server-ec40b213-7ba4-4d11-acbf-58aedad4ca4a",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-exporter-trace-logging-aad881a3-a3af-4b7d-b760-ef49957bf0b9",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---jetty-servlet-080d754c-0a92-489f-9ff9-3a75a00c53bb",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---netty-tcnative-boringssl-static-870bdc94-120b-486a-bda5-5cd65a33177d",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-exporter-stats-prometheus-912df698-d3b9-4437-a823-97fe1848cebf",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---grpc-netty-876b8274-2df2-46ab-aa67-0a4acccd8a61",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-exporter-trace-ocagent-499f165f-4a53-46e3-aa54-5505fd92c8e7",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---slf4j-log4j12-182af3fa-b6eb-4008-b109-ef0e196567ad",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---jetty-client-2706ac66-0306-4aa9-8902-17fe81e6989f",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-exporter-stats-prometheus-944b0419-64ab-4fdd-91c9-28f5e8b105aa",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---javax.servlet-api-8a4de2f8-7a19-414e-b861-d382594077f8",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-exporter-metrics-ocagent-35d12092-dceb-4d30-b244-4884d2827a70",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---grpc-stub-455bd9db-b261-4af1-af3e-0834f5025f89",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-api-88dc5534-3de7-4f8a-8139-77273eaf2035",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-impl-0b10348d-dd3f-4616-9af3-b6b1a08291a0",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---grpc-netty-shaded-938bc350-df51-4518-8855-fed2d8cd2237",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---spring-boot-starter-web-d2e5e6b0-fa18-43de-8e30-694ad46a35b5",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-exporter-trace-stackdriver-d25f7fcd-bf5b-4ece-9804-668e3c74d7de",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-exporter-trace-jaeger-34add621-b843-44fd-bbc1-fbbabc7ae7fd",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-contrib-http-servlet-36ff167c-c312-4749-8fdd-2de64c0686dd",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-exporter-trace-logging-d0827b15-d0f0-44b4-88fb-0c7e7b102f8f",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---grpc-protobuf-d6e5b914-6a9f-4287-b8f8-dbe3ec998c48",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-contrib-http-util-e813a184-e208-4438-8d2b-f1fab4525929",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---simpleclient-httpserver-d0dff60e-9221-4f8c-9c18-0be19997da3a",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-exporter-stats-stackdriver-885ae399-907a-4c90-a0e7-4b8519429bc5",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---grpc-core-642ae652-ffd0-4d57-96d0-7220151adeae",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---httpasyncclient-6c4c047f-d582-4b17-8081-147bb24b842a",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---simpleclient-httpserver-d6d41048-eed4-4a92-a624-c5a9a3ef271a",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-DocumentRoot-Directory--home-jiliqiang-Deb-src-opencensus-java",
-            "relatedSpdxElement": "SPDXRef-Package-java-archive---opencensus-contrib-grpc-metrics-f9fb8ddf-8fc9-4bc5-b8c4-03cd573962a2",
-            "relationshipType": "CONTAINS"
-        },
-        {
-            "spdxElementId": "SPDXRef-Package-java-archive---opencensus-contrib-grpc-metrics-f9fb8ddf-8fc9-4bc5-b8c4-03cd573962a2",
-            "relatedSpdxElement": "SPDXRef-File---examples-pom.xml-977fe26d-135e-4e57-b14f-c30cb5974fa6",
-            "relationshipType": "OTHER"
         }
     ]
 }
