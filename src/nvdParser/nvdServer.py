@@ -11,3 +11,5 @@ def updateLoop():
 def nvdServer():
 	t=threading.Thread(target=updateLoop,daemon=True)
 	t.start()
+
+updateLoop()

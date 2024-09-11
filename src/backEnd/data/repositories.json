@@ -44,7 +44,7 @@
 			"https://mirrors.aliyun.com/fedora/releases/39/Everything/source/tree/Packages/{%name_first_alpha}/"
 		]
 	},
-	"Ubuntu":{
+	"ubuntu":{
 		"type":"deb"
 	},
 	"debian":{

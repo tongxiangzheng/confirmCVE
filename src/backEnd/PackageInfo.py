@@ -1,6 +1,7 @@
 import json
 class PackageInfo:
-	def __init__(self,osType:str,dist:str,name:str,version:str,release:str,gitLink=None):
+	def __init__(self,osKind:str,osType:str,dist:str,name:str,version:str,release:str,gitLink=None):
+		self.osKind=osKind.lower()
 		self.osType=osType
 		self.dist=dist
 		self.name=name
@@ -22,20 +23,16 @@ class PackageInfo:
 			info['gitLink']=self.gitLink
 		return json.dumps(info)
 	def dumpAsPurl(self):
-		osKind=""
-		if self.osType=='Debian' or self.osType=='Ubuntu':
-			osKind="deb"
-		else:
-			osKind="rpm"
 		release=self.release
 		if self.update is not None:
 			release+='p'+self.update
 		if self.gitLink is not None:
-			return 'pkg:'+osKind+'/'+self.osType+'/'+self.name+'@'+self.version+'-'+release+'.'+self.dist
+			return 'pkg:'+self.osKind+'/'+self.osType+'/'+self.name+'@'+self.version+'-'+release+'.'+self.dist
 		else:
-			return 'pkg:'+osKind+'/'+self.osType+'/'+self.name+'@'+self.version+'-'+release+'.'+self.dist+"&"+"gitLink="+self.gitLink
+			return 'pkg:'+self.osKind+'/'+self.osType+'/'+self.name+'@'+self.version+'-'+release+'.'+self.dist+"&"+"gitLink="+self.gitLink
 
 def loadPackageInfo(jsonInfo):
+	#abandon
 	osType=jsonInfo['osType']
 	if osType=='deb':
 		gitLink=jsonInfo['gitLink']
@@ -47,12 +44,13 @@ def loadPackageInfo(jsonInfo):
 	if 'update' in jsonInfo:
 		version=version+'p'+jsonInfo['update']
 	release=jsonInfo['release']
-	return PackageInfo(osType,dist,name,version,release,gitLink)
+	return PackageInfo("",osType,dist,name,version,release,gitLink)
 
 def loadPurl(purlStr):
-	info=purlStr.split(':')[1]
+	info=purlStr.split(':',1)[1]
 	info_extra=info.split('?')
 	info=info_extra[0].split('/')
+	osKind=info[0]
 	osType=info[1]
 	name=info[2].split('@')[0]
 	version_dist=info[2].split('@')[1]
@@ -71,4 +69,4 @@ def loadPurl(purlStr):
 			ei=extra.split('=')
 			if ei[0]=='gitLink':
 				gitLink=ei[1]
-	return PackageInfo(osType,dist,name,version,release,gitLink)
+	return PackageInfo(osKind,osType,dist,name,version,release,gitLink)
