@@ -1,0 +1,19 @@
+ARG SYSTEM_NAME='ubuntu'
+ARG VERSION="22.04"
+ARG ORIGNAME=""
+ARG PROJECTNAME=""
+FROM ${SYSTEM_NAME}:${VERSION} as builder
+RUN apt update
+RUN apt install -y pbuilder debootstrap devscripts
+RUN pbuilder create --distribution jammy
+ARG PROJECTNAME
+ARG ORIGNAME
+COPY files/${ORIGNAME} /code/
+COPY files/${PROJECTNAME} /code/${PROJECTNAME}/
+WORKDIR /code/${PROJECTNAME}
+RUN dpkg-source -b .
+RUN pbuilder build /code/*.dsc
+
+
+#FROM scratch as buildinfo
+#COPY --from=builder /code/*.buildinfo /RPMS
