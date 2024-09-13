@@ -1,0 +1,12 @@
+ARG SYSTEM_NAME='ubuntu'
+ARG VERSION="22.04"
+FROM ${SYSTEM_NAME}:${VERSION} as builder
+WORKDIR /code
+RUN apt update
+RUN apt install -y build-essential devscripts equivs
+COPY . /code
+RUN mk-build-deps -ir -y
+RUN dpkg-buildpackage -us -uc
+
+#FROM scratch as buildinfo
+#COPY --from=packager /*.buildinfo /RPMS
