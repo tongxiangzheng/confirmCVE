@@ -1,8 +1,9 @@
 ARG SYSTEM_NAME='ubuntu'
-ARG VERSION="22.04"
+ARG SYSTEM_VERSION="22.04"
 ARG ORIGNAME=""
 ARG PROJECTNAME=""
-FROM ${SYSTEM_NAME}:${VERSION} as builder
+ARG BUILD_ARCH=""
+FROM ${SYSTEM_NAME}:${SYSTEM_VERSION} as builder
 RUN apt update
 RUN apt install -y build-essential devscripts equivs
 ARG PROJECTNAME
@@ -12,7 +13,9 @@ COPY files/${PROJECTNAME} /code/${PROJECTNAME}/
 WORKDIR /code/${PROJECTNAME}
 RUN echo "y" | mk-build-deps -i
 RUN rm *-build-deps*
-RUN dpkg-buildpackage -us -uc
+ENV DEB_BUILD_OPTIONS nocheck
+ARG BUILD_ARCH
+RUN  dpkg-buildpackage -us -uc --target-arch ${BUILD_ARCH}
 
-#FROM scratch as buildinfo
-#COPY --from=builder /code/*.buildinfo /RPMS
+FROM scratch as buildinfo
+COPY --from=builder /code/*.buildinfo /
