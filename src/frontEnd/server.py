@@ -9,16 +9,18 @@ from werkzeug.utils import secure_filename
 DIR=os.path.split(os.path.abspath(__file__))[0]
 sys.path.insert(0,os.path.join(DIR,'..','backEnd'))
 sys.path.insert(0,os.path.join(DIR,'..','nvdParser'))
+sys.path.insert(0,os.path.join(DIR,'..','debpackager'))
 import PackageInfo
 import nwkTools
 import debpackager
 import spdxReader
 import json
- 
+import uuid
+import traceback
  
 app = Flask(__name__)
 
-DEBPACKAGER_UPLOAD_FOLDER=os.path.join(DIR,"..","debpackager","files")
+DEBPACKAGER_UPLOAD_FOLDER=os.path.join(DIR,"..","debpackager","uploadfiles")
  
 @app.route('/querycve/', methods=["POST"])
 def queryCVE():
@@ -27,23 +29,48 @@ def queryCVE():
 	res=cveSolver.solve(packageList)
 	return res
 
-@app.route('/deb/getbuildinfo', methods=["POST"])
-def getbuildinfo():
+fileMap=dict()
+@app.route('/deb/postfile/', methods=["POST"])
+def postfile():
 	# check if the post request has the file part
 	if 'file' not in request.files:
 		print('No file part')
-		return {"error":1}
+		return {"error":1,"errorMessage":"No file part"}
 	file = request.files['file']
 	# If the user does not select a file, the browser submits an
 	# empty file without a filename.
 	if file.filename == '':
 		print('No selected file')
-		return {"error":2}
+		return {"error":2,"errorMessage":"No selected file"}
 	filename = secure_filename(file.filename)
 	filePath=os.path.join(DEBPACKAGER_UPLOAD_FOLDER, filename)
+	if not os.path.isdir(DEBPACKAGER_UPLOAD_FOLDER):
+		os.makedirs(DEBPACKAGER_UPLOAD_FOLDER)
 	file.save(filePath)
-	res=debpackager.getBuildInfo(filePath)
-	return {}
+	random_id = uuid.uuid4()
+	fileMap[random_id.hex]=filePath
+	return {"error":0,"token":random_id.hex}
+
+@app.route('/deb/querybuildinfo/', methods=["POST"])
+def querybuildinfo():
+	data = json.loads(request.get_data(as_text=True))
+	if data['srcFile'] not in fileMap:
+		return {"error":1,"errorMessage":"invalid file token"}
+	srcfile=fileMap[data['srcFile']]
+	srcFile2=None
+	if 'srcFile2' in data:
+		if data['srcFile2'] not in fileMap:
+			return {"error":1,"errorMessage":"invalid file token"}
+		srcFile2=fileMap[data['srcFile2']]
+	try:
+		res=debpackager.getBuildInfo(srcfile,srcFile2,data['osType'],data['osDist'],data['arch'])
+	except Exception:
+		traceback.print_exc()
+		return {"error":2}
+	if res is None:
+		return {"error":2}
+
+	return {"error":0,"buildinfo":res}
 
 log.remove(handler_id=None)
 logFile="log.log"
