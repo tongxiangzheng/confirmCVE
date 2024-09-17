@@ -25,7 +25,7 @@ def remove_folder(path):
                 remove_folder(os.path.join(path, filename))
             os.rmdir(path)
 
-def getBuildInfo(srcFile,srcFile2,osType,osDist,arch):
+def getBuildInfo(srcFile,srcFile2,osType,osDist,arch)->str:
 	filesPath=os.path.join(DIR,'files')
 	remove_folder(filesPath)
 	os.makedirs(filesPath)
@@ -39,11 +39,8 @@ def getBuildInfo(srcFile,srcFile2,osType,osDist,arch):
 		unzip(srcFile2,projectPath)
 	srcFileName=os.path.basename(srcFile)
 	builddebPackage(srcFileName,projectName,osType,osDist,arch)
-	res=[]
-	for file in os.listdir(buildInfosPath):
-		if os.path.isfile(os.path.join(buildInfosPath, file)):
-			buildInfoFile=os.path.join(buildInfosPath,file)
-			res.append(loadFile(buildInfoFile))
-	return res
+
+	buildInfoFile=os.path.join(buildInfosPath,"res.info")
+	return loadFile(buildInfoFile)
 
 	

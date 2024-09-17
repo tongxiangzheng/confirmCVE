@@ -1,3 +1,3 @@
 import debpackager
-res=debpackager.getBuildInfo("sed_4.9.orig.tar.xz","sed_4.9-2build1.debian.tar.xz","ubuntu","jammy","amd64")
+res=debpackager.getBuildInfo("network-manager_1.36.6.orig.tar.xz","network-manager_1.36.6-0ubuntu2.debian.tar.xz","ubuntu","jammy","amd64")
 print(res)
