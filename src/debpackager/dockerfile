@@ -4,14 +4,13 @@ ARG ORIGNAME=""
 ARG PROJECTNAME=""
 ARG BUILD_ARCH=""
 FROM ${SYSTEM_NAME}:${SYSTEM_VERSION} as builder
-RUN apt update
-RUN apt install -y build-essential devscripts equivs
+RUN apt-get update && apt-get install -y build-essential devscripts equivs
 ARG PROJECTNAME
 ARG ORIGNAME
 COPY files/${ORIGNAME} /code/
 COPY files/${PROJECTNAME} /code/${PROJECTNAME}/
 WORKDIR /code/${PROJECTNAME}
-RUN echo "y" | mk-build-deps -i
+RUN apt-get update && echo "y" | mk-build-deps -i
 RUN rm *-build-deps*
 ENV DEB_BUILD_OPTIONS nocheck
 ARG BUILD_ARCH
@@ -19,4 +18,7 @@ RUN  dpkg-buildpackage -us -uc --target-arch ${BUILD_ARCH}
 RUN for file in ../*.deb ; do dpkg -I $file >> /code/res.info; echo "" >> /code/res.info ;done
 
 FROM scratch as buildinfo
+COPY --from=builder /code/*.deb /
+COPY --from=builder /code/*.ddeb /
+COPY --from=builder /code/*.dsc /
 COPY --from=builder /code/res.info /
