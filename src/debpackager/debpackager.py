@@ -7,10 +7,11 @@ def unzip(zipfile,toPath):
 		f.extractall(toPath)
 		return f.getmembers()[0].name
 def loadFile(filePath):
-	with open(filePath,"r") as f:
-		data=f.read()
-		return data
-	
+	if os.path.isfile(filePath):
+		with open(filePath,"r") as f:
+			data=f.read()
+			return data
+	return None
 def builddebPackage(origName,projectName,osType,osDist,arch):
 	cmd='docker build --output={}/buildinfos --target=buildinfo --build-arg ORIGNAME="{}" --build-arg PROJECTNAME="{}" --build-arg SYSTEM_NAME="{}" --build-arg SYSTEM_VERSION="{}" --build-arg BUILD_ARCH="{}" {}'.format(DIR,origName,projectName,osType,osDist,arch,DIR)
 	print(cmd)
@@ -41,6 +42,8 @@ def getBuildInfo(srcFile,srcFile2,osType,osDist,arch)->str:
 	builddebPackage(srcFileName,projectName,osType,osDist,arch)
 
 	buildInfoFile=os.path.join(buildInfosPath,"res.info")
-	return loadFile(buildInfoFile)
-
+	data=loadFile(buildInfoFile)
+	if data is None:
+		return None
+	return data
 	

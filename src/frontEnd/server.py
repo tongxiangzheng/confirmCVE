@@ -66,9 +66,9 @@ def querybuildinfo():
 		res=debpackager.getBuildInfo(srcfile,srcFile2,data['osType'],data['osDist'],data['arch'])
 	except Exception:
 		traceback.print_exc()
-		return {"error":2}
+		return {"error":2,"errorMessage":"failed to build"}
 	if res is None:
-		return {"error":2}
+		return {"error":2,"errorMessage":"failed to build"}
 
 	return {"error":0,"buildinfo":res}
 
