@@ -4,13 +4,17 @@ ARG ORIGNAME=""
 ARG PROJECTNAME=""
 ARG BUILD_ARCH=""
 FROM ${SYSTEM_NAME}:${SYSTEM_VERSION} AS builder
-RUN apt-get update && apt-get install -y build-essential devscripts equivs
+RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && apt-get install -y build-essential devscripts equivs
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && apt-get install -y tzdata python3 automake pkg-config libglib2.0-dev intltool fontconfig libdconf1
+RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && apt-get install -y libssl-dev libkrb5-dev libldap-dev libssl-dev
 ARG PROJECTNAME
 ARG ORIGNAME
 COPY files/${ORIGNAME} /code/
 COPY files/${PROJECTNAME} /code/${PROJECTNAME}/
 WORKDIR /code/${PROJECTNAME}
-RUN apt-get update && echo "y" | mk-build-deps -i
+RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && echo "y" | mk-build-deps -i
 RUN rm *-build-deps*
 ENV DEB_BUILD_OPTIONS=nocheck
 ARG BUILD_ARCH

@@ -1,11 +1,11 @@
 import os
 import tarfile
+import shutil
 DIR=os.path.split(os.path.abspath(__file__))[0]
 
 def unzip(zipfile,toPath):
 	with tarfile.open(zipfile) as f:
 		f.extractall(toPath)
-		return f.getmembers()[0].name
 def loadFile(filePath):
 	if os.path.isfile(filePath):
 		with open(filePath,"r") as f:
@@ -17,26 +17,27 @@ def builddebPackage(origName,projectName,osType,osDist,arch):
 	print(cmd)
 	os.system(cmd)
 	
-def remove_folder(path):
-    if os.path.exists(path):
-        if os.path.isfile(path) or os.path.islink(path):
-            os.remove(path)
-        else:
-            for filename in os.listdir(path):
-                remove_folder(os.path.join(path, filename))
-            os.rmdir(path)
 
 def getBuildInfo(srcFile,srcFile2,osType,osDist,arch)->str:
 	filesPath=os.path.join(DIR,'files')
-	remove_folder(filesPath)
+	shutil.rmtree(filesPath)
 	os.makedirs(filesPath)
 	buildInfosPath=os.path.join(DIR,'buildinfos')
-	remove_folder(buildInfosPath)
+	shutil.rmtree(buildInfosPath)
 	os.makedirs(buildInfosPath)
 	os.system("cp {} {}".format(srcFile,filesPath))
-	projectName=unzip(srcFile,filesPath)
-	projectPath=os.path.join(filesPath,projectName)
+	unzip(srcFile,filesPath)
+	projectPath=None
+	for item in os.listdir(filesPath):
+		if os.path.isdir(os.path.join(filesPath,item)):
+			projectPath=os.path.join(filesPath,item)
+	if projectPath is None:
+		print("error:unzip unknown error")
+		return None
+	projectName=os.path.basename(projectPath)
 	if srcFile2:
+		if os.path.isdir(os.path.join(projectPath,"debian")):
+			shutil.rmtree(os.path.join(projectPath,"debian"))
 		unzip(srcFile2,projectPath)
 	srcFileName=os.path.basename(srcFile)
 	builddebPackage(srcFileName,projectName,osType,osDist,arch)

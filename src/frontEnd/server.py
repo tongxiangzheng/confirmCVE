@@ -42,10 +42,13 @@ def postfile():
 	if file.filename == '':
 		print('No selected file')
 		return {"error":2,"errorMessage":"No selected file"}
-	filename = secure_filename(file.filename)
+	#filename = secure_filename(file.filename)
+	filename=file.filename
 	filePath=os.path.join(DEBPACKAGER_UPLOAD_FOLDER, filename)
 	if not os.path.isdir(DEBPACKAGER_UPLOAD_FOLDER):
 		os.makedirs(DEBPACKAGER_UPLOAD_FOLDER)
+	if os.path.isfile(filePath):
+		os.remove(filePath)
 	file.save(filePath)
 	random_id = uuid.uuid4()
 	fileMap[random_id.hex]=filePath
@@ -54,11 +57,12 @@ def postfile():
 @app.route('/deb/querybuildinfo/', methods=["POST"])
 def querybuildinfo():
 	data = json.loads(request.get_data(as_text=True))
-	if data['srcFile'] not in fileMap:
+	if data['srcFile'] not in fileMap or data['srcFile'] is None:
 		return {"error":1,"errorMessage":"invalid file token"}
 	srcfile=fileMap[data['srcFile']]
 	srcFile2=None
-	if 'srcFile2' in data:
+	print(data)
+	if data['srcFile2'] is not None:
 		if data['srcFile2'] not in fileMap:
 			return {"error":1,"errorMessage":"invalid file token"}
 		srcFile2=fileMap[data['srcFile2']]
