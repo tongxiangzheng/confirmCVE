@@ -61,7 +61,6 @@ def querybuildinfo():
 		return {"error":1,"errorMessage":"invalid file token"}
 	srcfile=fileMap[data['srcFile']]
 	srcFile2=None
-	print(data)
 	if data['srcFile2'] is not None:
 		if data['srcFile2'] not in fileMap:
 			return {"error":1,"errorMessage":"invalid file token"}

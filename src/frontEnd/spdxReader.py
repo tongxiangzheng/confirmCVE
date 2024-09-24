@@ -52,7 +52,7 @@ def parseSpdxObj(spdxObj,duplicate_removal=True):
 				continue
 			name=package['name']
 			version=package['versionInfo']
-			packageinfo=PackageInfo.PackageInfo("maven","",None,name,version,None)
+			packageinfo=PackageInfo.PackageInfo("maven","",name,version,None,None)
 			if duplicate_removal is True:
 				name=packageinfo.name
 				if name in known_names:

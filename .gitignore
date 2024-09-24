@@ -4,6 +4,8 @@ packages_extract/
 src/nvdParser/nvd-json-data-feeds
 src/nvdParser/package_cve
 src/nvdParser/data
+src/debpackager/files/
+src/debpackager/uploadfiles/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

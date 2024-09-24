@@ -1,0 +1,8 @@
+loguru
+GitPython
+wget
+python-libarchive
+python-rpm-spec
+pycurl
+certifi
+flask
