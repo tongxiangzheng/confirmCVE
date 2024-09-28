@@ -23,7 +23,7 @@ RUN dpkg-buildpackage -us -uc --target-arch ${BUILD_ARCH}
 RUN for file in ../*.deb ; do dpkg -I $file >> /code/res.info; echo "" >> /code/res.info ;done
 
 FROM scratch AS buildinfo
-COPY --from=builder /code/*.deb /
-COPY --from=builder /code/*.ddeb /
-COPY --from=builder /code/*.dsc /
+#COPY --from=builder /code/*.deb /
+#COPY --from=builder /code/*.ddeb /
+#COPY --from=builder /code/*.dsc /
 COPY --from=builder /code/res.info /
