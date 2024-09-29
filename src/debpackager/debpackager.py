@@ -20,10 +20,12 @@ def builddebPackage(origName,projectName,osType,osDist,arch):
 
 def getBuildInfo(srcFile,srcFile2,osType,osDist,arch)->str:
 	filesPath=os.path.join(DIR,'files')
-	shutil.rmtree(filesPath)
+	if os.isdir(filesPath):
+		shutil.rmtree(filesPath)
 	os.makedirs(filesPath)
 	buildInfosPath=os.path.join(DIR,'buildinfos')
-	shutil.rmtree(buildInfosPath)
+	if os.isdir(buildInfosPath):
+		shutil.rmtree(buildInfosPath)
 	os.makedirs(buildInfosPath)
 	os.system("cp {} {}".format(srcFile,filesPath))
 	unzip(srcFile,filesPath)

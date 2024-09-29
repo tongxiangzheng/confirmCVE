@@ -10,8 +10,7 @@ DIR=os.path.split(os.path.abspath(__file__))[0]
 sys.path.insert(0,os.path.join(DIR,'..','backEnd'))
 sys.path.insert(0,os.path.join(DIR,'..','nvdParser'))
 sys.path.insert(0,os.path.join(DIR,'..','debpackager'))
-import PackageInfo
-import nwkTools
+import hashlib
 import debpackager
 import spdxReader
 import json
@@ -43,12 +42,14 @@ def postfile():
 		print('No selected file')
 		return {"error":2,"errorMessage":"No selected file"}
 	#filename = secure_filename(file.filename)
+	img_key = hashlib.md5(file.read()).hexdigest() 
 	filename=file.filename
 	filePath=os.path.join(DEBPACKAGER_UPLOAD_FOLDER, filename)
 	if not os.path.isdir(DEBPACKAGER_UPLOAD_FOLDER):
 		os.makedirs(DEBPACKAGER_UPLOAD_FOLDER)
 	if os.path.isfile(filePath):
 		os.remove(filePath)
+	file.seek(0)
 	file.save(filePath)
 	random_id = uuid.uuid4()
 	fileMap[random_id.hex]=filePath
