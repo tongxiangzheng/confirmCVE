@@ -33,7 +33,7 @@ def update():
 	nowCommit=repo.commit(softManager.head)
 	diffTree=nowCommit.diff(headCommit)
 	for a in diffTree:
-		print(a.a_path)
+		#print(a.a_path)
 		if a.a_path.startswith('CVE-'):
 			unregisterUnsuccess=False
 			registerUnsuccess=False
@@ -42,14 +42,14 @@ def update():
 					cveInfo=SoftManager.CVEInfo(a.a_path,f)
 					softManager.unRegisterCVE(cveInfo)
 			except KeyError:
-				log.debug("cannot unregister file: "+a.a_path+" . It's OK because it may be a new file")
+				#log.debug("cannot unregister file: "+a.a_path+" . It's OK because it may be a new file")
 				unregisterUnsuccess=True
 			try:
 				with io.BytesIO(headCommit.tree[a.a_path].data_stream.read()) as f:
 					cveInfo=SoftManager.CVEInfo(a.a_path,f)
 					softManager.registerCVE(cveInfo)
 			except KeyError:
-				log.debug("cannot register file: "+a.a_path+" , the file may deleted")
+				#log.debug("cannot register file: "+a.a_path+" , the file may deleted")
 				registerUnsuccess=True
 			if unregisterUnsuccess is True and registerUnsuccess is True:
 				log.warning(a.a_path+" : have unknown error")

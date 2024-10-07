@@ -19,7 +19,7 @@ import traceback
  
 app = Flask(__name__)
 
-DEBPACKAGER_UPLOAD_FOLDER=os.path.join(DIR,"..","debpackager","uploadfiles")
+DEBPACKAGER_UPLOAD_FOLDER=os.path.join(DIR,"..","..","data","uploadfiles")
  
 @app.route('/querycve/', methods=["POST"])
 def queryCVE():
@@ -29,7 +29,7 @@ def queryCVE():
 	return res
 
 fileMap=dict()
-@app.route('/deb/postfile/', methods=["POST"])
+@app.route('/postfile/', methods=["POST"])
 def postfile():
 	# check if the post request has the file part
 	if 'file' not in request.files:
@@ -43,7 +43,7 @@ def postfile():
 		return {"error":2,"errorMessage":"No selected file"}
 	#filename = secure_filename(file.filename)
 	img_key = hashlib.md5(file.read()).hexdigest() 
-	filename=file.filename
+	filename=img_key
 	filePath=os.path.join(DEBPACKAGER_UPLOAD_FOLDER, filename)
 	if not os.path.isdir(DEBPACKAGER_UPLOAD_FOLDER):
 		os.makedirs(DEBPACKAGER_UPLOAD_FOLDER)
@@ -56,7 +56,27 @@ def postfile():
 	return {"error":0,"token":random_id.hex}
 
 @app.route('/deb/querybuildinfo/', methods=["POST"])
-def querybuildinfo():
+def debQuerybuildinfo():
+	data = json.loads(request.get_data(as_text=True))
+	if data['srcFile'] not in fileMap or data['srcFile'] is None:
+		return {"error":1,"errorMessage":"invalid file token"}
+	srcfile=fileMap[data['srcFile']]
+	srcFile2=None
+	if data['srcFile2'] is not None:
+		if data['srcFile2'] not in fileMap:
+			return {"error":1,"errorMessage":"invalid file token"}
+		srcFile2=fileMap[data['srcFile2']]
+	try:
+		res=debpackager.getBuildInfo(srcfile,srcFile2,data['osType'],data['osDist'],data['arch'])
+	except Exception:
+		traceback.print_exc()
+		return {"error":2,"errorMessage":"failed to build"}
+	if res is None:
+		return {"error":2,"errorMessage":"failed to build"}
+
+	return {"error":0,"buildinfo":res}
+@app.route('/rpm/querybuildinfo/', methods=["POST"])
+def rpmQuerybuildinfo():
 	data = json.loads(request.get_data(as_text=True))
 	if data['srcFile'] not in fileMap or data['srcFile'] is None:
 		return {"error":1,"errorMessage":"invalid file token"}
@@ -77,11 +97,11 @@ def querybuildinfo():
 	return {"error":0,"buildinfo":res}
 
 log.remove(handler_id=None)
-logFile="log.log"
-if os.path.exists(logFile):
-	os.remove(logFile)
+#logFile="log.log"
+#if os.path.exists(logFile):
+#	os.remove(logFile)
 #log.add(sink=logFile,level='INFO')
-log.add(sink=logFile,level='DEBUG')
+#log.add(sink=logFile,level='DEBUG')
 
 port = 8342
 app.run(host="0.0.0.0",port=port)
