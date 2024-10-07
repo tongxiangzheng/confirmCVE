@@ -12,13 +12,13 @@ def loadFile(filePath):
 			data=f.read()
 			return data
 	return None
-def builddebPackage(origName,projectName,osType,osDist,arch):
-	cmd=f'docker build --output={DIR}/buildinfos --target=buildinfo --build-arg ORIGNAME="{origName}" --build-arg PROJECTNAME="{projectName}" --build-arg SYSTEM_NAME="{osType}" --build-arg SYSTEM_VERSION="{osDist}" --build-arg BUILD_ARCH="{arch}" {DIR}'
+def builddebPackage(srcFileName,osType,osDist,arch):
+	cmd=f'docker build --output={DIR}/buildinfos --target=buildinfo --build-arg ORIGNAME="{srcFileName}" --build-arg SYSTEM_NAME="{osType}" --build-arg SYSTEM_VERSION="{osDist}" --build-arg BUILD_ARCH="{arch}" {DIR}'
 	print(cmd)
-	os.system(cmd)
+	#os.system(cmd)
 	
 
-def getBuildInfo(srcFile,srcFile2,osType,osDist,arch)->str:
+def getBuildInfo(srcFile,osType,osDist,arch)->str:
 	filesPath=os.path.join(DIR,'files')
 	if os.path.isdir(filesPath):
 		shutil.rmtree(filesPath)
@@ -27,22 +27,9 @@ def getBuildInfo(srcFile,srcFile2,osType,osDist,arch)->str:
 	if os.path.isdir(buildInfosPath):
 		shutil.rmtree(buildInfosPath)
 	os.makedirs(buildInfosPath)
-	os.system("cp {} {}".format(srcFile,filesPath))
-	unzip(srcFile,filesPath)
-	projectPath=None
-	for item in os.listdir(filesPath):
-		if os.path.isdir(os.path.join(filesPath,item)):
-			projectPath=os.path.join(filesPath,item)
-	if projectPath is None:
-		print("error:unzip unknown error")
-		return None
-	projectName=os.path.basename(projectPath)
-	if srcFile2:
-		if os.path.isdir(os.path.join(projectPath,"debian")):
-			shutil.rmtree(os.path.join(projectPath,"debian"))
-		unzip(srcFile2,projectPath)
 	srcFileName=os.path.basename(srcFile)
-	builddebPackage(srcFileName,projectName,osType,osDist,arch)
+	shutil.copyfile(srcFile,os.path.join(filesPath,srcFileName))
+	builddebPackage(srcFileName,osType,osDist,arch)
 
 	buildInfoFile=os.path.join(buildInfosPath,"res.info")
 	data=loadFile(buildInfoFile)

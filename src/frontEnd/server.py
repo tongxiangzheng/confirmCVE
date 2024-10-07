@@ -28,7 +28,21 @@ def queryCVE():
 	res=cveSolver.solve(packageList)
 	return res
 
-fileMap=dict()
+file_tokenMap=dict()
+token_fileMap=dict()
+def setToken_file_relationship(file):
+	random_id = uuid.uuid4()
+	token=random_id.hex
+	file_tokenMap[file]=token
+	token_fileMap[token]=file
+	return token
+def init():
+	if not os.path.isdir(DEBPACKAGER_UPLOAD_FOLDER):
+		os.makedirs(DEBPACKAGER_UPLOAD_FOLDER)
+	for file in os.listdir(DEBPACKAGER_UPLOAD_FOLDER):
+		filePath=os.path.join(DEBPACKAGER_UPLOAD_FOLDER,file)
+		setToken_file_relationship(filePath)
+
 @app.route('/postfile/', methods=["POST"])
 def postfile():
 	# check if the post request has the file part
@@ -43,29 +57,32 @@ def postfile():
 		return {"error":2,"errorMessage":"No selected file"}
 	#filename = secure_filename(file.filename)
 	img_key = hashlib.md5(file.read()).hexdigest() 
-	filename=img_key
-	filePath=os.path.join(DEBPACKAGER_UPLOAD_FOLDER, filename)
-	if not os.path.isdir(DEBPACKAGER_UPLOAD_FOLDER):
-		os.makedirs(DEBPACKAGER_UPLOAD_FOLDER)
-	if os.path.isfile(filePath):
-		os.remove(filePath)
 	file.seek(0)
-	file.save(filePath)
-	random_id = uuid.uuid4()
-	fileMap[random_id.hex]=filePath
-	return {"error":0,"token":random_id.hex}
+	filename=img_key
+	allowed_type=['.src.rpm','.tar.bz2','.tar.bz2','.tar.gz','.tar.lzma','.tar.xz']
+	for t in allowed_type:
+		if file.filename.endswith(t):
+			filename+=t
+	
+	filePath=os.path.join(DEBPACKAGER_UPLOAD_FOLDER, filename)
+	if filePath in file_tokenMap:
+		token=file_tokenMap[filePath]
+	else:
+		file.save(filePath)
+		token=setToken_file_relationship(filePath)
+	return {"error":0,"token":token}
 
 @app.route('/deb/querybuildinfo/', methods=["POST"])
 def debQuerybuildinfo():
 	data = json.loads(request.get_data(as_text=True))
-	if data['srcFile'] not in fileMap or data['srcFile'] is None:
+	if data['srcFile'] not in token_fileMap or data['srcFile'] is None:
 		return {"error":1,"errorMessage":"invalid file token"}
-	srcfile=fileMap[data['srcFile']]
+	srcfile=token_fileMap[data['srcFile']]
 	srcFile2=None
 	if data['srcFile2'] is not None:
-		if data['srcFile2'] not in fileMap:
+		if data['srcFile2'] not in token_fileMap:
 			return {"error":1,"errorMessage":"invalid file token"}
-		srcFile2=fileMap[data['srcFile2']]
+		srcFile2=token_fileMap[data['srcFile2']]
 	try:
 		res=debpackager.getBuildInfo(srcfile,srcFile2,data['osType'],data['osDist'],data['arch'])
 	except Exception:
@@ -78,14 +95,14 @@ def debQuerybuildinfo():
 @app.route('/rpm/querybuildinfo/', methods=["POST"])
 def rpmQuerybuildinfo():
 	data = json.loads(request.get_data(as_text=True))
-	if data['srcFile'] not in fileMap or data['srcFile'] is None:
+	if data['srcFile'] not in token_fileMap or data['srcFile'] is None:
 		return {"error":1,"errorMessage":"invalid file token"}
-	srcfile=fileMap[data['srcFile']]
+	srcfile=token_fileMap[data['srcFile']]
 	srcFile2=None
 	if data['srcFile2'] is not None:
-		if data['srcFile2'] not in fileMap:
+		if data['srcFile2'] not in token_fileMap:
 			return {"error":1,"errorMessage":"invalid file token"}
-		srcFile2=fileMap[data['srcFile2']]
+		srcFile2=token_fileMap[data['srcFile2']]
 	try:
 		res=debpackager.getBuildInfo(srcfile,srcFile2,data['osType'],data['osDist'],data['arch'])
 	except Exception:
@@ -104,4 +121,5 @@ log.remove(handler_id=None)
 #log.add(sink=logFile,level='DEBUG')
 
 port = 8342
+init()
 app.run(host="0.0.0.0",port=port)

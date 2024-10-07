@@ -1,29 +1,32 @@
 ARG SYSTEM_NAME='ubuntu'
 ARG SYSTEM_VERSION="22.04"
 ARG ORIGNAME=""
-ARG PROJECTNAME=""
 ARG BUILD_ARCH=""
 FROM ${SYSTEM_NAME}:${SYSTEM_VERSION} AS builder
-RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && apt-get install -y build-essential devscripts equivs
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Etc/UTC
-RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && apt-get install -y tzdata
-#提前安装常见依赖，加快安装依赖阶段的速度
-RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && apt-get install -y python3 automake pkg-config libglib2.0-dev intltool fontconfig libdconf1 zlib1g libssl-dev libkrb5-dev libldap-dev libjson-c5 cmake
-ARG PROJECTNAME
+ARG SYSTEM_NAME
+ARG SYSTEM_VERSION
+RUN if [ "$SYSTEM_NAME" = "centos" ] && [ "$SYSTEM_VERSION" = "8" ]; then \
+  sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*; \
+fi
+RUN if [ "$SYSTEM_NAME" = "centos" ] && [ "$SYSTEM_VERSION" = "8" ]; then \
+  sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*; \
+fi
+RUN dnf clean all
+RUN dnf makecache
+RUN dnf install -y rpmdevtools 'dnf-command(builddep)'
 ARG ORIGNAME
 COPY files/${ORIGNAME} /code/
-COPY files/${PROJECTNAME} /code/${PROJECTNAME}/
-WORKDIR /code/${PROJECTNAME}
-RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && echo "y" | mk-build-deps -i
-RUN rm *-build-deps*
-ENV DEB_BUILD_OPTIONS=nocheck
-ARG BUILD_ARCH
-RUN dpkg-buildpackage -us -uc --target-arch ${BUILD_ARCH}
-RUN for file in ../*.deb ; do dpkg -I $file >> /code/res.info; echo "" >> /code/res.info ;done
+WORKDIR /code/
+RUN dnf builddep -y ${ORIGNAME}
+RUN rpmbuild -rb --nocheck --nodebuginfo ${ORIGNAME}
+
+RUN for targetDir in /root/rpmbuild/RPMS/* ; do \
+  for file in ${targetDir}/*.rpm ; do \
+    echo "package:" >> /code/res.info ; rpm -qpi $file >> /code/res.info ; \
+    echo "requires:" >> /code/res.info ; rpm -qpr $file >> /code/res.info ; \
+    echo "provides:" >> /code/res.info ; rpm -qpP $file >> /code/res.info ; \
+  done \
+done
 
 FROM scratch AS buildinfo
-#COPY --from=builder /code/*.deb /
-#COPY --from=builder /code/*.ddeb /
-#COPY --from=builder /code/*.dsc /
 COPY --from=builder /code/res.info /

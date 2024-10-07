@@ -1,3 +1,3 @@
-import debpackager
-res=debpackager.getBuildInfo("network-manager_1.36.6.orig.tar.xz","network-manager_1.36.6-0ubuntu2.debian.tar.xz","ubuntu","jammy","amd64")
+import rpmpackager
+res=rpmpackager.getBuildInfo("CUnit-2.1.3-24.oe2403","openeuler/openeuler","24.03","amd64")
 print(res)

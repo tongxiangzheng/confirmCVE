@@ -17,7 +17,20 @@ def builddebPackage(origName,projectName,osType,osDist,arch):
 	print(cmd)
 	os.system(cmd)
 	
-
+def getNameAndVersion(changelogFile):
+	print(changelogFile)
+	with open(changelogFile) as f:
+		changelogInfo = f.read()
+		changelogInfo_line=changelogInfo.split('\n',1)
+		for info in changelogInfo_line:
+			if len(info.strip())>0:
+				firstLine=info.split(' ')
+				break
+		
+		name=firstLine[0]
+		version_release=firstLine[1][1:-1].split('-')
+		version=version_release[0]
+		return name,version
 def getBuildInfo(srcFile,srcFile2,osType,osDist,arch)->str:
 	filesPath=os.path.join(DIR,'files')
 	if os.path.isdir(filesPath):
@@ -27,7 +40,7 @@ def getBuildInfo(srcFile,srcFile2,osType,osDist,arch)->str:
 	if os.path.isdir(buildInfosPath):
 		shutil.rmtree(buildInfosPath)
 	os.makedirs(buildInfosPath)
-	os.system("cp {} {}".format(srcFile,filesPath))
+	#os.system("cp {} {}".format(srcFile,filesPath))
 	unzip(srcFile,filesPath)
 	projectPath=None
 	for item in os.listdir(filesPath):
@@ -36,13 +49,15 @@ def getBuildInfo(srcFile,srcFile2,osType,osDist,arch)->str:
 	if projectPath is None:
 		print("error:unzip unknown error")
 		return None
-	projectName=os.path.basename(projectPath)
 	if srcFile2:
 		if os.path.isdir(os.path.join(projectPath,"debian")):
 			shutil.rmtree(os.path.join(projectPath,"debian"))
 		unzip(srcFile2,projectPath)
-	srcFileName=os.path.basename(srcFile)
-	builddebPackage(srcFileName,projectName,osType,osDist,arch)
+	name,version=getNameAndVersion(os.path.join(projectPath,"debian","changelog"))
+	upstreamTarballFileName=name+"_"+version+".orig.tar."+srcFile.rsplit(".tar.")[1]
+	shutil.copyfile(srcFile,os.path.join(filesPath,upstreamTarballFileName))
+	projectName=os.path.basename(projectPath)
+	builddebPackage(upstreamTarballFileName,projectName,osType,osDist,arch)
 
 	buildInfoFile=os.path.join(buildInfosPath,"res.info")
 	data=loadFile(buildInfoFile)
