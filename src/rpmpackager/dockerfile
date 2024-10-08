@@ -22,11 +22,13 @@ RUN rpmbuild -rb --nocheck --nodebuginfo ${ORIGNAME}
 
 RUN for targetDir in /root/rpmbuild/RPMS/* ; do \
   for file in ${targetDir}/*.rpm ; do \
-    echo "package:" >> /code/res.info ; rpm -qpi $file >> /code/res.info ; \
-    echo "requires:" >> /code/res.info ; rpm -qpr $file >> /code/res.info ; \
-    echo "provides:" >> /code/res.info ; rpm -qpP $file >> /code/res.info ; \
+    echo "%package:" >> /code/res.info ; rpm -qpi $file >> /code/res.info ; \
+    echo "%requires:" >> /code/res.info ; rpm -qpR $file >> /code/res.info ; \
+    echo "%provides:" >> /code/res.info ; rpm -qpP $file >> /code/res.info ; \
+	echo "%packageEnd" >> /code/res.info ; \
   done \
 done
 
 FROM scratch AS buildinfo
+#COPY --from=builder /root/rpmbuild/RPMS/* /
 COPY --from=builder /code/res.info /

@@ -15,8 +15,10 @@ def loadFile(filePath):
 def builddebPackage(srcFileName,osType,osDist,arch):
 	cmd=f'docker build --output={DIR}/buildinfos --target=buildinfo --build-arg ORIGNAME="{srcFileName}" --build-arg SYSTEM_NAME="{osType}" --build-arg SYSTEM_VERSION="{osDist}" --build-arg BUILD_ARCH="{arch}" {DIR}'
 	print(cmd)
-	#os.system(cmd)
+	os.system(cmd)
 	
+#将操作系统名称更改为可以docker pull的docker仓库的名称
+dockerOsTypeMap={"openeuler":"openeuler/openeuler"}
 
 def getBuildInfo(srcFile,osType,osDist,arch)->str:
 	filesPath=os.path.join(DIR,'files')
@@ -29,6 +31,9 @@ def getBuildInfo(srcFile,osType,osDist,arch)->str:
 	os.makedirs(buildInfosPath)
 	srcFileName=os.path.basename(srcFile)
 	shutil.copyfile(srcFile,os.path.join(filesPath,srcFileName))
+	osType=osType.lower()
+	if osType in dockerOsTypeMap:
+		osType=dockerOsTypeMap[osType]
 	builddebPackage(srcFileName,osType,osDist,arch)
 
 	buildInfoFile=os.path.join(buildInfosPath,"res.info")

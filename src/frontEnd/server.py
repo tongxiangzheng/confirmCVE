@@ -10,8 +10,10 @@ DIR=os.path.split(os.path.abspath(__file__))[0]
 sys.path.insert(0,os.path.join(DIR,'..','backEnd'))
 sys.path.insert(0,os.path.join(DIR,'..','nvdParser'))
 sys.path.insert(0,os.path.join(DIR,'..','debpackager'))
+sys.path.insert(0,os.path.join(DIR,'..','rpmpackager'))
 import hashlib
 import debpackager
+import rpmpackager
 import spdxReader
 import json
 import uuid
@@ -98,13 +100,8 @@ def rpmQuerybuildinfo():
 	if data['srcFile'] not in token_fileMap or data['srcFile'] is None:
 		return {"error":1,"errorMessage":"invalid file token"}
 	srcfile=token_fileMap[data['srcFile']]
-	srcFile2=None
-	if data['srcFile2'] is not None:
-		if data['srcFile2'] not in token_fileMap:
-			return {"error":1,"errorMessage":"invalid file token"}
-		srcFile2=token_fileMap[data['srcFile2']]
 	try:
-		res=debpackager.getBuildInfo(srcfile,srcFile2,data['osType'],data['osDist'],data['arch'])
+		res=rpmpackager.getBuildInfo(srcfile,data['osType'],data['osDist'],data['arch'])
 	except Exception:
 		traceback.print_exc()
 		return {"error":2,"errorMessage":"failed to build"}
