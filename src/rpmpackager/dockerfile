@@ -13,22 +13,26 @@ RUN if [ "$SYSTEM_NAME" = "centos" ] && [ "$SYSTEM_VERSION" = "8" ]; then \
 fi
 RUN dnf clean all
 RUN dnf makecache
-RUN dnf install -y rpmdevtools 'dnf-command(builddep)'
+RUN dnf install -y rpmdevtools 'dnf-command(builddep)' createrepo
+#提前安装常见依赖，加快速度
+RUN dnf install -y perl-devel python3-devel gcc systemd xz-devel
 ARG ORIGNAME
 COPY files/${ORIGNAME} /code/
 WORKDIR /code/
 RUN dnf builddep -y ${ORIGNAME}
 RUN rpmbuild -rb --nocheck --nodebuginfo ${ORIGNAME}
 
-RUN for targetDir in /root/rpmbuild/RPMS/* ; do \
-  for file in ${targetDir}/*.rpm ; do \
-    echo "%package:" >> /code/res.info ; rpm -qpi $file >> /code/res.info ; \
-    echo "%requires:" >> /code/res.info ; rpm -qpR $file >> /code/res.info ; \
-    echo "%provides:" >> /code/res.info ; rpm -qpP $file >> /code/res.info ; \
-	echo "%packageEnd" >> /code/res.info ; \
-  done \
-done
+# RUN for targetDir in /root/rpmbuild/RPMS/* ; do \
+#   for file in ${targetDir}/*.rpm ; do \
+#     echo "%package:" >> /code/res.info ; rpm -qpi $file >> /code/res.info ; \
+#     echo "%requires:" >> /code/res.info ; rpm -qpR $file >> /code/res.info ; \
+#     echo "%provides:" >> /code/res.info ; rpm -qpP $file >> /code/res.info ; \
+# 	echo "%packageEnd" >> /code/res.info ; \
+#   done \
+# done
+RUN createrepo /root/rpmbuild/RPMS
+
 
 FROM scratch AS buildinfo
 #COPY --from=builder /root/rpmbuild/RPMS/* /
-COPY --from=builder /code/res.info /
+COPY --from=builder /root/rpmbuild/RPMS/repodata/*-primary.xml.zst /

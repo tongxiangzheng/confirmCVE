@@ -1,6 +1,8 @@
 import os
 import tarfile
 import shutil
+import pyzstd
+from subprocess import PIPE, Popen
 DIR=os.path.split(os.path.abspath(__file__))[0]
 
 def unzip(zipfile,toPath):
@@ -15,8 +17,11 @@ def loadFile(filePath):
 def builddebPackage(srcFileName,osType,osDist,arch):
 	cmd=f'docker build --output={DIR}/buildinfos --target=buildinfo --build-arg ORIGNAME="{srcFileName}" --build-arg SYSTEM_NAME="{osType}" --build-arg SYSTEM_VERSION="{osDist}" --build-arg BUILD_ARCH="{arch}" {DIR}'
 	print(cmd)
-	os.system(cmd)
-	
+	#os.system(cmd)
+	p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
+	stdout, stderr = p.communicate()
+
+
 #将操作系统名称更改为可以docker pull的docker仓库的名称
 dockerOsTypeMap={"openeuler":"openeuler/openeuler"}
 
@@ -35,10 +40,13 @@ def getBuildInfo(srcFile,osType,osDist,arch)->str:
 	if osType in dockerOsTypeMap:
 		osType=dockerOsTypeMap[osType]
 	builddebPackage(srcFileName,osType,osDist,arch)
-
-	buildInfoFile=os.path.join(buildInfosPath,"res.info")
-	data=loadFile(buildInfoFile)
-	if data is None:
-		return None
-	return data
+	for file in os.listdir(buildInfosPath):
+		if not file.endswith('-primary.xml.zst'):
+			continue
+		buildInfoFile=os.path.join(buildInfosPath,file)
+		with open(buildInfoFile, "rb") as f:
+			data = f.read()
+			data = pyzstd.decompress(data).decode()
+			return data
+	return None
 	

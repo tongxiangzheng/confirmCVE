@@ -6,3 +6,4 @@ python-rpm-spec
 pycurl
 certifi
 flask
+pyzstd

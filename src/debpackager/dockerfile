@@ -9,7 +9,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
 RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && apt-get install -y tzdata
 #提前安装常见依赖，加快安装依赖阶段的速度
-RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && apt-get install -y python3 automake pkg-config libglib2.0-dev intltool fontconfig libdconf1 zlib1g libssl-dev libkrb5-dev libldap-dev libjson-c5 cmake
+RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && apt-get install -y gcc python3 automake pkg-config libglib2.0-dev intltool fontconfig libdconf1 zlib1g libssl-dev libkrb5-dev libldap-dev libjson-c5 cmake ninja-build
 ARG PROJECTNAME
 ARG ORIGNAME
 COPY files/${ORIGNAME} /code/
@@ -17,7 +17,7 @@ COPY files/${PROJECTNAME} /code/${PROJECTNAME}/
 WORKDIR /code/${PROJECTNAME}
 RUN sed -i 's#http://archive.ubuntu.com/#http://mirrors.tuna.tsinghua.edu.cn/#' /etc/apt/sources.list && apt-get update && echo "y" | mk-build-deps -i
 RUN rm *-build-deps*
-ENV DEB_BUILD_OPTIONS=nocheck
+ENV DEB_BUILD_OPTIONS="nocheck noopt"
 ARG BUILD_ARCH
 RUN dpkg-buildpackage -us -uc --target-arch ${BUILD_ARCH}
 RUN for file in ../*.deb ; do dpkg -I $file >> /code/res.info; echo "" >> /code/res.info ;done
