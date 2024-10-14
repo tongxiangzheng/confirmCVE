@@ -17,9 +17,9 @@ def loadFile(filePath):
 def builddebPackage(srcFileName,osType,osDist,arch):
 	cmd=f'docker build --output={DIR}/buildinfos --target=buildinfo --build-arg ORIGNAME="{srcFileName}" --build-arg SYSTEM_NAME="{osType}" --build-arg SYSTEM_VERSION="{osDist}" --build-arg BUILD_ARCH="{arch}" {DIR}'
 	print(cmd)
-	#os.system(cmd)
-	p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
-	stdout, stderr = p.communicate()
+	os.system(cmd)
+	# p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
+	# stdout, stderr = p.communicate()
 
 
 #将操作系统名称更改为可以docker pull的docker仓库的名称

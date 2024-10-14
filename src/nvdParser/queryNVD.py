@@ -59,18 +59,60 @@ class CVEInfo:
             
     def addRelated(self,package):
         self.collect.append(package)
+    def splitDigitAndChar(self,rawstr)->list:
+        res=[]
+        if len(rawstr)==0:
+            return res
+        r=rawstr[0]
+        if r.isdigit() is True:
+            t="digit"
+        else:
+            t='char'
+        for i in range(1,len(rawstr)):
+            c=rawstr[i]
+            if c.isdigit() is True:
+                t2="digit"
+            else:
+                t2='char'
+            if t!=t2:
+                if t=='digit':
+                    res.append(int(r))
+                else:
+                    res.append(r)
+                r=""
+                t=t2
+            r+=c
+        if t=='digit':
+            res.append(int(r))
+        else:
+            res.append(r)
+        return res
     def compare(self,version1,version2):
+        version1=version1.split(":")[-1].split("%")[-1]
+        version2=version2.split(":")[-1].split("%")[-1]
         # -1: version1<version2 0:version1==version2 1:version1>version2
         v1=version1.split('.')
         v2=version2.split('.')
-        if len(v1)!=len(v2):
-            log.warning("version cannot compare, v1: "+version1+" v2: "+version2)
-            return 0
-        for i in range(len(v1)):
-            if v1[i]<v2[i]:
-                return -1
-            if v1[i]>v2[i]:
-                return -1
+        for i in range(min(len(v1),len(v2))):
+            v1l=self.splitDigitAndChar(v1[i])
+            v2l=self.splitDigitAndChar(v2[i])
+            for j in range(min(len(v1l),len(v2l))):
+                v1i=v1l[j]
+                v2i=v2l[j]
+                if type(v1i)!=type(v2i):
+                    return 0
+                if v1i<v2i:
+                    return -1
+                if v1i>v2i:
+                    return 1
+            # if len(v1l)<len(v2l):
+            # 	return -1
+            # if len(v1l)>len(v2l):
+            # 	return 1
+        # if len(v1)<len(v2):
+        # 	return -1
+        # if len(v1)>len(v2):
+        # 	return 1
         return 0
     def checkMatch(self,cpestr,regex,versionStartIncluding,versionStartExcluding,versionEndIncluding,versionEndExcluding,version):
         if regex.match(cpestr) is None:

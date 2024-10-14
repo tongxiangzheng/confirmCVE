@@ -16,6 +16,8 @@ def builddebPackage(origName,projectName,osType,osDist,arch):
 	cmd='docker build --output={}/buildinfos --target=buildinfo --build-arg ORIGNAME="{}" --build-arg PROJECTNAME="{}" --build-arg SYSTEM_NAME="{}" --build-arg SYSTEM_VERSION="{}" --build-arg BUILD_ARCH="{}" {}'.format(DIR,origName,projectName,osType,osDist,arch,DIR)
 	print(cmd)
 	os.system(cmd)
+	# p = Popen(cmd, shell=True, stdout=PIPE, stderr=PIPE)
+	# stdout, stderr = p.communicate()
 	
 def getNameAndVersion(changelogFile):
 	print(changelogFile)
