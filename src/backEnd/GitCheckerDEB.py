@@ -27,6 +27,7 @@ class GitCheckerDEB:
 		DIR = os.path.split(os.path.abspath(__file__))[0]
 		downloadPath = os.path.join(DIR,'..','..','repos',self.packageInfo.osType,packageInfo.name)
 		repoLink=gitLink
+		self.repoLink=repoLink
 		if repoLink=='':
 			self.repo=None
 			return
@@ -68,7 +69,7 @@ class GitCheckerDEB:
 					break
 			
 			name=firstLine[0]
-			version_release=firstLine[1][1:-1].split('-')
+			version_release=firstLine[1][1:-1].rsplit('-')
 			version=version_release[0]
 			release=None
 			if len(version_release)>1:
@@ -76,11 +77,13 @@ class GitCheckerDEB:
 			
 			log.trace("name:"+name)
 			log.trace("version:"+version)
-			log.trace("release:"+release)
+			if release is not None:
+				log.trace("release:"+release)
 			log.trace("message:"+commit.message)
 			
-			if self.packageInfo.name==name and self.packageInfo.version==version and self.packageInfo.release==release:
-				return True
+			if self.packageInfo.name==name and self.packageInfo.version==version:
+				if self.packageInfo.release is None or release is None or self.packageInfo.release==release:
+					return True
 		return False
 	def specCheck(self):
 		if self.repo is None:
@@ -134,8 +137,9 @@ class GitCheckerDEB:
 		cveChecker=CVEChecker(cves)
 		commitId=self.getCommitId()
 		if commitId is None:
-			log.warning("Cannot match any commit for "+self.packageInfo.name)
+			log.warning("Cannot match any commit for "+self.packageInfo.name+" at :"+self.repoLink)
 			raise Exception("Cannot match any commit")
-		log.info("match commit id: "+commitId)
+		log.warning("match commit id: "+commitId)
+		log.warning("at :"+self.repoLink+"/commit/"+commitId)
 		self.checkMessage(commitId,cveChecker)
 		return cveChecker

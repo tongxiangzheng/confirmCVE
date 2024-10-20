@@ -5,7 +5,6 @@ import sys
 from loguru import logger as log
 DIR=os.path.split(os.path.abspath(__file__))[0]
 sys.path.insert(0,os.path.join(DIR,'..','backEnd'))
-sys.path.insert(0,os.path.join(DIR,'..','nvdParser'))
 import PackageInfo
 import normalize
 #def loadSpdxFile(fileName):
@@ -19,9 +18,9 @@ import normalize
 #				purlStr=package['externalRefs'][0]['referenceLocator']
 #				res.append(PackageInfo.loadPurl(purlStr))
 #	return res
-def parseSpdxObj(spdxObj,duplicate_removal=True):
-	res=[]
-	known_names=set()
+def parseSpdxObj(spdxObj):
+	
+	names_packages=dict()
 	packages=spdxObj['packages']
 	for package in packages:
 		packageType=package['description']
@@ -36,14 +35,8 @@ def parseSpdxObj(spdxObj,duplicate_removal=True):
 				if 'comment' in package:
 					packageinfo.gitLink=package['comment']
 			if packageinfo is not None:
-				if duplicate_removal is True:
-					name=packageinfo.name
-					if name in known_names:
-						continue
-					known_names.add(name)
-					res.append(packageinfo)
-				else:
-					res.append(packageinfo)
+				name=packageinfo.name
+				names_packages[name]=packageinfo
 			else:
 				log.warning('ERROR:spdxReader:cannot find PACKAGE_MANAGER infomation in externalRefs')
 		else:
@@ -52,17 +45,13 @@ def parseSpdxObj(spdxObj,duplicate_removal=True):
 				continue
 			name=package['name']
 			version=package['versionInfo']
-			packageinfo=PackageInfo.PackageInfo("maven","",name,version,None,None)
-			if duplicate_removal is True:
-				name=packageinfo.name
-				if name in known_names:
-					continue
-				known_names.add(name)
-				res.append(packageinfo)
-			else:
-				res.append(packageinfo)
+			packageinfo=PackageInfo.PackageInfo("maven","","",name,version,None,None)
+			name=packageinfo.name
+			if name not in names_packages:
+				names_packages[name]=packageinfo
 					
 			#res.append(packageinfo)
+	res=list(names_packages.values())
 	return res
 
 
