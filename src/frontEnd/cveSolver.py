@@ -11,6 +11,7 @@ import OSInformation
 from GitChecker import GitChecker
 from GitCheckerDEB import GitCheckerDEB
 from queryCVEInfo import queryCVEInfo
+from SrcCheckerDeb import SrcCheckerDeb
 def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 	if len(cves)==0:
 		return []
@@ -23,7 +24,8 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 			osInfo=parser.getOsInfo(packageInfo)
 			checker=GitChecker(packageInfo,osInfo)
 		elif packageInfo.osKind=='deb':
-			checker=GitCheckerDEB(packageInfo)
+			#checker=GitCheckerDEB(packageInfo)
+			checker=SrcCheckerDeb(packageInfo)
 		else:
 			log.warning('unknown ostype')
 		ans=checker.check(cves)

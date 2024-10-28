@@ -9,18 +9,18 @@ from loguru import logger as log
 from CVEChecker import CVEChecker
 from PackageInfo import PackageInfo
 from OSInformation import OSInformation
-def firstNumber(rawstr)->str:
-	res=""
-	for c in rawstr:
-		if c.isdigit() is True:
-			res+=c
-		else:
-			break
-	return res
+# def firstNumber(rawstr)->str:
+# 	res=""
+# 	for c in rawstr:
+# 		if c.isdigit() is True:
+# 			res+=c
+# 		else:
+# 			break
+# 	return res
 class GitCheckerDEB:
 	def __init__(self,packageInfo:PackageInfo):
-		if packageInfo.release is not None:
-			packageInfo.release=firstNumber(packageInfo.release)
+		#if packageInfo.release is not None:
+		#	packageInfo.release=firstNumber(packageInfo.release)
 		self.packageInfo=packageInfo
 		
 		gitLink=packageInfo.gitLink

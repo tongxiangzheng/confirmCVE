@@ -1,5 +1,6 @@
 import re
 from loguru import logger as log
+import os
 class CVEChecker:
 	def __init__(self,cves):
 		self.dismatched_cves=dict()
@@ -10,15 +11,19 @@ class CVEChecker:
 			#\b匹配单词结尾，表示CVE字符串应为独立的单词
 		self.matched_cves=[]
 		self.warnings=[]
-	def parse(self,info,commit,type):
+	def parse(self,info,commit=None,type="none"):
 		info=info.lower()
 		#log.trace(info)
 		matchCVE=[]
 		for cveString,cveRe in self.dismatched_cves.items():
 			for r in cveRe:
 				if r.search(info) is not None:
-					matchCVE.append({"name":cveString,"type":type,"commit":commit.hexsha,"info":info})
-					log.warning(cveString+" : have fix in "+commit.hexsha+" with info: "+info)
+					if commit is None:
+						hexsha="none"
+					else:
+						hexsha=commit.hexsha
+					matchCVE.append({"name":cveString,"type":type,"commit":hexsha,"info":info})
+					log.warning(cveString+" : have fix in "+hexsha+" with info: "+info)
 					break
 		for cve in matchCVE:
 			self.dismatched_cves.pop(cve["name"])
@@ -28,6 +33,13 @@ class CVEChecker:
 			self.parse(blobFile.name,commit,"patch_file")
 		for treeDir in tree.trees:
 			self.dfsTree(treeDir,commit)
+	def dfsDir(self,Dir):
+		for file in os.listdir(Dir):
+			path=os.path.join(Dir,file)
+			if os.path.isfile(path):
+				self.parse(file,None,"patch_file")
+	def checkChangeLog(self,message):
+		self.parse(message)
 	def checkCommit(self,commit):
 		log.debug("check commit: "+commit.hexsha)
 		self.parse(commit.message,commit,"commit_message")
