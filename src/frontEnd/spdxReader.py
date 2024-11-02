@@ -29,11 +29,9 @@ def parseSpdxObj(spdxObj):
 			for externalRefs in package['externalRefs']:
 				if externalRefs['referenceCategory']!='PACKAGE_MANAGER':
 					continue
-				purlStr=package['externalRefs'][0]['referenceLocator']
+				purlStr=externalRefs['referenceLocator']
 				purlStr=normalize.reNormalReplace(purlStr)
 				packageinfo=PackageInfo.loadPurl(purlStr)
-				if 'comment' in package:
-					packageinfo.gitLink=package['comment']
 			if packageinfo is not None:
 				name=packageinfo.name
 				names_packages[name]=packageinfo
