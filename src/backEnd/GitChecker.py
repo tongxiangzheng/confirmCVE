@@ -257,6 +257,20 @@ class GitChecker:
 			log.warning("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
 			raise Exception("src and spec matched different commit,srcResult="+str(srcResult)+" specResult="+str(specResult))
 		return srcResult
+	def checkSpecFile(self,commitId,cveChecker):
+		commit=self.repo.commit(commitId)
+		specFilePath=self.osInfo.specfile
+		specFileName=specFilePath+self.packageInfo.name+'.spec'
+		try:
+			specFile = commit.tree[specFileName]
+		except Exception:
+			log.warning("error at "+commit.hexsha+" :no spec file at "+specFileName)
+			return
+		with io.BytesIO(specFile.data_stream.read()) as f:
+			data=f.read()
+			spec = Spec.from_string(data.decode('utf-8', errors='ignore'))
+			print(spec.changelog)
+			cveChecker.checkChangeLog(spec.changelog)
 	def checkMessage(self,commitId,cveChecker):
 		commit=self.repo.commit(commitId)
 		while len(commit.parents)>0:
@@ -269,5 +283,6 @@ class GitChecker:
 			log.warning("Cannot match any commit for "+self.packageInfo.name)
 			raise Exception("Cannot match any commit")
 		log.info("match commit id: "+commitId)
+		self.checkSpecFile(commitId)
 		self.checkMessage(commitId,cveChecker)
 		return cveChecker
