@@ -88,8 +88,8 @@ class CVEInfo:
             res.append(r)
         return res
     def compare(self,version1,version2):
-        version1=version1.split(":")[-1].split("%")[-1]
-        version2=version2.split(":")[-1].split("%")[-1]
+        version1=version1.split(":")[-1] #.split("%")[-1]
+        version2=version2.split(":")[-1] #.split("%")[-1]
         # -1: version1<version2 0:version1==version2 1:version1>version2
         v1=version1.split('.')
         v2=version2.split('.')
@@ -162,6 +162,12 @@ class CVEInfo:
                 if result is True:
                     return True
         return False
+    def dumpInfo(self):
+        res={'name':cveName}
+        if self.baseScore is not None:
+            res['score']=self.baseScore
+        return res
+        
 def registerPackage(relatedCVE,cvePath,package):
     if cvePath not in relatedCVE:
         relatedCVE[cvePath]=CVEInfo(cvePath)
@@ -172,7 +178,7 @@ def query(packageList:list): #list[PackageInfo]
     relatedCVE=dict()
     res=dict()
     for package in packageList:
-        res[package]=set()
+        res[package]=list()
         name=package.name.lower()
         basePath,path=SoftManager.getPath(SoftManager.normalizeName(name))
         if not os.path.isfile(path):
@@ -187,8 +193,12 @@ def query(packageList:list): #list[PackageInfo]
     for cve in relatedCVE.values():
         if cve.check():
             log.trace(cve.path+" is active")
+            cveSet=set()
             for package in cve.collect:
-                res[package].add(cve.cveName)
+                if cve.cveName in cveSet:
+                    continue
+                cveSet.add(cve.cveName)
+                res[package].append(cve.dumpInfo())
         else:
             log.trace(cve.path+" is not active")
     

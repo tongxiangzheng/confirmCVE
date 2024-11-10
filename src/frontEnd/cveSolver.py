@@ -33,12 +33,13 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 		traceback.print_exc()
 		log.warning("failed to check packageCVE")
 		return cves
+	
+	print(packageInfo.name,ans.getMatchedCVE())
 	return ans.getDismathedCVE()
 def solve(packageList):
 	package_cveList=queryNVD.query(packageList)
 	res=dict()
-	for package,cves_set in package_cveList.items():
-		cves=list(cves_set)
+	for package,cves in package_cveList.items():
 		#print(cves)
 		confirmed_cves=queryPackageCVE(package,cves)
 		res[package.name]=confirmed_cves

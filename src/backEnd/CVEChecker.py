@@ -2,12 +2,12 @@ import re
 from loguru import logger as log
 import os
 class CVEChecker:
-	def __init__(self,cves):
+	def __init__(self,cves:list):
 		self.dismatched_cves=dict()
 		for cve in cves:
-			cve=cve.strip().lower()
-			cve_=cve.split("#")[0]
-			self.dismatched_cves[cve]=(re.compile("fix.*"+cve_+r"\b"),re.compile(cve_+r".patch\b"))
+			cveName=cve.cveName.strip().lower()
+			cve_=cveName.split("#")[0]
+			self.dismatched_cves[cve]=(re.compile("Resolves.*"+cve_+r"\b"),re.compile("fix.*"+cve_+r"\b"),re.compile(cve_+r".patch\b"))
 			#\b匹配单词结尾，表示CVE字符串应为独立的单词
 		self.matched_cves=[]
 		self.warnings=[]
@@ -15,34 +15,34 @@ class CVEChecker:
 		info=info.lower()
 		#log.trace(info)
 		matchCVE=[]
-		for cveString,cveRe in self.dismatched_cves.items():
+		for cve,cveRe in self.dismatched_cves.items():
 			for r in cveRe:
 				if r.search(info) is not None:
 					if commit is None:
 						hexsha="none"
 					else:
 						hexsha=commit.hexsha
-					matchCVE.append({"name":cveString,"type":type,"commit":hexsha,"info":info})
-					log.warning(cveString+" : have fix in "+hexsha+" with info: "+info)
+					matchCVE.append({"name":cve.cveName,"type":type,"commit":hexsha,"info":info,"pointer":cve})
+					log.warning(cve.cveName+" : have fix in "+hexsha+" with info: "+info)
 					break
 		for cve in matchCVE:
-			self.dismatched_cves.pop(cve["name"])
+			self.dismatched_cves.pop(cve["pointer"])
 			self.matched_cves.append(cve)
 	def dfsTree(self,tree,commit):
 		for blobFile in tree.blobs:
-			self.parse(blobFile.name,commit,"patch_file")
+			self.parse(blobFile.name,commit,type="patch_file")
 		for treeDir in tree.trees:
 			self.dfsTree(treeDir,commit)
 	def dfsDir(self,Dir):
 		for file in os.listdir(Dir):
 			path=os.path.join(Dir,file)
 			if os.path.isfile(path):
-				self.parse(file,None,"patch_file")
+				self.parse(file,None,type="patch_file")
 	def checkChangeLog(self,message):
-		self.parse(message)
+		self.parse(message,type="changelog")
 	def checkCommit(self,commit):
 		log.debug("check commit: "+commit.hexsha)
-		self.parse(commit.message,commit,"commit_message")
+		self.parse(commit.message,commit,type="commit_message")
 		self.dfsTree(commit.tree,commit)
 	def getMatchedCVE(self)->list:
 		return self.matched_cves
