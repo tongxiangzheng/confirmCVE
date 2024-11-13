@@ -14,4 +14,4 @@ def queryPackageCVE(packageInfo:PackageInfo)->list[str]:
 		log.warning("failed to query packageCVE")
 		traceback.print_exc()
 		return []
-	return ans.getDismathedCVE()
+	return ans.getDismatchedCVE()

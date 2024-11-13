@@ -31,7 +31,7 @@ class GitCheckerDEB:
 		if repoLink=='':
 			self.repo=None
 			return
-		log.info("git link is "+repoLink)
+		#log.info("git link is "+repoLink)
 		tmp=repoLink.split(' ')
 		if len(tmp)>1:
 			if tmp[1]=='-b':
@@ -52,7 +52,7 @@ class GitCheckerDEB:
 		try:
 			changelogFile = commit.tree[changelogFileName]
 		except Exception:
-			log.warning("error at "+commit.hexsha+" :no spec file at "+changelogFileName)
+			#log.warning("error at "+commit.hexsha+" :no spec file at "+changelogFileName)
 			#print(commit.tree)
 			return False
 		with io.BytesIO(changelogFile.data_stream.read()) as f:
@@ -61,7 +61,7 @@ class GitCheckerDEB:
 				changelogInfo = data.decode('utf-8')
 			except Exception as e:
 				changelogInfo = data.decode('utf-8', errors='ignore')
-				log.warning("error at "+commit.hexsha+" :parse changelog file:"+changelogFileName+" as UTF-8 failed")
+				#log.warning("error at "+commit.hexsha+" :parse changelog file:"+changelogFileName+" as UTF-8 failed")
 			changelogInfo_line=changelogInfo.split('\n',1)
 			for info in changelogInfo_line:
 				if len(info)>0:
@@ -75,11 +75,11 @@ class GitCheckerDEB:
 			if len(version_release)>1:
 				release=firstNumber(version_release[1])
 			
-			log.trace("name:"+name)
-			log.trace("version:"+version)
-			if release is not None:
-				log.trace("release:"+release)
-			log.trace("message:"+commit.message)
+			#log.trace("name:"+name)
+			#log.trace("version:"+version)
+			#if release is not None:
+			#	log.trace("release:"+release)
+			#log.trace("message:"+commit.message)
 			
 			if self.packageInfo.name==name and self.packageInfo.version==version:
 				if self.packageInfo.release is None or release is None or self.packageInfo.release==release:
@@ -89,23 +89,23 @@ class GitCheckerDEB:
 		if self.repo is None:
 			return None
 		#使用软件包的version和release信息，与commit中的.spec文件进行匹配
-		log.info("start check by spec file")
-		log.info(" name is "+self.packageInfo.name)
-		log.info(" version is "+self.packageInfo.version)
-		if self.packageInfo.release is not None:
-			log.info(" release is "+self.packageInfo.release)
+		# log.info("start check by spec file")
+		# log.info(" name is "+self.packageInfo.name)
+		# log.info(" version is "+self.packageInfo.version)
+		# if self.packageInfo.release is not None:
+		# 	log.info(" release is "+self.packageInfo.release)
 		visted_commits=set()
 		matched_commits=[]
 		#specFilePath=self.osInfo.specfile
 		changelogFileName='debian/changelog'
 		if self.branch is not None:
 			branch=self.repo.remote().refs[self.branch]
-			log.debug("branch: "+branch.name)
+			#log.debug("branch: "+branch.name)
 			nowCommit=self.repo.commit(branch.name)
 		elif 'debian' in self.repo.remote().refs:
-			log.info("use debian branch instead master branch")
+			#log.info("use debian branch instead master branch")
 			branch=self.repo.remote().refs['debian']
-			log.debug("branch: "+branch.name)
+			#log.debug("branch: "+branch.name)
 			nowCommit=self.repo.commit(branch.name)
 		else:
 			nowCommit=self.repo.head.commit
@@ -114,10 +114,10 @@ class GitCheckerDEB:
 			if hexsha in visted_commits:
 				break
 			visted_commits.add(hexsha)
-			log.debug("commit: "+hexsha+" , "+nowCommit.message)
+			#log.debug("commit: "+hexsha+" , "+nowCommit.message)
 			if self.checkCommit(nowCommit,changelogFileName):
 				matched_commits.append((nowCommit.committed_date,nowCommit.hexsha))
-				log.info("match the commit: "+nowCommit.hexsha)
+				#log.info("match the commit: "+nowCommit.hexsha)
 			if len(nowCommit.parents)==0:
 				break
 			nowCommit=nowCommit.parents[0]

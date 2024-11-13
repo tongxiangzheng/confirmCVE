@@ -4,10 +4,12 @@ import os
 class CVEChecker:
 	def __init__(self,cves:list):
 		self.dismatched_cves=dict()
+		self.cvedict=dict()
 		for cve in cves:
-			cveName=cve.cveName.strip().lower()
+			cveName=cve['name'].strip().lower()
 			cve_=cveName.split("#")[0]
-			self.dismatched_cves[cve]=(re.compile("Resolves.*"+cve_+r"\b"),re.compile("fix.*"+cve_+r"\b"),re.compile(cve_+r".patch\b"))
+			self.cvedict[cveName]=cve
+			self.dismatched_cves[cveName]=(re.compile("Resolves.*"+cve_+r"\b"),re.compile("fix.*"+cve_+r"\b"),re.compile(cve_+r".patch\b"))
 			#\b匹配单词结尾，表示CVE字符串应为独立的单词
 		self.matched_cves=[]
 		self.warnings=[]
@@ -15,18 +17,18 @@ class CVEChecker:
 		info=info.lower()
 		#log.trace(info)
 		matchCVE=[]
-		for cve,cveRe in self.dismatched_cves.items():
+		for cveName,cveRe in self.dismatched_cves.items():
 			for r in cveRe:
 				if r.search(info) is not None:
 					if commit is None:
 						hexsha="none"
 					else:
 						hexsha=commit.hexsha
-					matchCVE.append({"name":cve.cveName,"type":type,"commit":hexsha,"info":info,"pointer":cve})
-					log.warning(cve.cveName+" : have fix in "+hexsha+" with info: "+info)
+					matchCVE.append({"name":cveName,"type":type,"commit":hexsha,"info":info,"pointer":cve})
+					log.warning(cveName+" : have fix in "+hexsha+" with info: "+info)
 					break
 		for cve in matchCVE:
-			self.dismatched_cves.pop(cve["pointer"])
+			self.dismatched_cves.pop(cve["name"])
 			self.matched_cves.append(cve)
 	def dfsTree(self,tree,commit):
 		for blobFile in tree.blobs:
@@ -46,10 +48,10 @@ class CVEChecker:
 		self.dfsTree(commit.tree,commit)
 	def getMatchedCVE(self)->list:
 		return self.matched_cves
-	def getDismathedCVE(self)->list:
+	def getDismatchedCVE(self)->list:
 		cves=[]
-		for cveString in self.dismatched_cves:
-			cves.append(cveString)
+		for cveName in self.dismatched_cves:
+			cves.append(self.cvedict[cveName])
 		return cves
 	def addWarning(self,warnInfo):
 		if len(self.warnings)<10:
@@ -57,10 +59,10 @@ class CVEChecker:
 	def getReport(self)->dict:
 		report=dict()
 		report['safeCVE']=self.getMatchedCVE()
-		report['unsafeCVE']=self.getDismathedCVE()
+		report['unsafeCVE']=self.getDismatchedCVE()
 		report['success']=True
 		report['warning']=self.warnings
 		#report['safeNumber']=len(self.getMatchedCVE())
-		#report['unsafeNumber']=len(self.getDismathedCVE())
+		#report['unsafeNumber']=len(self.getDismatchedCVE())
 		return report
 		

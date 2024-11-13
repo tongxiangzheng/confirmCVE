@@ -12,10 +12,17 @@ from GitChecker import GitChecker
 from GitCheckerDEB import GitCheckerDEB
 from queryCVEInfo import queryCVEInfo
 from SrcCheckerDeb import SrcCheckerDeb
+import dataLoger
 def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
+	
+	dataLoger.logdata("package name:"+packageInfo.name)
+	dataLoger.logdata("package type:"+packageInfo.osKind)
 	if len(cves)==0:
+		dataLoger.logdata("cves: ")
 		return []
 	if packageInfo.osKind!='deb' and packageInfo.osKind!='rpm':
+		for cve in cves:
+			dataLoger.logdata(" "+cve['name'])
 		return cves
 		#only check os system repo
 	try:
@@ -33,9 +40,13 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 		traceback.print_exc()
 		log.warning("failed to check packageCVE")
 		return cves
-	
-	print(packageInfo.name,ans.getMatchedCVE())
-	return ans.getDismathedCVE()
+	dataLoger.logdata("mathed cve:")
+	for cve in ans.getMatchedCVE():
+		dataLoger.logdata(" "+cve['name']+' reason: '+' '+cve['type'])
+	dataLoger.logdata("confirmed cve:")
+	for cve in ans.getDismatchedCVE():
+		dataLoger.logdata(" "+cve['name'])
+	return ans.getDismatchedCVE()
 def solve(packageList):
 	package_cveList=queryNVD.query(packageList)
 	res=dict()

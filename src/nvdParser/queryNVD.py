@@ -163,7 +163,7 @@ class CVEInfo:
                     return True
         return False
     def dumpInfo(self):
-        res={'name':cveName}
+        res={'name':self.cveName}
         if self.baseScore is not None:
             res['score']=self.baseScore
         return res
@@ -182,7 +182,7 @@ def query(packageList:list): #list[PackageInfo]
         name=package.name.lower()
         basePath,path=SoftManager.getPath(SoftManager.normalizeName(name))
         if not os.path.isfile(path):
-            log.warning("cannot find package: "+package.name)
+            #log.warning("cannot find package: "+package.name)
             continue
         with open(path,"r") as f:
             data=f.readlines()

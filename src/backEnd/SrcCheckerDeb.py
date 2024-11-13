@@ -37,7 +37,7 @@ class SrcCheckerDeb:
 			self.srcFile1Path=None
 			self.srcFile2Path=None
 			return
-		log.info("dsc link is "+dscLink)
+		#log.info("dsc link is "+dscLink)
 		
 		
 		if not os.path.exists(downloadPath):
@@ -89,12 +89,13 @@ class SrcCheckerDeb:
 			data=f.read()
 		return data
 	def check(self,cves):
+		cveChecker=CVEChecker(cves)
 		if len(cves)==0:
-			return []
-		print(cves)
+			return cveChecker
+		if self.srcFile1Path is None:
+			return cveChecker
 		projectPath=extractSrc(self.srcFile1Path,self.srcFile2Path,os.path.join(self.srcBasePath,'extract'))
 		
-		cveChecker=CVEChecker(cves)
 		cveChecker.checkChangeLog(self.getChangeLogFile(projectPath))
 		cveChecker.dfsDir(projectPath)
 		return cveChecker

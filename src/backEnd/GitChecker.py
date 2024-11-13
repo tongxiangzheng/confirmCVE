@@ -42,12 +42,12 @@ class GitChecker:
 			if not os.path.exists(downloadPath):
 				os.makedirs(downloadPath)
 			if not os.path.exists(filePath):
-				log.info("download "+URL+" to "+filePath)
+				#log.info("download "+URL+" to "+filePath)
 				try:
 					wget.download(URL,out=filePath)
 				except Exception as e:
-					log.info("can't download src package from "+URL+" ,which is not an error")
-					log.info("download error info: "+str(e.args))
+					#log.info("can't download src package from "+URL+" ,which is not an error")
+					#log.info("download error info: "+str(e.args))
 					continue
 			
 			DIR = os.path.split(os.path.abspath(__file__))[0]
@@ -82,7 +82,7 @@ class GitChecker:
 	def dfsTree(self,tree,ans):
 		for blobFile in tree.blobs:
 			ans.add(blobFile.hexsha)
-			log.trace(blobFile.name+" : "+blobFile.hexsha)
+			#log.trace(blobFile.name+" : "+blobFile.hexsha)
 		for treeDir in tree.trees:
 			self.dfsTree(treeDir,ans)
 	def parseMetadata(self,metadataName,commit,map):
@@ -96,7 +96,7 @@ class GitChecker:
 			data=f.readlines()
 			for info in data:
 				info=info.decode()
-				log.trace("parse:"+info)
+				#log.trace("parse:"+info)
 				if info.startswith('SHA256'):
 					parseInfo=info.split('=')
 					filehex=parseInfo[1].strip()
@@ -108,27 +108,27 @@ class GitChecker:
 				else:
 					filehex=info.split()[0]
 					map['sha1'].add(filehex)
-				log.trace("sources file: "+filehex)
+				#log.trace("sources file: "+filehex)
 		return
 	def srcCheck(self):
 		#尝试获取软件包源码，并使用源码文件与commit进行匹配
 		files=self.getSrcFiles()
 		if len(files)==0:
 			return None
-		log.info("start check by src files")
+		#log.info("start check by src files")
 		visted_commits=set()
 		matched_commits=[]
 		branchName=self.osInfo.branch
 		if branchName in self.repo.remote().refs:
 			branch=self.repo.remote().refs[branchName]
-			log.debug("branch: "+branch.name)
+			#log.debug("branch: "+branch.name)
 			nowCommit=self.repo.commit(branch.name)
 			while True:
 				hexsha=nowCommit.hexsha
 				if hexsha in visted_commits:
 					break
 				visted_commits.add(hexsha)
-				log.debug("commit: "+hexsha+" , "+nowCommit.message)
+				#log.debug("commit: "+hexsha+" , "+nowCommit.message)
 				blobFiles=set()
 				self.dfsTree(nowCommit.tree,blobFiles)
 				metadataFiles={'sha1':set(),'sha256':set(),'sha512':set()}
@@ -147,7 +147,7 @@ class GitChecker:
 						#break
 				if commitIsMatch:
 					matched_commits.append((nowCommit.committed_date,nowCommit.hexsha))
-					log.info("match the commit: "+nowCommit.hexsha)
+					#log.info("match the commit: "+nowCommit.hexsha)
 				elif disMatchNumber<3:
 					log.warning("similar dismatch commit : "+hexsha+" , dismatch file as below")
 					for m in disMatchs:
