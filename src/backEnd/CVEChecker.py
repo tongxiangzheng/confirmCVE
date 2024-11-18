@@ -9,7 +9,8 @@ class CVEChecker:
 			cveName=cve['name'].strip().lower()
 			cve_=cveName.split("#")[0]
 			self.cvedict[cveName]=cve
-			self.dismatched_cves[cveName]=(re.compile("Resolves.*"+cve_+r"\b"),re.compile("fix.*"+cve_+r"\b"),re.compile(cve_+r".patch\b"))
+			#self.dismatched_cves[cveName]=(re.compile("Resolves.*"+cve_+r"\b"),re.compile("fix.*"+cve_+r"\b"),re.compile(cve_+r".patch\b"))
+			self.dismatched_cves[cveName]=(re.compile(cve_+r"\b"),)#策略为发现提到此cve，则认为进行了修复
 			#\b匹配单词结尾，表示CVE字符串应为独立的单词
 		self.matched_cves=[]
 		self.warnings=[]
@@ -19,13 +20,14 @@ class CVEChecker:
 		matchCVE=[]
 		for cveName,cveRe in self.dismatched_cves.items():
 			for r in cveRe:
-				if r.search(info) is not None:
+				p=r.search(info)
+				if p is not None:
 					if commit is None:
 						hexsha="none"
 					else:
 						hexsha=commit.hexsha
-					matchCVE.append({"name":cveName,"type":type,"commit":hexsha,"info":info,"pointer":cve})
-					log.warning(cveName+" : have fix in "+hexsha+" with info: "+info)
+					matchCVE.append({"name":cveName,"type":type,"commit":hexsha,"info":info[max(0,p.span()[0]-100):min(len(info),p.span()[0]+20)],"pointer":self.cvedict[cveName]})
+					#log.info(cveName+" : have fix in "+hexsha+" with info: "+info)
 					break
 		for cve in matchCVE:
 			self.dismatched_cves.pop(cve["name"])

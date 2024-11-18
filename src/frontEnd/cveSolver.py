@@ -40,9 +40,9 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 		traceback.print_exc()
 		log.warning("failed to check packageCVE")
 		return cves
-	dataLoger.logdata("mathed cve:")
+	dataLoger.logdata("matched cve:")
 	for cve in ans.getMatchedCVE():
-		dataLoger.logdata(" "+cve['name']+' reason: '+' '+cve['type'])
+		dataLoger.logdata(" "+cve['name']+' reason: '+' '+cve['type']+" info:"+cve['info'])
 	dataLoger.logdata("confirmed cve:")
 	for cve in ans.getDismatchedCVE():
 		dataLoger.logdata(" "+cve['name'])

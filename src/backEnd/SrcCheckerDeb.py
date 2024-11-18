@@ -6,6 +6,7 @@ from loguru import logger as log
 from CVEChecker import CVEChecker
 from PackageInfo import PackageInfo
 from OSInformation import OSInformation
+import nwkTools
 
 def unzip(zipfile,toPath):
 	with tarfile.open(zipfile) as f:
@@ -25,6 +26,26 @@ def extractSrc(srcFile,srcFile2,distPath):
 	if srcFile2:
 		unzip(srcFile2,projectPath)
 	return projectPath
+
+def parseDscFile(dscFilePath):
+	with open(dscFilePath,"r") as f:
+		data=f.readlines()
+	in_files=False
+	files=[]
+	for info in data:
+		if info.startswith("Files:"):
+			in_files=True
+			continue
+		if in_files is False:
+			continue
+		if info.startswith(" "):
+			info=info.strip().split(' ')
+			files.append(info[2])
+			print(info[2])
+		else:
+			break
+	return files
+
 class SrcCheckerDeb:
 	def __init__(self,packageInfo:PackageInfo):
 		self.packageInfo=packageInfo
@@ -40,33 +61,40 @@ class SrcCheckerDeb:
 		#log.info("dsc link is "+dscLink)
 		
 		
-		if not os.path.exists(downloadPath):
-			os.makedirs(downloadPath)
-		
-		p = subprocess.Popen("dget "+dscLink, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,cwd=downloadPath)
-		stdout, stderr = p.communicate()
+		# if not os.path.exists(downloadPath):
+		# 	os.makedirs(downloadPath)
+		# p = subprocess.Popen("dget "+dscLink, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,cwd=downloadPath)
+		# stdout, stderr = p.communicate()
+		# 为避免依赖dget，使用以下方式手动实现dget功能
+
+		dscFilePath=nwkTools.downloadFile(dscLink,downloadPath,dscLink.rsplit("/",1)[-1])
+		srcFiles=parseDscFile(dscFilePath)
+		for fi in srcFiles:
+			nwkTools.downloadFile(dscLink.rsplit("/",1)[0]+'/'+fi,downloadPath,fi)
 		zipType=["bz2","gz","lzma","xz"]
 		srcFile=None
 		srcFile2=None
+		name=self.packageInfo.name
+		version=self.packageInfo.version.split(":")[-1]
 		for t in zipType:
-			fileName=os.path.join(downloadPath,f"{self.packageInfo.name}_{self.packageInfo.version}.orig.tar.{t}")
+			fileName=os.path.join(downloadPath,f"{name}_{version}.orig.tar.{t}")
 			if os.path.isfile(fileName):
 				srcFile=fileName
 				break
 		for t in zipType:
 			if self.packageInfo.release is None:
-				fileName=os.path.join(downloadPath,f"{self.packageInfo.name}_{self.packageInfo.version}.debian.tar.{t}")
+				fileName=os.path.join(downloadPath,f"{name}_{version}.debian.tar.{t}")
 			else:
-				fileName=os.path.join(downloadPath,f"{self.packageInfo.name}_{self.packageInfo.version}-{self.packageInfo.release}.debian.tar.{t}")
+				fileName=os.path.join(downloadPath,f"{name}_{version}-{self.packageInfo.release}.debian.tar.{t}")
 			if os.path.isfile(fileName):
 				srcFile2=fileName
 				break
 		if srcFile is None and srcFile2 is None:
 			for t in zipType:
 				if self.packageInfo.release is None:
-					fileName=os.path.join(downloadPath,f"{self.packageInfo.name}_{self.packageInfo.version}.tar.{t}")
+					fileName=os.path.join(downloadPath,f"{name}_{version}.tar.{t}")
 				else:
-					fileName=os.path.join(downloadPath,f"{self.packageInfo.name}_{self.packageInfo.version}-{self.packageInfo.release}.tar.{t}")
+					fileName=os.path.join(downloadPath,f"{name}_{version}-{self.packageInfo.release}.tar.{t}")
 				if os.path.isfile(fileName):
 					srcFile=fileName
 					break
