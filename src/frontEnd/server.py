@@ -111,11 +111,11 @@ def rpmQuerybuildinfo():
 	return {"error":0,"buildinfo":res}
 
 #log.remove(handler_id=None)
-#logFile="log.log"
-#if os.path.exists(logFile):
-#	os.remove(logFile)
+logFile="log.log"
+if os.path.exists(logFile):
+	os.remove(logFile)
 #log.add(sink=logFile,level='WARNING')
-#log.add(sink=logFile,level='TRACE')
+log.add(sink=logFile,level='TRACE')
 
 port = 8342
 init()

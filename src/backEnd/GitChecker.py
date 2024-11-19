@@ -149,7 +149,7 @@ class GitChecker:
 						#break
 				if commitIsMatch:
 					matched_commits.append((nowCommit.committed_date,nowCommit.hexsha))
-					#log.info("match the commit: "+nowCommit.hexsha)
+					log.info("match the commit: "+nowCommit.hexsha)
 				elif disMatchNumber<3:
 					log.warning("similar dismatch commit : "+hexsha+" , dismatch file as below")
 					for m in disMatchs:
@@ -212,7 +212,7 @@ class GitChecker:
 			log.trace("release:"+release)
 			log.trace("message:"+commit.message)
 			
-			if self.packageInfo.name==name and self.packageInfo.version==version and self.packageInfo.release==release:
+			if self.packageInfo.name==name and self.packageInfo.version==version and self.packageInfo.release.split('.')[0]==release:
 				return True
 		return False
 	
@@ -285,6 +285,6 @@ class GitChecker:
 			log.warning("Cannot match any commit for "+self.packageInfo.name)
 			raise Exception("Cannot match any commit")
 		log.info("match commit id: "+commitId)
-		self.checkSpecFile(commitId)
+		self.checkSpecFile(commitId,cveChecker)
 		self.checkMessage(commitId,cveChecker)
 		return cveChecker

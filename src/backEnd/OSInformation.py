@@ -40,5 +40,5 @@ class OSInformation:
 		try:
 			branch=self.branchmap[packageInfo.osType][packageInfo.dist]
 		except Exception as e:
-			pass
+			log.warning("cannot confirm branch for "+packageInfo.osType+":"+packageInfo.dist+", may need edit branchMap.json")
 		return OSInfo(info['type'],gitLink,info['specfile'],info['srcPackageLink'],packageInfo.osType,branch)

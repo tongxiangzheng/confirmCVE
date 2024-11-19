@@ -47,6 +47,7 @@ def loadPurl(purlStr):
 	if len(version_release)>1:
 		release=version_release[1]
 	dist=""
+	print(version_dist)
 	if len(version_dist)>1:
 		dist=version_dist[1]
 	dscLink=""

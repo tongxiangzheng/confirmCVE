@@ -188,11 +188,11 @@ def query(packageList:list): #list[PackageInfo]
             data=f.readlines()
             for cvePath in data:
                 cvePath=cvePath.strip()
-                log.trace(package.name+" have cve at "+cvePath)
+                #log.trace(package.name+" have cve at "+cvePath)
                 registerPackage(relatedCVE,cvePath,package)
     for cve in relatedCVE.values():
         if cve.check():
-            log.trace(cve.path+" is active")
+            #log.trace(cve.path+" is active")
             cveSet=set()
             for package in cve.collect:
                 if cve.cveName in cveSet:
@@ -200,7 +200,8 @@ def query(packageList:list): #list[PackageInfo]
                 cveSet.add(cve.cveName)
                 res[package].append(cve.dumpInfo())
         else:
-            log.trace(cve.path+" is not active")
+            #log.trace(cve.path+" is not active")
+            pass
     
     return res
 

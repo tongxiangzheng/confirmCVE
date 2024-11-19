@@ -8,7 +8,8 @@
 		"el9-stream":"c9s"
 	},
 	"openEuler":{
-		"oe2309":"openEuler-23.09"
+		"oe2309":"openEuler-23.09",
+		"oe2403":"openEuler-24.03-LTS"
 	},
 	"fedora":{
         "fc35":"f35",
