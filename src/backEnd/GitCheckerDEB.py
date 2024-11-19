@@ -25,7 +25,7 @@ class GitCheckerDEB:
 		
 		gitLink=packageInfo.gitLink
 		DIR = os.path.split(os.path.abspath(__file__))[0]
-		downloadPath = os.path.join(DIR,'..','..','repos',self.packageInfo.osType,packageInfo.name)
+		downloadPath = os.path.join(DIR,'..','..','data','repos',self.packageInfo.osType,packageInfo.name)
 		repoLink=gitLink
 		self.repoLink=repoLink
 		if repoLink=='':
@@ -46,6 +46,8 @@ class GitCheckerDEB:
 			#check if git repo have to update
 			#disable only for debug
 		else:
+			if not os.path.exists(downloadPath):
+				os.makedirs(downloadPath)
 			self.repo = git.Repo.clone_from(repoLink,to_path=downloadPath)
 			
 	def checkCommit(self,commit,changelogFileName):

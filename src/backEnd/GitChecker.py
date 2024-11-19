@@ -18,7 +18,7 @@ class GitChecker:
 		self.autoReleaseDict=dict()
 		self.osInfo=osInfo
 		DIR = os.path.split(os.path.abspath(__file__))[0]
-		downloadPath = os.path.join(DIR,'..','..','repos',self.osInfo.name,packageInfo.name)
+		downloadPath = os.path.join(DIR,'..','..','data','repos',self.osInfo.name,packageInfo.name)
 		repoLink=self.osInfo.gitLink+packageInfo.name+'.git'
 		log.info("git link is "+repoLink)
 		if os.path.exists(downloadPath):
@@ -27,6 +27,8 @@ class GitChecker:
 			#check if git repo have to update
 			#disable only for debug
 		else:
+			if not os.path.exists(downloadPath):
+				os.makedirs(downloadPath)
 			self.repo = git.Repo.clone_from(repoLink,to_path=downloadPath)
 	def getSrcFiles(self):
 		filename=self.packageInfo.name+"-"+self.packageInfo.version+"-"+self.packageInfo.release+"."+self.packageInfo.dist+".src.rpm"

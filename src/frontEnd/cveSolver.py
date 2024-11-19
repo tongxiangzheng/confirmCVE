@@ -14,15 +14,17 @@ from queryCVEInfo import queryCVEInfo
 from SrcCheckerDeb import SrcCheckerDeb
 import dataLoger
 def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
-	
+	dataLoger.logdata("")
 	dataLoger.logdata("package name:"+packageInfo.name)
 	dataLoger.logdata("package type:"+packageInfo.osKind)
 	if len(cves)==0:
-		dataLoger.logdata("cves: ")
+		dataLoger.logdata("cves: 0")
 		return []
 	if packageInfo.osKind!='deb' and packageInfo.osKind!='rpm':
-		for cve in cves:
-			dataLoger.logdata(" "+cve['name'])
+		#for cve in cves:
+		#	dataLoger.logdata(" "+cve['name'])
+		dataLoger.logdata("cves: "+str(len(cves)))
+
 		return cves
 		#only check os system repo
 	try:
@@ -40,12 +42,12 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 		traceback.print_exc()
 		log.warning("failed to check packageCVE")
 		return cves
-	dataLoger.logdata("matched cve:")
-	for cve in ans.getMatchedCVE():
-		dataLoger.logdata(" "+cve['name']+' reason: '+' '+cve['type']+" info:"+cve['info'])
-	dataLoger.logdata("confirmed cve:")
-	for cve in ans.getDismatchedCVE():
-		dataLoger.logdata(" "+cve['name'])
+	dataLoger.logdata("matched cve: "+str(len(ans.getMatchedCVE())))
+	#for cve in ans.getMatchedCVE():
+		#dataLoger.logdata(" "+cve['name']+' reason: '+' '+cve['type']+" info:"+cve['info'])
+	dataLoger.logdata("confirmed cve: "+str(len(ans.getDismatchedCVE())))
+	#for cve in ans.getDismatchedCVE():
+	#	dataLoger.logdata(" "+cve['name'])
 	return ans.getDismatchedCVE()
 def solve(packageList):
 	package_cveList=queryNVD.query(packageList)
