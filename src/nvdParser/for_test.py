@@ -1,3 +1,0 @@
-import buildAll
-
-buildAll.build()

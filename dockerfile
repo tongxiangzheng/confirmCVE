@@ -11,8 +11,8 @@ RUN ln -s /usr/lib/x86_64-linux-gnu/libarchive.a /usr/lib/x86_64-linux-gnu/libli
 RUN pip3 install -r requirements.txt
 
 
-#COPY data /app/data
-VOLUME /app/data
+RUN mkdir /app/data
+#VOLUME /app/data
 COPY src/ /app/src/
-
+RUN python3 /app/src/nvdParser/updateNVD.py
 CMD  ["python3","/app/src/frontEnd/server.py"]

@@ -30,9 +30,25 @@ cd src/frontEnd
 python server.py
 ```
 
-docker方法
+## docker方法
+
+拉取ubuntu镜像（可选）
+```
+docker pull ubuntu:22.04
+```
+
+构建docker
 ```
 docker build -t confirmcve .
-docker run --name confirmcve_server --rm confirmcve
+docker volume create confirmcve-data
 ```
-8342
+
+更新docker（更新时无需重新创建用户存储数据的volume）
+```
+docker build -t confirmcve .
+```
+
+运行docker
+```
+docker run --name confirmcve_server -v confirmcve-data:/app/data -p 8342:8342 --rm confirmcve
+```
