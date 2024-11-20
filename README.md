@@ -29,3 +29,10 @@ pip3 install flask
 cd src/frontEnd
 python server.py
 ```
+
+docker方法
+```
+docker build -t confirmcve .
+docker run --name confirmcve_server --rm confirmcve
+```
+8342

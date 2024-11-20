@@ -271,7 +271,7 @@ class GitChecker:
 		with io.BytesIO(specFile.data_stream.read()) as f:
 			data=f.read()
 			spec = Spec.from_string(data.decode('utf-8', errors='ignore'))
-			print(spec.changelog)
+			#print(spec.changelog)
 			cveChecker.checkChangeLog(spec.changelog)
 	def checkMessage(self,commitId,cveChecker):
 		commit=self.repo.commit(commitId)

@@ -15,14 +15,16 @@ from SrcCheckerDeb import SrcCheckerDeb
 import dataLoger
 def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 	dataLoger.logdata("")
-	dataLoger.logdata("package name:"+packageInfo.name)
-	dataLoger.logdata("package type:"+packageInfo.osKind)
 	if len(cves)==0:
+		dataLoger.logdata("package name:"+packageInfo.name)
+		dataLoger.logdata("package type:"+packageInfo.osKind)
 		dataLoger.logdata("cves: 0")
 		return []
 	if packageInfo.osKind!='deb' and packageInfo.osKind!='rpm':
 		#for cve in cves:
 		#	dataLoger.logdata(" "+cve['name'])
+		dataLoger.logdata("package name:"+packageInfo.name)
+		dataLoger.logdata("package type:"+packageInfo.osKind)
 		dataLoger.logdata("cves: "+str(len(cves)))
 
 		return cves
@@ -42,6 +44,9 @@ def queryPackageCVE(packageInfo:PackageInfo,cves:list)->list:
 		traceback.print_exc()
 		log.warning("failed to check packageCVE")
 		return cves
+	
+	dataLoger.logdata("package name:"+packageInfo.name)
+	dataLoger.logdata("package type:"+packageInfo.osKind)
 	dataLoger.logdata("matched cve: "+str(len(ans.getMatchedCVE())))
 	#for cve in ans.getMatchedCVE():
 		#dataLoger.logdata(" "+cve['name']+' reason: '+' '+cve['type']+" info:"+cve['info'])

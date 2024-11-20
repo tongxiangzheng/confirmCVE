@@ -4,9 +4,10 @@ from loguru import logger as log
 ignoredVulnStatus={'Rejected','Awaiting Analysis','Received','Undergoing Analysis'}
 
 DIR = os.path.split(os.path.abspath(__file__))[0]
-basePath=os.path.join(DIR,'nvd-json-data-feeds')
-targetPath=os.path.join(DIR,'package_cve')
-dataPath=os.path.join(DIR,"data")
+dataDir=os.path.join(DIR,'..','..','data','nvdData')
+basePath=os.path.join(dataDir,'nvd-json-data-feeds')
+targetPath=os.path.join(dataDir,'package_cve')
+dataPath=os.path.join(dataDir,"data")
 class CVEInfo:
 	def __init__(self,path,f=None):
 		#if f is None, will load file from path
@@ -92,14 +93,14 @@ class SoftManager:
 		self.head=None
 		self.loadFile=loadFile
 		if os.path.isfile(dataPath):
-			with open(os.path.join(DIR,"data"),"r") as f:
+			with open(dataPath,"r") as f:
 				data=f.readlines()
 				if len(data)!=0:
 					self.head=data[0]
 	def dump(self):
 		for soft in self.softCache.values():
 			soft.dump()
-		with open(os.path.join(DIR,"data"),"w") as f:
+		with open(dataPath,"w") as f:
 			f.write(self.head)
 	def getsoft(self,softName,softCPE):
 		if softName not in self.softCache:

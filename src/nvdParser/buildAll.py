@@ -31,5 +31,4 @@ def build():
     softManager.head=repo.head.commit.hexsha
     softManager.dump()
 
-#CVEInfo('/home/txz/code/nvd-json-data-feeds/CVE-2020/CVE-2020-94xx/CVE-2020-9488.json')
 #build()

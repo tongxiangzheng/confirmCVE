@@ -45,7 +45,7 @@ class CVEChecker:
 	def checkChangeLog(self,message):
 		self.parse(message,type="changelog")
 	def checkCommit(self,commit):
-		log.debug("check commit: "+commit.hexsha)
+		#log.debug("check commit: "+commit.hexsha)
 		self.parse(commit.message,commit,type="commit_message")
 		self.dfsTree(commit.tree,commit)
 	def getMatchedCVE(self)->list:
