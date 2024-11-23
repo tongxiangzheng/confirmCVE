@@ -24,7 +24,7 @@ def parseSpdxObj(spdxObj):
 	packages=spdxObj['packages']
 	for package in packages:
 		packageType=package['description']
-		if packageType.lower()=='deb' or packageType.lower()=='rpm':
+		if 'sourceInfo' in package and package['sourceInfo']=="External Dependency" and (packageType.lower()=='deb' or packageType.lower()=='rpm'):
 			packageinfo=None
 			for externalRefs in package['externalRefs']:
 				if externalRefs['referenceCategory']!='PACKAGE_MANAGER':
@@ -41,7 +41,7 @@ def parseSpdxObj(spdxObj):
 			spdxid=package['SPDXID']
 			if spdxid.startswith("SPDXRef-DocumentRoot-Directory"):
 				continue
-			name=package['name']
+			name=package['name'].split('/')[-1]
 			version=package['versionInfo']
 			packageinfo=PackageInfo.PackageInfo("maven","","",name,version,None,None)
 			name=packageinfo.name

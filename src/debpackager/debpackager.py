@@ -20,7 +20,6 @@ def builddebPackage(origName,projectName,osType,osDist,arch):
 	# stdout, stderr = p.communicate()
 	
 def getNameAndVersion(changelogFile):
-	print(changelogFile)
 	with open(changelogFile) as f:
 		changelogInfo = f.read()
 		changelogInfo_line=changelogInfo.split('\n',1)
