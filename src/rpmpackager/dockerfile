@@ -13,7 +13,7 @@ RUN if [ "$SYSTEM_NAME" = "centos" ] && [ "$SYSTEM_VERSION" = "8" ]; then \
 fi
 RUN dnf clean all
 RUN dnf makecache
-RUN dnf install -y rpmdevtools 'dnf-command(builddep)' createrepo
+RUN dnf install -y rpmdevtools 'dnf-command(builddep)' createrepo make
 #提前安装常见依赖，加快速度
 RUN dnf install -y perl-devel python3-devel gcc systemd xz-devel
 ARG ORIGNAME
